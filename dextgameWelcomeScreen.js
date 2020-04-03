@@ -1,4 +1,4 @@
-class dextgamescene1 extends Phaser.Scene{
+class dextgameWelcomeScreen extends Phaser.Scene{
   constructor(){
     super({key:"dextgamescene1"});
   }
