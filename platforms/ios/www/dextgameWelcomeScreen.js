@@ -22,7 +22,7 @@ class dextgameWelcomeScreen extends Phaser.Scene{
 
   update(){
     //is a loop that runs constantly
-    if (this.input.pointer1.isDown && this.input.pointer2.isDown){
+    if (this.input.pointer1.isDown || this.input.pointer2.isDown){
       graphics.clear();
       // this.scene.start("playScreen");
     }
