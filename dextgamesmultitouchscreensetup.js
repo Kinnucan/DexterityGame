@@ -8,5 +8,6 @@ var config = {
 
 var text;
 var graphics;
+var timeoutID;
 
 var game = new Phaser.Game(config);
