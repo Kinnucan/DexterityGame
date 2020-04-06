@@ -21,8 +21,10 @@ class dextgameWelcomeScreen extends Phaser.Scene{
   }
 
   update(){
-    //is a loop that runs constantly-->Needs to Fix?
-    // if (this.input.pointer1.isDown || this.input.pointer2.isDown){
+    //is a loop that runs constantly
+
+    //fix the following loop so that playScreen is triggered when both fingers are touching the screen
+    // if (this.input.pointer1.isDown && this.input.pointer2.isDown){
     //   graphics.clear();
     //   this.scene.start("playScreen");
     // }

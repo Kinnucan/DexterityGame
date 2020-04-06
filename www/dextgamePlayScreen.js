@@ -15,31 +15,32 @@ class dextgamePlayScreen extends Phaser.Scene{
 
   create(){
     //create objects
-    this.graphics = this.add.graphics();
+    // this.graphics = this.add.graphics();
+    graphics = this.add.graphics();
     this.input.addPointer(1);
-    this.text = this.add.text(10,10, 'hello');
+    text = this.add.text(10,10, 'hello');
   }
 
   update(){
     //is a loop that runs constantly
 
     // //checks to see if only one finger is done--TODO: need to edit this
-    // if (this.input.pointer1.isDown || this.input.pointer2.isDown){
-    //   graphics.clear();
-    //   // this.scene.start("dextgamePauseScreen");
-    //
-    // }
-    // text.setText([
-    //         'pointer1.isDown: ' + this.input.pointer1.isDown,
-    //         'pointer2.isDown: ' + this.input.pointer2.isDown,
-    //
-    //     ]);
-    //
-    //     graphics.fillStyle(0xff0000, 1);
-    //     graphics.fillRect(this.input.pointer1.x, this.input.pointer1.y, 64, 64);
-    //
-    //     graphics.fillStyle(0x00ff00, 1);
-    //     graphics.fillRect(this.input.pointer2.x, this.input.pointer2.y, 64, 64);
+    if (this.input.pointer1.isDown || this.input.pointer2.isDown){
+      graphics.clear();
+      // this.scene.start("dextgamePauseScreen");
+
+    }
+    text.setText([
+            'pointer1.isDown: ' + this.input.pointer1.isDown,
+            'pointer2.isDown: ' + this.input.pointer2.isDown,
+
+        ]);
+
+        graphics.fillStyle(0xff0000, 1);
+        graphics.fillRect(this.input.pointer1.x, this.input.pointer1.y, 64, 64);
+
+        graphics.fillStyle(0x00ff00, 1);
+        graphics.fillRect(this.input.pointer2.x, this.input.pointer2.y, 64, 64);
 
 
   }
