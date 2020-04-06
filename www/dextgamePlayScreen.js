@@ -31,6 +31,7 @@ class dextgamePlayScreen extends Phaser.Scene{
 
     }
     text.setText([
+            'hello',
             'pointer1.isDown: ' + this.input.pointer1.isDown,
             'pointer2.isDown: ' + this.input.pointer2.isDown,
 
