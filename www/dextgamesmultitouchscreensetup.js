@@ -11,3 +11,6 @@ var graphics;
 var timeoutID;
 
 var game = new Phaser.Game(config);
+
+pointer1 = scene.input.activePointer;
+pointer2 = scene.input.activePointer;
