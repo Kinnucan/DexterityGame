@@ -1,5 +1,6 @@
 class dextgamePlayScreen extends Phaser.Scene{
   constructor(){
+    // super('welcomeScreen');
     super({key:"playScreen"});
   }
 
@@ -15,20 +16,22 @@ class dextgamePlayScreen extends Phaser.Scene{
   create(){
     //create objects
     // this.graphics = this.add.graphics();
-    // this.input.addPointer(1);
-    this.text = this.add.text(10,10, 'hello');
+    graphics = this.add.graphics();
+    this.input.addPointer(1);
+    text = this.add.text(10,10, 'hello');
   }
 
   update(){
     //is a loop that runs constantly
 
     // //checks to see if only one finger is done--TODO: need to edit this
-    // if (this.input.pointer1.isDown || this.input.pointer2.isDown){
-    //   graphics.clear();
-    //   this.scene.start("dextgamePauseScreen");
-    //
-    // }
+    if (this.input.pointer1.isDown || this.input.pointer2.isDown){
+      graphics.clear();
+      // this.scene.start("dextgamePauseScreen");
+
+    }
     text.setText([
+            'hello',
             'pointer1.isDown: ' + this.input.pointer1.isDown,
             'pointer2.isDown: ' + this.input.pointer2.isDown,
 
