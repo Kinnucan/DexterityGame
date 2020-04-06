@@ -1,6 +1,6 @@
 class dextgamePauseScreen extends Phaser.Scene{
   constructor(){
-    super({key:"dextgamePauseScreen"});
+    super({key:"pauseScreen"});
   }
 
   // init() {
@@ -16,30 +16,16 @@ class dextgamePauseScreen extends Phaser.Scene{
     //create objects
     graphics = this.add.graphics();
     this.input.addPointer(1);
-    text = this.add.text(10,10, 'Hello');
-    // this.createScreenTouch();
+    text = this.add.text(10,10, 'You Are Paused');
   }
 
   update(){
     //is a loop that runs constantly
     if (this.input.pointer1.isDown && this.input.pointer2.isDown){
       graphics.clear();
-      this.scene.start("dextgamePlayScreen");
+      this.scene.start("playScreen");
 
     }
-    // text.setText([
-    //         'pointer1.isDown: ' + this.input.pointer1.isDown,
-    //         'pointer2.isDown: ' + this.input.pointer2.isDown,
-    //
-    //     ]);
-    //
-    //     graphics.fillStyle(0xff0000, 1);
-    //     graphics.fillRect(this.input.pointer1.x, this.input.pointer1.y, 64, 64);
-    //
-    //     graphics.fillStyle(0x00ff00, 1);
-    //     graphics.fillRect(this.input.pointer2.x, this.input.pointer2.y, 64, 64);
-
-
   }
 
 

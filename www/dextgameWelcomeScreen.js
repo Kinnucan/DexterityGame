@@ -32,19 +32,6 @@ class dextgameWelcomeScreen extends Phaser.Scene{
     //   this.scene.start("playScreen");
     // }
 
-    // text.setText([
-    //         'pointer1.isDown: ' + this.input.pointer1.isDown,
-    //         'pointer2.isDown: ' + this.input.pointer2.isDown,
-    //
-    //     ]);
-    //
-    //     graphics.fillStyle(0xff0000, 1);
-    //     graphics.fillRect(this.input.pointer1.x, this.input.pointer1.y, 64, 64);
-    //
-    //     graphics.fillStyle(0x00ff00, 1);
-    //     graphics.fillRect(this.input.pointer2.x, this.input.pointer2.y, 64, 64);
-
-
 
 
   }

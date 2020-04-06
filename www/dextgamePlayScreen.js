@@ -27,7 +27,7 @@ class dextgamePlayScreen extends Phaser.Scene{
     // //checks to see if only one finger is done--TODO: need to edit this
     if (this.input.pointer1.isDown || this.input.pointer2.isDown){
       graphics.clear();
-      // this.scene.start("dextgamePauseScreen");
+      // this.scene.start("pauseScreen");
 
     }
     text.setText([
