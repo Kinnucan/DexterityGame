@@ -9,8 +9,9 @@ var config = {
 var text;
 var graphics;
 var timeoutID;
+var touchCounter;
 
 var game = new Phaser.Game(config);
 
-pointer1 = scene.input.activePointer;
-pointer2 = scene.input.activePointer;
+// pointer1 = scene.input.activePointer;
+// pointer2 = scene.input.activePointer;
