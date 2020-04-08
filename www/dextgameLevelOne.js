@@ -9,7 +9,7 @@ class dextgameLevelOne extends Phaser.Scene{
 
   preload(){
     //USed for load music and pictures
-
+    this.load.image('brush', 'www/logo.png');
   }
 
   create(){
@@ -21,6 +21,12 @@ class dextgameLevelOne extends Phaser.Scene{
     graphics.lineStyle(5, 0x0000FF, 1.0);
     graphics.strokeRect(105, 250, 100, 100);
     graphics.strokeTriangle(390, 350, 465, 250, 540, 350);
+
+    this.input.on('pointermove', function (pointer1) {
+      if (pointer1.isDown){
+        this.add.image(pointer1.x, pointer1.y, 'brush');
+      }
+    }, this);
   }
 
   update(){
