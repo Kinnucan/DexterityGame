@@ -10,5 +10,6 @@ var text;
 var graphics;
 var timeoutID;
 var touchCounter;
+var winCondition;
 
 var game = new Phaser.Game(config);

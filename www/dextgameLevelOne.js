@@ -22,17 +22,55 @@ class dextgameLevelOne extends Phaser.Scene{
     graphics.strokeRect(105, 250, 100, 100);
     graphics.strokeTriangle(390, 350, 465, 250, 540, 350);
 
+    // var squarePoints = [105, 250, 205, 250, 205, 350, 105, 350, 105, 250];
+    // var i = 0;
+
+    var checkPoints = [0, 0, 0, 0];
+    winCondition = 0;
+
+    //allows user to draw when pressing finger down
     this.input.on('pointermove', function (pointer1) {
       if (pointer1.isDown){
         this.add.image(pointer1.x, pointer1.y, 'brush');
+        //checks if the user is within a certain number of pixels of select points on the shape
+        // var dist = Phaser.Math.Distance.Between(pointer1.x, pointer1.y, squarePoints[i], squarePoints[i+1]);
+        // text.setText([
+        //         'Distance: '
+        //         'X: ' + pointer1.x,
+        //         'Y: ' + pointer1.y
+        //     ]);
+        // if (dist <= 15 && i < 9){
+        //   i += 2;
+        // }
+        if (Phaser.Math.Distance.Between(pointer1.x, pointer1.y, 105, 250) <= 15 && checkPoints[0] != 1){
+          winCondition += 1;
+          checkPoints[0] = 1;
+        }
+        if (Phaser.Math.Distance.Between(pointer1.x, pointer1.y, 205, 250) <= 15 && checkPoints[1] != 1){
+          winCondition += 1;
+          checkPoints[1] = 1;
+        }
+        if (Phaser.Math.Distance.Between(pointer1.x, pointer1.y, 205, 350) <= 15 && checkPoints[2] != 1){
+          winCondition += 1;
+          checkPoints[2] = 1;
+        }
+        if (Phaser.Math.Distance.Between(pointer1.x, pointer1.y, 105, 350) <= 15 && checkPoints[3] != 1){
+          winCondition += 1;
+          checkPoints[3] = 1;
+        }
+        text.setText(['Score: ' + winCondition]);
+        if (winCondition == 4){
+          text.setText([
+                  'You won!'
+              ]);
+        }
+
       }
     }, this);
   }
 
   update(){
     //is a loop that runs constantly
-    // graphics.clear();
-    // graphics.lineStyle(2, 0x0000FF, 1);
-    // graphics.drawRect(50, 250, 100, 100);
   }
+
 }
