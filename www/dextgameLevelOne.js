@@ -10,14 +10,12 @@ class dextgameLevelOne extends Phaser.Scene{
 
   create(){
     //create objects
-    touchCounter = 0;
+    touchCounter = 2;
     graphics = this.add.graphics();
     this.input.addPointer(2);
     text = this.add.text(20,20, 'Welcome to Level One!');
 
-    this.input.on('pointerdown', function (pointer1) {touchCounter++;}, this);
-    this.input.on('pointerdown', function (pointer2) {touchCounter++;}, this);
-
+    // this.input.on('pointerUp', function (pointer1) {touchCounter--;}, this);
 
 
     graphics.lineStyle(5, 0x0000FF, 1.0);
@@ -73,9 +71,9 @@ class dextgameLevelOne extends Phaser.Scene{
 
   update(){
     //is a loop that runs constantly
-    if (touchCounter < 2){
-      this.scene.start("pauseScreen");
-    }
+    // if (touchCounter == 1){
+    //   this.scene.start("pauseScreen");
+    // }
 
   }
 

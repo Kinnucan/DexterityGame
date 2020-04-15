@@ -9,7 +9,7 @@ class dextgamePauseScreen extends Phaser.Scene{
   }
 
   create(){
-    touchCounter =0;
+    touchCounter = 0;
     //create objects
     graphics = this.add.graphics();
     this.input.addPointer(1);
@@ -57,7 +57,3 @@ class dextgamePauseScreen extends Phaser.Scene{
   //
   //     startTimer();
   // }
-
-
-
-}
