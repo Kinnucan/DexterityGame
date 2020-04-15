@@ -3,27 +3,27 @@ class dextgamePauseScreen extends Phaser.Scene{
     super({key:"pauseScreen"});
   }
 
-  // init() {
-  //   //prepare data
-  // }
 
   preload(){
-    //USed for load music and pictures
 
   }
 
   create(){
+    touchCounter =0;
     //create objects
     graphics = this.add.graphics();
     this.input.addPointer(1);
     text = this.add.text(10,10, 'You Are Paused');
+    this.input.on('pointerdown', function (pointer1) {touchCounter++;}, this);
+    this.input.on('pointerdown', function (pointer2) {touchCounter++;}, this);
+
   }
 
   update(){
     //is a loop that runs constantly
-    if (this.input.pointer1.isDown && this.input.pointer2.isDown){
-      graphics.clear();
-      this.scene.start("playScreen");
+    if (touchCounter == 2){
+      this.scene.start("levelOne");
+    }
 
     }
   }
