@@ -19,7 +19,7 @@ class dextgameWelcomeScreen extends Phaser.Scene{
     this.input.addPointer(2);
     text = this.add.text(20,20, 'Welcome! Place Two Fingers Down To Begin');
     this.input.on('pointerdown', function (pointer1) {touchCounter++;}, this);
-    this.input.on('pointerdown', function (pointer2) {touchCounter++;}, this);
+    // this.input.on('pointerdown', function (pointer2) {touchCounter++;}, this);
     // this.scene.start("playScreen");
     // this.input.on('pointerdown', function (pointer1) {touchCounter++;}, this);
     // this.input.on('pointerdown', function (pointer2) {touchCounter++;}, this);
