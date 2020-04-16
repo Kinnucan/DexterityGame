@@ -5,7 +5,7 @@ class dextgameLevelOne extends Phaser.Scene{
 
   preload(){
     //USed for load music and pictures
-    this.load.image('brush', 'www/logo.png');
+    this.load.image('brush', 'www/img/brush1.png');
   }
 
   create(){
@@ -31,7 +31,7 @@ class dextgameLevelOne extends Phaser.Scene{
     //allows user to draw when pressing finger down
     this.input.on('pointermove', function (pointer1) {
       if (pointer1.isDown){
-        this.add.image(pointer1.x, pointer1.y, 'brush');
+        this.add.image(pointer1.x, pointer1.y, 'brush1');
         //checks if the user is within a certain number of pixels of select points on the shape
         // var dist = Phaser.Math.Distance.Between(pointer1.x, pointer1.y, squarePoints[i], squarePoints[i+1]);
         // text.setText([
@@ -71,9 +71,9 @@ class dextgameLevelOne extends Phaser.Scene{
 
   update(){
     //is a loop that runs constantly
-    // if (touchCounter == 1){
-    //   this.scene.start("pauseScreen");
-    // }
+    if (touchCounter == 1){
+      this.scene.start("pauseScreen");
+    }
 
   }
 
