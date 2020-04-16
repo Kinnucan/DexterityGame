@@ -71,10 +71,11 @@ class dextgameLevelOne extends Phaser.Scene{
     this.input.on('pointerup', function (pointer1) {touchCounter--;}, this);
 
     if (touchCounter < 2){
-      this.scene.pause();
-      this.scene.launch("pauseScreen");
+      // this.scene.pause();
+      // this.scene.launch("pauseScreen");
+      this.scene.start("pauseScreen");
     }
-    
+
 
   }
 
