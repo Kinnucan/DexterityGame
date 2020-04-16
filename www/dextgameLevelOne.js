@@ -74,8 +74,7 @@ class dextgameLevelOne extends Phaser.Scene{
       this.scene.pause();
       this.scene.launch("pauseScreen");
     }
-    // this.scene.create();
-
+    
 
   }
 
