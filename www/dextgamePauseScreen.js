@@ -22,7 +22,9 @@ class dextgamePauseScreen extends Phaser.Scene{
   update(){
     //is a loop that runs constantly
     if (touchCounter == 2){
-      this.scene.start("levelOne");
+      this.scene.resume("levelOne");
+      this.scene.stop();
+      graphics.clear();
     }
 
     }

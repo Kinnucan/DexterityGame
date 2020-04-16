@@ -55,7 +55,7 @@ class dextgameLevelOne extends Phaser.Scene{
           winCondition += 1;
           checkPoints[3] = 1;
         }
-        text.setText(['Score: ' + touchCounter]);
+        text.setText(['Score: ' + winCondition]);
         if (winCondition == 4){
           text.setText([
                   'You won!'
@@ -71,8 +71,11 @@ class dextgameLevelOne extends Phaser.Scene{
     this.input.on('pointerup', function (pointer1) {touchCounter--;}, this);
 
     if (touchCounter < 2){
-      this.scene.start("pauseScreen");
+      this.scene.pause();
+      this.scene.launch("pauseScreen");
     }
+    // this.scene.create();
+
 
   }
 
