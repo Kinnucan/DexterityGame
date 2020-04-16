@@ -15,7 +15,7 @@ class dextgamePauseScreen extends Phaser.Scene{
     this.input.addPointer(1);
     text = this.add.text(10,10, 'You Are Paused');
     this.input.on('pointerdown', function (pointer1) {touchCounter++;}, this);
-    this.input.on('pointerdown', function (pointer2) {touchCounter++;}, this);
+    // this.input.on('pointerdown', function (pointer2) {touchCounter++;}, this);
 
   }
 

@@ -6,17 +6,14 @@ class dextgameLevelOne extends Phaser.Scene{
   preload(){
     //USed for load music and pictures
     this.load.image('brush', 'www/img/brush1.png');
+    touchCounter = 2;
   }
 
   create(){
     //create objects
-    touchCounter = 2;
     graphics = this.add.graphics();
     this.input.addPointer(1);
     text = this.add.text(20,20, 'Welcome to Level One!');
-
-    this.input.on('pointerUp', function (pointer1) {touchCounter--;}, this);
-
 
     graphics.lineStyle(5, 0x0000FF, 1.0);
     graphics.strokeRect(105, 250, 100, 100);
@@ -58,7 +55,7 @@ class dextgameLevelOne extends Phaser.Scene{
           winCondition += 1;
           checkPoints[3] = 1;
         }
-        text.setText(['Score: ' + winCondition]);
+        text.setText(['Score: ' + touchCounter]);
         if (winCondition == 4){
           text.setText([
                   'You won!'
@@ -71,7 +68,9 @@ class dextgameLevelOne extends Phaser.Scene{
 
   update(){
     //is a loop that runs constantly
-    if (touchCounter == 1){
+    this.input.on('pointerup', function (pointer1) {touchCounter--;}, this);
+
+    if (touchCounter < 2){
       this.scene.start("pauseScreen");
     }
 
