@@ -25,12 +25,10 @@ class dextgameLevelOne extends Phaser.Scene{
     // var i = 0;
 
 
-
-
     //allows user to draw when pressing finger down
     this.input.on('pointermove', function (pointer1) {
       if (pointer1.isDown){
-        this.add.image(pointer1.x, pointer1.y, 'brush1');
+        this.add.image(pointer1.x, pointer1.y, 'brush');
         //checks if the user is within a certain number of pixels of select points on the shape
         // var dist = Phaser.Math.Distance.Between(pointer1.x, pointer1.y, squarePoints[i], squarePoints[i+1]);
         // text.setText([
