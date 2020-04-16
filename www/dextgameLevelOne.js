@@ -12,10 +12,10 @@ class dextgameLevelOne extends Phaser.Scene{
     //create objects
     touchCounter = 2;
     graphics = this.add.graphics();
-    this.input.addPointer(2);
+    this.input.addPointer(1);
     text = this.add.text(20,20, 'Welcome to Level One!');
 
-    // this.input.on('pointerUp', function (pointer1) {touchCounter--;}, this);
+    this.input.on('pointerUp', function (pointer1) {touchCounter--;}, this);
 
 
     graphics.lineStyle(5, 0x0000FF, 1.0);
