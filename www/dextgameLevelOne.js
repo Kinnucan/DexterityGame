@@ -7,8 +7,8 @@ class dextgameLevelOne extends Phaser.Scene{
     //USed for load music and pictures
     this.load.image('brush', 'www/img/brush1.png');
     touchCounter = 2;
-    winCondition = 0;
-    checkPoints = [0, 0, 0, 0];
+    // winCondition = 0;
+    // checkPoints = [0, 0, 0, 0];
   }
 
   create(){
