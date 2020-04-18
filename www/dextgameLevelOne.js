@@ -3,19 +3,18 @@ class dextgameLevelOne extends Phaser.Scene{
     super({key:"levelOne"});
   }
 
-  // init() {
-  //   //prepare data
-  // }
-
   preload(){
     //USed for load music and pictures
-    this.load.image('brush', 'www/logo.png');
+    this.load.image('brush', 'www/img/brush1.png');
+    touchCounter = 2;
+    winCondition = 0;
+    checkPoints = [0, 0, 0, 0];
   }
 
   create(){
     //create objects
     graphics = this.add.graphics();
-    this.input.addPointer(2);
+    this.input.addPointer(1);
     text = this.add.text(20,20, 'Welcome to Level One!');
 
     graphics.lineStyle(5, 0x0000FF, 1.0);
@@ -261,6 +260,16 @@ class dextgameLevelOne extends Phaser.Scene{
 
   update(){
     //is a loop that runs constantly
+    this.input.on('pointerup', function (pointer1) {touchCounter--;}, this);
+
+    if (touchCounter < 2){
+      // this.scene.pause();
+      // this.scene.launch("pauseScreen");
+      this.scene.start("pauseScreen");
+    }
+
+
+
   }
 
 }
