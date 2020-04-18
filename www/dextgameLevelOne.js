@@ -5,16 +5,15 @@ class dextgameLevelOne extends Phaser.Scene{
 
   preload(){
     //USed for load music and pictures
-    this.load.spritesheet('brush', 'www/img/logo.png');
+    this.load.image('brush', 'www/img/logo.png');
     touchCounter = 2;
-    // winCondition = 0;
-    // checkPoints = [0, 0, 0, 0];
+
   }
 
   create(){
       //create objects
       graphics = this.add.graphics();
-      this.input.addPointer(1);
+      // this.input.addPointer(1);
       text = this.add.text(20,20, 'Welcome to Level One!');
       textScoreLeft = this.add.text(20,50, 'Start');
       textScoreRight = this.add.text(100,50, 'Start');
@@ -108,7 +107,7 @@ class dextgameLevelOne extends Phaser.Scene{
               // if (currentPoint1[0] == startingPoint1[0] && currentPoint1[1] == startingPoint1[1]){
               //   this.scene.start("pauseScreen");
               // }
-              textScoreLeft = textScoreLeft.setText([startingPoint1, currentPoint1, nextPoint1, point1]);
+              // textScoreLeft.setText([startingPoint1, currentPoint1, nextPoint1, point1]);
             }
           }
           if (direction1 == -1){
@@ -130,7 +129,7 @@ class dextgameLevelOne extends Phaser.Scene{
               // if (currentPoint1[0] == startingPoint1[0] && currentPoint1[1] == startingPoint1[1]){
               //   this.scene.start("pauseScreen");
               // }
-              textScoreLeft = textScoreLeft.setText([startingPoint1, currentPoint1, nextPoint1, point1]);
+              // textScoreLeft.setText([startingPoint1, currentPoint1, nextPoint1, point1]);
             }
           }
         }
@@ -217,7 +216,7 @@ class dextgameLevelOne extends Phaser.Scene{
               // if (currentPoint1[0] == startingPoint1[0] && currentPoint1[1] == startingPoint1[1]){
               //   this.scene.start("pauseScreen");
               // }
-              textScoreRight.setText([startingPoint2, currentPoint2, nextPoint2, point2]);
+              // textScoreRight.setText([startingPoint2, currentPoint2, nextPoint2, point2]);
             }
           }
           if (direction2 == -1){
@@ -240,7 +239,7 @@ class dextgameLevelOne extends Phaser.Scene{
               //   this.scene.start("pauseScreen");
               // }
               //[390, 350, 465, 250, 540, 350];
-              textScoreRight.setText([startingPoint2, currentPoint2, nextPoint2, point2]);
+              // textScoreRight.setText([startingPoint2, currentPoint2, nextPoint2, point2]);
             }
           }
         }
@@ -265,13 +264,19 @@ class dextgameLevelOne extends Phaser.Scene{
 
   update(){
     //is a loop that runs constantly
-    // this.input.on('pointerup', function (pointer1) {touchCounter--;}, this);
-    //
+    this.input.on('pointerup', function (pointer1) {touchCounter--;}, this);
+
+    textScoreLeft.setText([startingPoint1, currentPoint1, nextPoint1, point1]);
+    textScoreRight.setText([startingPoint2, currentPoint2, nextPoint2, point2]);
+    // 
     // if (touchCounter < 2){
     //   // this.scene.pause();
+    //   // this.scene.stop();
     //   // this.scene.launch("pauseScreen");
     //   this.scene.start("pauseScreen");
+    //   // textScoreLeft.setText("hi");
     // }
+
 
 
 
