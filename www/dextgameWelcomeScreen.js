@@ -29,7 +29,7 @@ class dextgameWelcomeScreen extends Phaser.Scene{
 
   update(){
     //is a loop that runs constantly
-    if (touchCounter >= 2){
+    if (touchCounter == 2){
       this.scene.start("levelOne");
     }
   }
