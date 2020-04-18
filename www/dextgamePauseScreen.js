@@ -30,33 +30,3 @@ class dextgamePauseScreen extends Phaser.Scene{
 
     }
   }
-
-
-  //Code for timing out the game when one or less fingers are touching the screen
-  // setup() {
-  //     this.addEventListener("pointer1.isDown", resetTimer, false);
-  //     this.addEventListener("pointer2.isDown", resetTimer, false);
-  //
-  //     startTimer();
-  // }
-  //
-  // startTimer() {
-  //     // wait 1 seconds before calling goInactive
-  //     timeoutID = window.setTimeout(goInactive, 1000);
-  // }
-  //
-  // resetTimer(e) {
-  //     window.clearTimeout(timeoutID);
-  //
-  //     goActive();
-  // }
-  //
-  // goInactive() {
-  //     // do something
-  // }
-  //
-  // goActive() {
-  //     // do something
-  //
-  //     startTimer();
-  // }

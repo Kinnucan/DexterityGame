@@ -7,6 +7,10 @@ var config = {
 };
 
 var text;
+var textScoreLeft;
+var textScoreRight;
+var userStrokeLineLeft;
+var userStrokeLineRight;
 var graphics;
 var timeoutID;
 var touchCounter;
