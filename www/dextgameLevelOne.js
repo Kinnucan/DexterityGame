@@ -16,7 +16,7 @@ class dextgameLevelOne extends Phaser.Scene{
       this.input.addPointer(1);
       text = this.add.text(20,20, 'Welcome to Level One!');
       textScoreLeft = this.add.text(20,50, 'Start');
-      textScoreRight = this.add.text(100,50, 'Start');
+      textScoreRight = this.add.text(350,50, 'Start');
 
       graphics.lineStyle(5, 0x0000FF, 1.0);
       graphics.strokeRect(105, 250, 100, 100);
@@ -47,7 +47,7 @@ class dextgameLevelOne extends Phaser.Scene{
         // }, this);
 
         if (pointer1.isDown){
-          userStrokeLineLeft = this.add.image(pointer1.x, pointer1.y, 'brush', Phaser.Math.Between(0,5));
+          // userStrokeLineLeft = this.add.image(pointer1.x, pointer1.y, 'brush', Phaser.Math.Between(0,5));
           if (checkedDirection1 != true){
             if (arrayPosition1 == squarePoints.length-2){
               if (Phaser.Math.Distance.Between(pointer1.x, pointer1.y, squarePoints[0], squarePoints[1]) < Phaser.Math.Distance.Between(pointer1.x, pointer1.y, squarePoints[arrayPosition1-2], squarePoints[arrayPosition1-1])){
@@ -86,7 +86,7 @@ class dextgameLevelOne extends Phaser.Scene{
             }
           }
           // userStrokeLineLeft = this.add.image(pointer1.x, pointer1.y, 'brush', Phaser.Math.Between(0,5));
-          // this.add.image(pointer1.x, pointer1.y, 'brush', Phaser.Math.Between(0,5));
+          this.add.image(pointer1.x, pointer1.y, 'brush');
 
           if (direction1 == 1){
             if (began1 != true){
@@ -154,7 +154,7 @@ class dextgameLevelOne extends Phaser.Scene{
         // }, this);
 
         if (pointer2.isDown){
-          userStrokeLineRight = this.add.image(pointer2.x, pointer2.y, 'brush', Phaser.Math.Between(0,5));
+          // userStrokeLineRight = this.add.image(pointer2.x, pointer2.y, 'brush', Phaser.Math.Between(0,5));
 
           if (checkedDirection2 != true){
             if (arrayPosition2 == trianglePoints.length-2){
@@ -195,7 +195,7 @@ class dextgameLevelOne extends Phaser.Scene{
             }
           }
           // userStrokeLineRight = this.add.image(pointer2.x, pointer2.y, 'brush', Phaser.Math.Between(0,5));
-          // this.add.image(pointer2.x, pointer2.y, 'brush', Phaser.Math.Between(0,5));
+          this.add.image(pointer2.x, pointer2.y, 'brush');
 
           if (direction2 == 1){
             if (began2 != true){
