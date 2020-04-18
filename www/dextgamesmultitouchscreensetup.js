@@ -3,8 +3,8 @@ var config = {
   width: 800,
   height: 600,
   backgroundColor: 0x000000,
-  scene: [dextgameWelcomeScreen, dextgamePauseScreen, dextgameLevelOne],
-  input: {activePointer: 2}
+  scene: [dextgameWelcomeScreen, dextgamePauseScreen, dextgameLevelOne]
+  // input: {activePointer: 2}
 };
 
 var text;

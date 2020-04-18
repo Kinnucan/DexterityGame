@@ -13,7 +13,7 @@ class dextgameLevelOne extends Phaser.Scene{
   create(){
       //create objects
       graphics = this.add.graphics();
-      // this.input.addPointer(1);
+      this.input.addPointer(1);
       text = this.add.text(20,20, 'Welcome to Level One!');
       textScoreLeft = this.add.text(20,50, 'Start');
       textScoreRight = this.add.text(100,50, 'Start');
@@ -268,7 +268,7 @@ class dextgameLevelOne extends Phaser.Scene{
 
     textScoreLeft.setText([startingPoint1, currentPoint1, nextPoint1, point1]);
     textScoreRight.setText([startingPoint2, currentPoint2, nextPoint2, point2]);
-    // 
+    //
     // if (touchCounter < 2){
     //   // this.scene.pause();
     //   // this.scene.stop();
