@@ -18,7 +18,7 @@ class dextgameLevelOne extends Phaser.Scene{
       textScoreLeft = this.add.text(20,50, 'Start');
       textScoreRight = this.add.text(350,50, 'Start');
 
-      this.add.sprite(0,0, 'brush');
+      // this.add.sprite(0,0, 'brush');
 
       graphics.lineStyle(5, 0x0000FF, 1.0);
       graphics.strokeRect(105, 250, 100, 100);
