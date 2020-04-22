@@ -31,15 +31,17 @@ class dextgameLevelOne extends Phaser.Scene{
 
     var checkedDirectionCounter1 = 0;
     var checkedDirectionCounter2 = 0;
+    var indexOfNextPoint1;
+    var indexOfNextPoint2;
 
     //Finds the point that the player is starting nearest on the shape
     this.input.on('pointerdown', function (pointer1){
       var x = pointer1.x;
       var y = pointer1.y;
-      var points = this.findStartingPoint(x, y, squarePoints, distHolder1);
+      var points = this.findStartingPoint(x, y, squarePoints, distanceThreshold1);
       startingPoint1 = points[0];
       arrayPosition1 = points[1];
-      text.setText([arrayPosition1]);
+      indexOfNextPoint1 = arrayPosition1;
     }, this);
 
     //Allows user to draw when pressing finger down
@@ -50,102 +52,38 @@ class dextgameLevelOne extends Phaser.Scene{
       //   this.scene.start("pauseScreen");
       // }, this);
       if (pointer1.isDown){
-        if (checkedDirection1 != true){
-          if (arrayPosition1 == squarePoints.length-2){
-            if (Phaser.Math.Distance.Between(pointer1.x, pointer1.y, squarePoints[0], squarePoints[1]) < Phaser.Math.Distance.Between(pointer1.x, pointer1.y, squarePoints[arrayPosition1-2], squarePoints[arrayPosition1-1])){
-              direction1 = 1;
-              nextPoint1 = [squarePoints[0], squarePoints[1]];
-            }
-            if (Phaser.Math.Distance.Between(pointer1.x, pointer1.y, squarePoints[0], squarePoints[1]) > Phaser.Math.Distance.Between(pointer1.x, pointer1.y, squarePoints[arrayPosition1-2], squarePoints[arrayPosition1-1])){
-              direction1 = -1;
-              nextPoint1 = [squarePoints[arrayPosition1-2], squarePoints[arrayPosition1-1]];
-            }
-          }
-          if (arrayPosition1 == 0){
-            if (Phaser.Math.Distance.Between(pointer1.x, pointer1.y, squarePoints[arrayPosition1+2], squarePoints[arrayPosition1+3]) < Phaser.Math.Distance.Between(pointer1.x, pointer1.y, squarePoints[squarePoints.length-2], squarePoints[squarePoints.length-1])){
-              direction1 = 1;
-              nextPoint1 = [squarePoints[2], squarePoints[3]];
-            }
-            if (Phaser.Math.Distance.Between(pointer1.x, pointer1.y, squarePoints[arrayPosition1+2], squarePoints[arrayPosition1+3]) > Phaser.Math.Distance.Between(pointer1.x, pointer1.y, squarePoints[squarePoints.length-2], squarePoints[squarePoints.length-1])){
-              direction1 = -1;
-              nextPoint1 = [squarePoints[squarePoints.length-2], squarePoints[squarePoints.length-1]];
-            }
-          }
-          else{
-            if (Phaser.Math.Distance.Between(pointer1.x, pointer1.y, squarePoints[arrayPosition1+2], squarePoints[arrayPosition1+3]) < Phaser.Math.Distance.Between(pointer1.x, pointer1.y, squarePoints[arrayPosition1-2], squarePoints[arrayPosition1-1])){
-              direction1 = 1;
-              nextPoint1 = [squarePoints[arrayPosition1+2], squarePoints[arrayPosition1+3]];
-            }
-            else if (Phaser.Math.Distance.Between(pointer1.x, pointer1.y, squarePoints[arrayPosition1+2], squarePoints[arrayPosition1+3]) > Phaser.Math.Distance.Between(pointer1.x, pointer1.y, squarePoints[arrayPosition1-2], squarePoints[arrayPosition1-1])){
-              direction1 = -1;
-              nextPoint1 = [squarePoints[arrayPosition1-2], squarePoints[arrayPosition1-1]];
-            }
-          }
+        if (!checkedDirection1){
+          var x = pointer1.x;
+          var y = pointer1.y;
+          var directionAndNextPoint = this.findDirectionAndNextPoint(x, y, arrayPosition1, squarePoints);
+          direction1 = directionAndNextPoint[0];
+          nextPoint1 = directionAndNextPoint[1];
+          text.setText([direction1, nextPoint1]);
           checkedDirectionCounter1++;
-          //Makes sure the direction stays set once the user has committed to one
-          if (checkedDirectionCounter1 == 30){
+          if (checkedDirectionCounter1 == 30)
             checkedDirection1 = true;
-          }
         }
 
         this.add.image(pointer1.x, pointer1.y, 'brush');
 
-        if (direction1 == 1 && checkedDirection1 == true){
-          if (began1 != true){
-            point1 = arrayPosition1+2;
-            began1 = true;
-            text.setText([point1 + 'blah']);
-          }
-          if (Phaser.Math.Distance.Between(pointer1.x, pointer1.y, nextPoint1[0], nextPoint1[1]) <= 15){
-            currentPoint1 = nextPoint1;
-            if (arrayPosition1 == squarePoints.length-2 && point1 >= squarePoints.length-2){
-              point1 = 0;
-            }
-            else if (point1 >= squarePoints.length-2){
-              point1 = -2;
-            }
-            point1 += 2;
-            nextPoint1 = [squarePoints[point1], squarePoints[point1+1]];
-            // if (currentPoint1[0] == startingPoint1[0] && currentPoint1[1] == startingPoint1[1]){
-            //   this.scene.start("pauseScreen");
-            // }
-            text.setText([startingPoint1, currentPoint1, nextPoint1, point1]);
-          }
-        }
-        if (direction1 == -1 && checkedDirection1 == true){
-          if (began1 != true){
-            point1 = arrayPosition1-2;
-            began1 = true;
-            text.setText([point1 + 'blah']);
-          }
-          if (Phaser.Math.Distance.Between(pointer1.x, pointer1.y, nextPoint1[0], nextPoint1[1]) <= 15){
-            currentPoint1 = nextPoint1;
-            if (arrayPosition1 == 0 && point1 == -2){
-              point1 = squarePoints.length-2;
-            }
-            else if (point1 <= 0){
-              // nextPoint1 = [squarePoints[2], squarePoints[3]];
-              point1 = squarePoints.length;
-            }
-            point1 -= 2;
-            nextPoint1 = [squarePoints[point1], squarePoints[point1+1]];
-            // if (currentPoint1[0] == startingPoint1[0] && currentPoint1[1] == startingPoint1[1]){
-            //   this.scene.start("pauseScreen");
-            // }
-            text.setText([startingPoint1, currentPoint1, nextPoint1, point1]);
-          }
-        }
+        var x = pointer1.x;
+        var y = pointer1.y;
+        var trace = this.traceUserTouch(direction1, checkedDirection1, x, y, nextPoint1, currentPoint1, indexOfNextPoint1, squarePoints);
+        currentPoint1 = trace[0];
+        nextPoint1 = trace[1];
+        indexOfNextPoint1 = trace[2];
       }
     }, this);
+
 
     //Finds the point that the player is starting nearest on the shape
     this.input.on('pointerdown', function (pointer2){
       var x = pointer2.x;
       var y = pointer2.y;
-      var points = this.findStartingPoint(x, y, trianglePoints, distHolder2);
+      var points = this.findStartingPoint(x, y, trianglePoints, distanceThreshold2);
       startingPoint2 = points[0];
       arrayPosition2 = points[1];
-      text2.setText([arrayPosition2])
+      indexOfNextPoint2 = arrayPosition2;
     }, this);
 
     //Allows user to draw when pressing finger down
@@ -155,112 +93,87 @@ class dextgameLevelOne extends Phaser.Scene{
       // this.input.on('pointerup', function (pointer1){
       //   this.scene.start("pauseScreen");
       // }, this);
-
       if (pointer2.isDown){
-        if (checkedDirection2 != true){
-          if (arrayPosition2 == trianglePoints.length-2){
-            if (Phaser.Math.Distance.Between(pointer2.x, pointer2.y, trianglePoints[0], trianglePoints[1]) < Phaser.Math.Distance.Between(pointer2.x, pointer2.y, trianglePoints[arrayPosition2-2], trianglePoints[arrayPosition2-1])){
-              direction2 = 1;
-              nextPoint2 = [trianglePoints[0], trianglePoints[1]];
-            }
-            if (Phaser.Math.Distance.Between(pointer2.x, pointer2.y, trianglePoints[0], trianglePoints[1]) > Phaser.Math.Distance.Between(pointer2.x, pointer2.y, trianglePoints[arrayPosition2-2], trianglePoints[arrayPosition2-1])){
-              direction2 = -1;
-              nextPoint2 = [trianglePoints[arrayPosition2-2], trianglePoints[arrayPosition2-1]];
-            }
-          }
-          if (arrayPosition2 == 0){
-            if (Phaser.Math.Distance.Between(pointer2.x, pointer2.y, trianglePoints[arrayPosition2+2], trianglePoints[arrayPosition2+3]) < Phaser.Math.Distance.Between(pointer2.x, pointer2.y, trianglePoints[trianglePoints.length-2], trianglePoints[trianglePoints.length-1])){
-              direction2 = 1;
-              nextPoint2 = [trianglePoints[2], trianglePoints[3]];
-            }
-            if (Phaser.Math.Distance.Between(pointer2.x, pointer2.y, trianglePoints[arrayPosition2+2], trianglePoints[arrayPosition2+3]) > Phaser.Math.Distance.Between(pointer2.x, pointer2.y, trianglePoints[trianglePoints.length-2], trianglePoints[trianglePoints.length-1])){
-              direction2 = -1;
-              nextPoint2 = [trianglePoints[trianglePoints.length-2], trianglePoints[trianglePoints.length-1]];
-            }
-          }
-          else{
-            if (Phaser.Math.Distance.Between(pointer2.x, pointer2.y, trianglePoints[arrayPosition2+2], trianglePoints[arrayPosition2+3]) < Phaser.Math.Distance.Between(pointer2.x, pointer2.y, trianglePoints[arrayPosition2-2], trianglePoints[arrayPosition2-1])){
-              direction2 = 1;
-              nextPoint2 = [trianglePoints[arrayPosition2+2], trianglePoints[arrayPosition2+3]];
-            }
-            else if (Phaser.Math.Distance.Between(pointer2.x, pointer2.y, trianglePoints[arrayPosition2+2], trianglePoints[arrayPosition2+3]) > Phaser.Math.Distance.Between(pointer2.x, pointer2.y, trianglePoints[arrayPosition2-2], trianglePoints[arrayPosition2-1])){
-              direction2 = -1;
-              nextPoint2 = [trianglePoints[arrayPosition2-2], trianglePoints[arrayPosition2-1]];
-            }
-          }
-          text2.setText([direction2]);
+        if (!checkedDirection2){
+          var x = pointer2.x;
+          var y = pointer2.y;
+          var directionAndNextPoint = this.findDirectionAndNextPoint(x, y, arrayPosition2, trianglePoints);
+          direction2 = directionAndNextPoint[0];
+          nextPoint2 = directionAndNextPoint[1];
+          text2.setText([direction2, nextPoint2]);
           checkedDirectionCounter2++;
-          //Makes sure the direction stays set once the user has committed to one
-          if (checkedDirectionCounter2 == 30){
+          if (checkedDirectionCounter2 == 30)
             checkedDirection2 = true;
-          }
         }
 
         this.add.image(pointer2.x, pointer2.y, 'brush');
 
-        if (direction2 == 1 && checkedDirection2 == true){
-          if (began2 != true){
-            point2 = arrayPosition2+2;
-            began2 = true;
-          }
-          if (Phaser.Math.Distance.Between(pointer2.x, pointer2.y, nextPoint2[0], nextPoint2[1]) <= 15){
-            currentPoint2 = nextPoint2;
-            if (arrayPosition2 == trianglePoints.length-2 && point2 >= trianglePoints.length-2){
-              point2 = 0;
-            }
-            else if (point2 >= trianglePoints.length-2){
-              // nextPoint1 = [squarePoints[2], squarePoints[3]];
-              point2 = -2;
-            }
-            point2 += 2;
-            nextPoint2 = [trianglePoints[point2], trianglePoints[point2+1]];
-            // if (currentPoint1[0] == startingPoint1[0] && currentPoint1[1] == startingPoint1[1]){
-            //   this.scene.start("pauseScreen");
-            // }
-            text2.setText([startingPoint2, currentPoint2, nextPoint2, point2]);
-          }
-        }
-        if (direction2 == -1 && checkedDirection2 == true){
-          if (began2 != true){
-            point2 = arrayPosition2-2;
-            began2 = true;
-          }
-          if (Phaser.Math.Distance.Between(pointer2.x, pointer2.y, nextPoint2[0], nextPoint2[1]) <= 15){
-            currentPoint2 = nextPoint2;
-            if (arrayPosition2 == 0 && point2 == -2){
-              point2 = trianglePoints.length-2;
-            }
-            else if (point2 <= 0){
-              // nextPoint1 = [squarePoints[2], squarePoints[3]];
-              point2 = trianglePoints.length;
-            }
-            point2 -= 2;
-            nextPoint2 = [trianglePoints[point2], trianglePoints[point2+1]];
-            // if (currentPoint1[0] == startingPoint1[0] && currentPoint1[1] == startingPoint1[1]){
-            //   this.scene.start("pauseScreen");
-            // }
-            //[390, 350, 465, 250, 540, 350];
-            text2.setText([startingPoint2, currentPoint2, nextPoint2, point2]);
-          }
-        }
+        var x = pointer2.x;
+        var y = pointer2.y;
+        var trace = this.traceUserTouch(direction2, checkedDirection2, x, y, nextPoint2, currentPoint2, indexOfNextPoint2, trianglePoints);
+        currentPoint2 = trace[0];
+        nextPoint2 = trace[1];
+        indexOfNextPoint2 = trace[2];
       }
     }, this);
   }
 
-  findStartingPoint(x, y, arr, distHold){
+  findStartingPoint(x, y, array, distanceThreshold){
     var startingPoint;
-    var arrayPosition;
-    var returnArr;
-    for (var i = 0; i < arr.length; i+=2){
-      dist = Phaser.Math.Distance.Between(x, y, arr[i], arr[i+1])
-      if (dist < distHold){
-        startingPoint = [arr[i], arr[i+1]];
-        arrayPosition = i;
-        distHold = dist;
+    var startingPointIndex;
+    for (var i = 0; i < array.length; i+=2){
+      dist = Phaser.Math.Distance.Between(x, y, array[i], array[i+1])
+      if (dist < distanceThreshold){
+        startingPoint = [array[i], array[i+1]];
+        startingPointIndex = i;
+        distanceThreshold = dist;
       }
     }
-    returnArr = [startingPoint, arrayPosition];
-    return returnArr;
+    return [startingPoint, startingPointIndex];
+  }
+
+  findIndexOfPoint(index, arrayLength){
+    return ((index % arrayLength) + arrayLength) % arrayLength;
+  }
+
+  findDirectionAndNextPoint(x, y, arrayPosition, array){
+    var nextIndex = this.findIndexOfPoint(arrayPosition+2, array.length);
+    var prevIndex = this.findIndexOfPoint(arrayPosition-2, array.length);
+    var direction;
+    var nextPoint;
+    if (Phaser.Math.Distance.Between(x, y, array[nextIndex], array[nextIndex+1]) <
+          Phaser.Math.Distance.Between(x, y, array[prevIndex], array[prevIndex+1])){
+        direction = 1;
+        nextPoint = [array[nextIndex], array[nextIndex+1]];
+    }
+    else if (Phaser.Math.Distance.Between(x, y, array[prevIndex], array[prevIndex+1]) <
+               Phaser.Math.Distance.Between(x, y, array[nextIndex], array[nextIndex+1])){
+        direction = -1;
+        nextPoint = [array[prevIndex], array[prevIndex+1]];
+    }
+    return [direction, nextPoint];
+  }
+
+  traceUserTouch(direction, checkedDirection, x, y, nextPoint, currentPoint, indexOfNextPoint, array){
+    if (direction == 1 && checkedDirection){
+      if (Phaser.Math.Distance.Between(x, y, nextPoint[0], nextPoint[1]) <= 15){
+        currentPoint = nextPoint;
+        indexOfNextPoint += 2;
+        indexOfNextPoint = this.findIndexOfPoint(indexOfNextPoint, array.length);
+        nextPoint = [array[indexOfNextPoint], array[indexOfNextPoint+1]];
+        text2.setText([startingPoint2, currentPoint, nextPoint, indexOfNextPoint]);
+      }
+    }
+    else if (direction == -1 && checkedDirection){
+      if (Phaser.Math.Distance.Between(x, y, nextPoint[0], nextPoint[1]) <= 15){
+        currentPoint = nextPoint;
+        indexOfNextPoint -= 2;
+        indexOfNextPoint = this.findIndexOfPoint(indexOfNextPoint, array.length);
+        nextPoint = [array[indexOfNextPoint], array[indexOfNextPoint+1]];
+        text2.setText([startingPoint2, currentPoint, nextPoint, indexOfNextPoint]);
+      }
+    }
+    return [currentPoint, nextPoint, indexOfNextPoint];
   }
 
   update(){
