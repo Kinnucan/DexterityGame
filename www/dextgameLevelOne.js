@@ -7,22 +7,27 @@ class dextgameLevelOne extends Phaser.Scene{
     //USed for load music and pictures
     this.load.image('brush', 'www/img/brush1.png');
     touchCounter = 2;
-    winCondition = 0;
-    checkPoints = [0, 0, 0, 0];
+    began1 = false;
   }
 
   create(){
     //create objects
     graphics = this.add.graphics();
-    this.input.addPointer(1);
+    var pointer1 = this.input.addPointer(1);
+    var pointer2 = this.input.addPointer(1);
     text = this.add.text(20,20, 'Welcome to Level One!');
+    text2 = this.add.text(300,20, 'Text2');
 
     graphics.lineStyle(5, 0x0000FF, 1.0);
     graphics.strokeRect(105, 250, 100, 100);
     graphics.strokeTriangle(390, 350, 465, 250, 540, 350);
 
     var squarePoints = [105, 250, 205, 250, 205, 350, 105, 350];
-    var trianglePoints = [390, 350, 465, 250, 540, 350];
+    var trianglePoints = [407.5, 350, 465, 250, 522.5, 350];
+
+    // text.setText([Phaser.Math.Distance.Between(trianglePoints[0], trianglePoints[1], trianglePoints[2], trianglePoints[3]),
+    //               Phaser.Math.Distance.Between(trianglePoints[4], trianglePoints[5], trianglePoints[2], trianglePoints[3]),
+    //               Phaser.Math.Distance.Between(trianglePoints[0], trianglePoints[1], trianglePoints[4], trianglePoints[5])]);
 
     var checkedDirectionCounter1 = 0;
     var checkedDirectionCounter2 = 0;
@@ -34,7 +39,7 @@ class dextgameLevelOne extends Phaser.Scene{
       var points = this.findStartingPoint(x, y, squarePoints, distHolder1);
       startingPoint1 = points[0];
       arrayPosition1 = points[1];
-      text.setText([arrayPosition1])
+      text.setText([arrayPosition1]);
     }, this);
 
     //Allows user to draw when pressing finger down
@@ -44,7 +49,6 @@ class dextgameLevelOne extends Phaser.Scene{
       // this.input.on('pointerup', function (pointer1){
       //   this.scene.start("pauseScreen");
       // }, this);
-
       if (pointer1.isDown){
         if (checkedDirection1 != true){
           if (arrayPosition1 == squarePoints.length-2){
@@ -79,17 +83,18 @@ class dextgameLevelOne extends Phaser.Scene{
           }
           checkedDirectionCounter1++;
           //Makes sure the direction stays set once the user has committed to one
-          if (checkedDirectionCounter1 == 10){
+          if (checkedDirectionCounter1 == 30){
             checkedDirection1 = true;
           }
         }
 
         this.add.image(pointer1.x, pointer1.y, 'brush');
 
-        if (direction1 == 1){
+        if (direction1 == 1 && checkedDirection1 == true){
           if (began1 != true){
             point1 = arrayPosition1+2;
             began1 = true;
+            text.setText([point1 + 'blah']);
           }
           if (Phaser.Math.Distance.Between(pointer1.x, pointer1.y, nextPoint1[0], nextPoint1[1]) <= 15){
             currentPoint1 = nextPoint1;
@@ -97,7 +102,6 @@ class dextgameLevelOne extends Phaser.Scene{
               point1 = 0;
             }
             else if (point1 >= squarePoints.length-2){
-              // nextPoint1 = [squarePoints[2], squarePoints[3]];
               point1 = -2;
             }
             point1 += 2;
@@ -108,10 +112,11 @@ class dextgameLevelOne extends Phaser.Scene{
             text.setText([startingPoint1, currentPoint1, nextPoint1, point1]);
           }
         }
-        if (direction1 == -1){
+        if (direction1 == -1 && checkedDirection1 == true){
           if (began1 != true){
             point1 = arrayPosition1-2;
             began1 = true;
+            text.setText([point1 + 'blah']);
           }
           if (Phaser.Math.Distance.Between(pointer1.x, pointer1.y, nextPoint1[0], nextPoint1[1]) <= 15){
             currentPoint1 = nextPoint1;
@@ -140,7 +145,7 @@ class dextgameLevelOne extends Phaser.Scene{
       var points = this.findStartingPoint(x, y, trianglePoints, distHolder2);
       startingPoint2 = points[0];
       arrayPosition2 = points[1];
-      text.setText([arrayPosition2])
+      text2.setText([arrayPosition2])
     }, this);
 
     //Allows user to draw when pressing finger down
@@ -183,17 +188,17 @@ class dextgameLevelOne extends Phaser.Scene{
               nextPoint2 = [trianglePoints[arrayPosition2-2], trianglePoints[arrayPosition2-1]];
             }
           }
-          text.setText([direction2]);
+          text2.setText([direction2]);
           checkedDirectionCounter2++;
           //Makes sure the direction stays set once the user has committed to one
-          if (checkedDirectionCounter2 == 10){
+          if (checkedDirectionCounter2 == 30){
             checkedDirection2 = true;
           }
         }
 
         this.add.image(pointer2.x, pointer2.y, 'brush');
 
-        if (direction2 == 1){
+        if (direction2 == 1 && checkedDirection2 == true){
           if (began2 != true){
             point2 = arrayPosition2+2;
             began2 = true;
@@ -212,10 +217,10 @@ class dextgameLevelOne extends Phaser.Scene{
             // if (currentPoint1[0] == startingPoint1[0] && currentPoint1[1] == startingPoint1[1]){
             //   this.scene.start("pauseScreen");
             // }
-            text.setText([startingPoint2, currentPoint2, nextPoint2, point2]);
+            text2.setText([startingPoint2, currentPoint2, nextPoint2, point2]);
           }
         }
-        if (direction2 == -1){
+        if (direction2 == -1 && checkedDirection2 == true){
           if (began2 != true){
             point2 = arrayPosition2-2;
             began2 = true;
@@ -235,7 +240,7 @@ class dextgameLevelOne extends Phaser.Scene{
             //   this.scene.start("pauseScreen");
             // }
             //[390, 350, 465, 250, 540, 350];
-            text.setText([startingPoint2, currentPoint2, nextPoint2, point2]);
+            text2.setText([startingPoint2, currentPoint2, nextPoint2, point2]);
           }
         }
       }
@@ -260,16 +265,12 @@ class dextgameLevelOne extends Phaser.Scene{
 
   update(){
     //is a loop that runs constantly
-    this.input.on('pointerup', function (pointer1) {touchCounter--;}, this);
-
+    // this.input.on('pointerup', function (pointer1) {touchCounter--;}, this);
     if (touchCounter < 2){
       // this.scene.pause();
       // this.scene.launch("pauseScreen");
       this.scene.start("pauseScreen");
     }
-
-
-
   }
 
 }

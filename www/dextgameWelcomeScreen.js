@@ -24,7 +24,6 @@ class dextgameWelcomeScreen extends Phaser.Scene{
     //   this.scene.start('pauseScreen');
     // }// var pointer1 = this.input.activePointer;
     // var pointer2 = this.input.activePointer;
-
   }
 
   update(){

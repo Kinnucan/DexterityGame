@@ -7,6 +7,7 @@ var config = {
 };
 
 var text;
+var text2;
 var graphics;
 var timeoutID;
 var touchCounter;
