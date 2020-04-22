@@ -8,6 +8,7 @@ var config = {
 };
 
 var text;
+var text2;
 var textScoreLeft;
 var textScoreRight;
 var userStrokeLineLeft;
