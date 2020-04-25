@@ -8,6 +8,9 @@ class dextgameWelcomeScreen extends Phaser.Scene{
   }
 
   create(){
+    window.addEventListener('resize', resize);
+    resize();
+    
     touchCounter = 0;
     //create objects
     graphics = this.add.graphics();

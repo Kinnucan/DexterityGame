@@ -114,6 +114,17 @@ class dextgameLevelOne extends Phaser.Scene{
         startingPointIndex = i;
         distanceThreshold = dist;
       }
+      //Setting Timer after pointer is down
+      timeText = this.add.text(40,60, '',{fontSize:'20px', fill:'#ffffff'});
+      var time = Math.floor(this.time.totalElapsedSeconds());
+      var min = Math.floor(time/60);
+      if (min<10){
+        min = '0' +min;
+      }
+      if (sec < 10){
+        sec = '0'+sec;
+      }
+      timeText.text = 'Time' +min+':'+sec;
     }
     return [startingPoint, startingPointIndex];
   }
