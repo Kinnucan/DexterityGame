@@ -38,10 +38,7 @@ class dextgameLevelOne extends Phaser.Scene{
     this.input.on('pointerdown', function (pointer1){
       var x = pointer1.x;
       var y = pointer1.y;
-      var points = this.findStartingPoint(x, y, squarePoints, distanceThreshold1);
-      startingPoint1 = points[0];
-      arrayPosition1 = points[1];
-      indexOfNextPoint1 = arrayPosition1;
+      [startingPoint1, indexOfNextPoint1] = this.findStartingPoint(x, y, squarePoints, distanceThreshold1);
     }, this);
 
     //Allows user to draw when pressing finger down
@@ -55,9 +52,7 @@ class dextgameLevelOne extends Phaser.Scene{
         if (!checkedDirection1){
           var x = pointer1.x;
           var y = pointer1.y;
-          var directionAndNextPoint = this.findDirectionAndNextPoint(x, y, arrayPosition1, squarePoints);
-          direction1 = directionAndNextPoint[0];
-          nextPoint1 = directionAndNextPoint[1];
+          [direction1, nextPoint1] = this.findDirectionAndNextPoint(x, y, indexOfNextPoint1, squarePoints);
           text.setText([direction1, nextPoint1]);
           checkedDirectionCounter1++;
           if (checkedDirectionCounter1 == 30)
@@ -68,10 +63,7 @@ class dextgameLevelOne extends Phaser.Scene{
 
         var x = pointer1.x;
         var y = pointer1.y;
-        var trace = this.traceUserTouch(direction1, checkedDirection1, x, y, nextPoint1, currentPoint1, indexOfNextPoint1, squarePoints);
-        currentPoint1 = trace[0];
-        nextPoint1 = trace[1];
-        indexOfNextPoint1 = trace[2];
+        [currentPoint1, nextPoint1, indexOfNextPoint1] = this.traceUserTouch(direction1, checkedDirection1, x, y, nextPoint1, currentPoint1, indexOfNextPoint1, squarePoints);
       }
     }, this);
 
@@ -80,10 +72,7 @@ class dextgameLevelOne extends Phaser.Scene{
     this.input.on('pointerdown', function (pointer2){
       var x = pointer2.x;
       var y = pointer2.y;
-      var points = this.findStartingPoint(x, y, trianglePoints, distanceThreshold2);
-      startingPoint2 = points[0];
-      arrayPosition2 = points[1];
-      indexOfNextPoint2 = arrayPosition2;
+      [startingPoint2, indexOfNextPoint2] = this.findStartingPoint(x, y, trianglePoints, distanceThreshold2);
     }, this);
 
     //Allows user to draw when pressing finger down
@@ -97,9 +86,7 @@ class dextgameLevelOne extends Phaser.Scene{
         if (!checkedDirection2){
           var x = pointer2.x;
           var y = pointer2.y;
-          var directionAndNextPoint = this.findDirectionAndNextPoint(x, y, arrayPosition2, trianglePoints);
-          direction2 = directionAndNextPoint[0];
-          nextPoint2 = directionAndNextPoint[1];
+          [direction2, nextPoint2] = this.findDirectionAndNextPoint(x, y, indexOfNextPoint2, trianglePoints);
           text2.setText([direction2, nextPoint2]);
           checkedDirectionCounter2++;
           if (checkedDirectionCounter2 == 30)
@@ -110,10 +97,7 @@ class dextgameLevelOne extends Phaser.Scene{
 
         var x = pointer2.x;
         var y = pointer2.y;
-        var trace = this.traceUserTouch(direction2, checkedDirection2, x, y, nextPoint2, currentPoint2, indexOfNextPoint2, trianglePoints);
-        currentPoint2 = trace[0];
-        nextPoint2 = trace[1];
-        indexOfNextPoint2 = trace[2];
+        [currentPoint2, nextPoint2, indexOfNextPoint2] = this.traceUserTouch(direction2, checkedDirection2, x, y, nextPoint2, currentPoint2, indexOfNextPoint2, trianglePoints);
       }
     }, this);
   }
@@ -155,22 +139,12 @@ class dextgameLevelOne extends Phaser.Scene{
   }
 
   traceUserTouch(direction, checkedDirection, x, y, nextPoint, currentPoint, indexOfNextPoint, array){
-    if (direction == 1 && checkedDirection){
+    if (direction && checkedDirection){
       if (Phaser.Math.Distance.Between(x, y, nextPoint[0], nextPoint[1]) <= 15){
         currentPoint = nextPoint;
-        indexOfNextPoint += 2;
-        indexOfNextPoint = this.findIndexOfPoint(indexOfNextPoint, array.length);
+        indexOfNextPoint = this.findIndexOfPoint(indexOfNextPoint + (2 * direction), array.length);
         nextPoint = [array[indexOfNextPoint], array[indexOfNextPoint+1]];
-        text2.setText([startingPoint2, currentPoint, nextPoint, indexOfNextPoint]);
-      }
-    }
-    else if (direction == -1 && checkedDirection){
-      if (Phaser.Math.Distance.Between(x, y, nextPoint[0], nextPoint[1]) <= 15){
-        currentPoint = nextPoint;
-        indexOfNextPoint -= 2;
-        indexOfNextPoint = this.findIndexOfPoint(indexOfNextPoint, array.length);
-        nextPoint = [array[indexOfNextPoint], array[indexOfNextPoint+1]];
-        text2.setText([startingPoint2, currentPoint, nextPoint, indexOfNextPoint]);
+        text.setText([startingPoint1, currentPoint, nextPoint, indexOfNextPoint]);
       }
     }
     return [currentPoint, nextPoint, indexOfNextPoint];
