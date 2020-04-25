@@ -85,6 +85,9 @@ class dextgameLevelOne extends Phaser.Scene{
       //   this.scene.start("pauseScreen");
       // }, this);
       if (pointer2.isDown){
+        //Timer code
+        timeText.setText('Time: ' + timer + '\nDelta: ');
+
         if (!checkedDirection2){
           var x = pointer2.x;
           var y = pointer2.y;
@@ -157,16 +160,18 @@ class dextgameLevelOne extends Phaser.Scene{
         currentPoint = nextPoint;
         indexOfNextPoint = this.findIndexOfPoint(indexOfNextPoint + (2 * direction), array.length);
         nextPoint = [array[indexOfNextPoint], array[indexOfNextPoint+1]];
-        text.setText([startingPoint1, currentPoint, nextPoint, indexOfNextPoint]);
+        text2.setText([startingPoint2, currentPoint, nextPoint, indexOfNextPoint]);
       }
     }
     return [currentPoint, nextPoint, indexOfNextPoint];
   }
 
   update(time){
-    // timeText.setText('Time: ' + time + '\nDelta: ');
     //is a loop that runs constantly
-    // this.input.on('pointerup', function (pointer1) {touchCounter--;}, this);
+
+    //Sets timer var equal to time
+    timer = time;
+    
     if (touchCounter < 2){
       // this.scene.pause();
       // this.scene.launch("pauseScreen");
