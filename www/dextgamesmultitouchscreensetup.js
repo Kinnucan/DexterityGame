@@ -9,6 +9,9 @@ var config = {
 
 var text;
 var text2;
+var timeText;
+var timer;
+
 var textScoreLeft;
 var textScoreRight;
 var userStrokeLineLeft;

@@ -34,6 +34,8 @@ class dextgameLevelOne extends Phaser.Scene{
     var indexOfNextPoint1;
     var indexOfNextPoint2;
 
+    timeText = this.add.text(40, 40);
+
     //Finds the point that the player is starting nearest on the shape
     this.input.on('pointerdown', function (pointer1){
       var x = pointer1.x;
@@ -150,7 +152,8 @@ class dextgameLevelOne extends Phaser.Scene{
     return [currentPoint, nextPoint, indexOfNextPoint];
   }
 
-  update(){
+  update(time){
+    timeText.setText('Time: ' + time + '\nDelta: ');
     //is a loop that runs constantly
     // this.input.on('pointerup', function (pointer1) {touchCounter--;}, this);
     if (touchCounter < 2){
