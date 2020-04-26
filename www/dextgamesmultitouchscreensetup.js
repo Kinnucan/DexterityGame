@@ -41,6 +41,18 @@ var checkedDirection2;
 var began2;
 var point2;
 
+// var testing = {
+//   TESTINGTEXT: 'Success',
+//
+//   function (value) {
+//     this.TESTINGTEXT = value;
+//   }
+// };
+
+var testing = new Phaser.Class({
+  TESTTEXT: 'Success'
+});
+
 var game = new Phaser.Game(config);
 
 function resize() {

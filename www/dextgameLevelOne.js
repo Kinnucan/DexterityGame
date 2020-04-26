@@ -4,7 +4,7 @@ class dextgameLevelOne extends Phaser.Scene{
   }
 
   preload(){
-    //USed for load music and pictures
+    //Used for load music and pictures
     this.load.image('brush', 'www/img/brush1.png');
     touchCounter = 2;
     began1 = false;
@@ -17,6 +17,7 @@ class dextgameLevelOne extends Phaser.Scene{
     var pointer2 = this.input.addPointer(1);
     text = this.add.text(20,20, 'Welcome to Level One!');
     text2 = this.add.text(300,20, 'Text2');
+    timeText = this.add.text(40, 40);
 
     graphics.lineStyle(5, 0x0000FF, 1.0);
     graphics.strokeRect(105, 250, 100, 100);
@@ -25,21 +26,19 @@ class dextgameLevelOne extends Phaser.Scene{
     var squarePoints = [105, 250, 205, 250, 205, 350, 105, 350];
     var trianglePoints = [407.5, 350, 465, 250, 522.5, 350];
 
-    // text.setText([Phaser.Math.Distance.Between(trianglePoints[0], trianglePoints[1], trianglePoints[2], trianglePoints[3]),
-    //               Phaser.Math.Distance.Between(trianglePoints[4], trianglePoints[5], trianglePoints[2], trianglePoints[3]),
-    //               Phaser.Math.Distance.Between(trianglePoints[0], trianglePoints[1], trianglePoints[4], trianglePoints[5])]);
-
     var checkedDirectionCounter1 = 0;
     var checkedDirectionCounter2 = 0;
     var indexOfNextPoint1;
     var indexOfNextPoint2;
 
-    timeText = this.add.text(40, 40);
+    var tracer1 = new tracer(squarePoints);
+    // var tracer2 = new tracer(this, trianglePoints);
 
     //Finds the point that the player is starting nearest on the shape
     this.input.on('pointerdown', function (pointer1){
       var x = pointer1.x;
       var y = pointer1.y;
+      // [tracer1.startingPoint, tracer1.indexOfNextPoint] = tracer1.findStartingPoint(x, y, tracer1.array, distanceThreshold1);
       [startingPoint1, indexOfNextPoint1] = this.findStartingPoint(x, y, squarePoints, distanceThreshold1);
     }, this);
 
@@ -171,7 +170,7 @@ class dextgameLevelOne extends Phaser.Scene{
 
     //Sets timer var equal to time
     timer = time;
-    
+
     if (touchCounter < 2){
       // this.scene.pause();
       // this.scene.launch("pauseScreen");
