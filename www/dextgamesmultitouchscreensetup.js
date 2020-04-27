@@ -19,39 +19,6 @@ var userStrokeLineRight;
 var graphics;
 var timeoutID;
 var touchCounter;
-var dist;
-
-var startingPoint1;
-var nextPoint1;
-var currentPoint1;
-var direction1;
-var arrayPosition1;
-var distanceThreshold1 = 100;
-var checkedDirection1;
-var began1;
-var point1;
-
-var startingPoint2;
-var nextPoint2;
-var currentPoint2;
-var direction2;
-var arrayPosition2;
-var distanceThreshold2 = 100;
-var checkedDirection2;
-var began2;
-var point2;
-
-// var testing = {
-//   TESTINGTEXT: 'Success',
-//
-//   function (value) {
-//     this.TESTINGTEXT = value;
-//   }
-// };
-
-var testing = new Phaser.Class({
-  TESTTEXT: 'Success'
-});
 
 var game = new Phaser.Game(config);
 
