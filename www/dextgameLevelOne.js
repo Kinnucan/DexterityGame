@@ -7,6 +7,7 @@ class dextgameLevelOne extends Phaser.Scene{
     //Used for load music and pictures
     this.load.image('brush', 'www/img/brush1.png');
     touchCounter = 2;
+    
   }
 
   create(){
@@ -14,8 +15,10 @@ class dextgameLevelOne extends Phaser.Scene{
     graphics = this.add.graphics();
     var pointer = this.input.addPointer(1);
     text = this.add.text(20,20, 'Welcome to Level One!');
+    
     text2 = this.add.text(300,20, 'Text2');
-    timeText = this.add.text(40, 40);
+    timeText1 = this.add.text(40, 40, 'Left: ');
+    timeText2 = this.add.text(500, 40, 'Right: ');
 
     graphics.lineStyle(5, 0x0000FF, 1.0);
     graphics.strokeRect(105, 250, 121.25, 121.25);
@@ -30,7 +33,7 @@ class dextgameLevelOne extends Phaser.Scene{
 
     var tracer1 = new Tracer();
     var tracer2 = new Tracer();
-
+    
     var checkedFirstPointer = false;
     var tracer1PointerId;
 
@@ -98,26 +101,33 @@ class dextgameLevelOne extends Phaser.Scene{
       // }, this);
       if (pointer.isDown){
 
-        // text.setText([timer]);
-
+        
+        //timeText1.setText('Left: ' + [timer1]);
+        //timeText2.setText('Right: ' + [timer2]);
         var x = pointer.x;
         var y = pointer.y;
 
-        if (pointer.pointerId == tracer1.pointerID)
+        if (pointer.pointerId == tracer1.pointerID){
           tracer1.trace(x, y);
-        else if (pointer.pointerId == tracer2.pointerID)
+          timeText1.setText('Left: ' + [timer1]);
+        }
+        else if (pointer.pointerId == tracer2.pointerID){
           tracer2.trace(x, y);
-
+          timeText2.setText('Right: ' + [timer2]);
+        }
         this.add.image(pointer.x, pointer.y, 'brush').setScale(0.5);
       }
+      
+      
     }, this);
   }
 
   update(time){
     //is a loop that runs constantly
-
+    
     //Sets timer var equal to time
-    timer = time;
+    timer1= time;
+    timer2 = time;
 
     if (touchCounter < 2){
       // this.scene.pause();

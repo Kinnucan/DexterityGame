@@ -9,8 +9,10 @@ var config = {
 
 var text;
 var text2;
-var timeText;
-var timer;
+var timeText1;
+var timeText2;
+var timer1;
+var timer2;
 
 var textScoreLeft;
 var textScoreRight;
