@@ -1,6 +1,7 @@
-class tracer{
-  constructor(array){
-    this.array = array;
+class Tracer{
+  constructor(){
+    this.path;
+    this.pointerID;
     this.startingPoint;
     this.indexOfNextPoint;
     this.checkedDirection;
@@ -12,49 +13,82 @@ class tracer{
     this.dist;
   }
 
-  findStartingPoint(x, y, startArray){
+  start(x, y){
+    this.startingPoint = null;
+    this.indexOfNextPoint = null;
+    this.checkedDirection = null;
+    this.checkedDirectionCounter = 0;
+    this.nextPoint = null;
+    this.currentPoint = null;
+    this.direction = null;
+    this.dist = null;
+
+    // if (this.onPointReached){
+    //   if (x < 400){
+    //     this.setPath(1);
+    //   }
+    //   else if (x >= 400){
+    //     this.setPath(2);
+    //   }
+    // }
+
     var startingPoint;
     var startingPointIndex;
-    for (var i = 0; i < startArray.length; i+=2){
-      this.dist = Phaser.Math.Distance.Between(x, y, startArray[i], startArray[i+1]);
+    // text2.setText([this.path]);
+    for (var i = 0; i < this.path.length; i+=2){
+      this.dist = Phaser.Math.Distance.Between(x, y, this.path[i], this.path[i+1]);
       if (this.dist < this.distanceThreshold){
-        startingPoint = [startArray[i], startArray[i+1]];
+        startingPoint = [this.path[i], this.path[i+1]];
         startingPointIndex = i;
         this.distanceThreshold = this.dist;
       }
     }
     this.startingPoint = startingPoint;
     this.indexOfNextPoint = startingPointIndex;
+    // text.setText([this.startingPoint, this.indexOfNextPoint]);
   }
 
-  findIndexOfPoint(index, arrayLength){
+  trace(x, y){
+    if (!this.checkedDirection){
+      this._findDirectionAndNextPoint(x, y, this.path);
+      this.checkedDirectionCounter ++;
+      if (this.checkedDirectionCounter == 30)
+        this.checkedDirection = true;
+    }
+    this._traceUserTouch(x, y, this.path);
+  }
+
+  _findIndexOfPoint(index, arrayLength){
     return ((index % arrayLength) + arrayLength) % arrayLength;
   }
 
-  findDirectionAndNextPoint(x, y, array){
-    var nextIndex = this.findIndexOfPoint(this.indexOfNextPoint+2, array.length);
-    var prevIndex = this.findIndexOfPoint(this.indexOfNextPoint-2, array.length);
+  _findDirectionAndNextPoint(x, y, path){
+    var nextIndex = this._findIndexOfPoint(this.indexOfNextPoint+2, path.length);
+    var prevIndex = this._findIndexOfPoint(this.indexOfNextPoint-2, path.length);
     var direction;
     var nextPoint;
-    if (Phaser.Math.Distance.Between(x, y, array[nextIndex], array[nextIndex+1]) <
-          Phaser.Math.Distance.Between(x, y, array[prevIndex], array[prevIndex+1])){
+    if (Phaser.Math.Distance.Between(x, y, path[nextIndex], path[nextIndex+1]) <
+          Phaser.Math.Distance.Between(x, y, path[prevIndex], path[prevIndex+1])){
         this.direction = 1;
-        this.nextPoint = [array[nextIndex], array[nextIndex+1]];
+        this.nextPoint = [path[nextIndex], path[nextIndex+1]];
     }
-    else if (Phaser.Math.Distance.Between(x, y, array[prevIndex], array[prevIndex+1]) <
-               Phaser.Math.Distance.Between(x, y, array[nextIndex], array[nextIndex+1])){
+    else if (Phaser.Math.Distance.Between(x, y, path[prevIndex], path[prevIndex+1]) <
+               Phaser.Math.Distance.Between(x, y, path[nextIndex], path[nextIndex+1])){
         this.direction = -1;
-        this.nextPoint = [array[prevIndex], array[prevIndex+1]];
+        this.nextPoint = [path[prevIndex], path[prevIndex+1]];
     }
   }
 
-  traceUserTouch(x, y, array){
+  _traceUserTouch(x, y, path){
     if (this.direction && this.checkedDirection){
       if (Phaser.Math.Distance.Between(x, y, this.nextPoint[0], this.nextPoint[1]) <= 15){
         this.currentPoint = this.nextPoint;
-        this.indexOfNextPoint = this.findIndexOfPoint(this.indexOfNextPoint + (2 * this.direction), array.length);
-        this.nextPoint = [array[this.indexOfNextPoint], array[this.indexOfNextPoint+1]];
-        text2.setText([this.startingPoint, this.currentPoint, this.nextPoint, this.indexOfNextPoint]);
+        this.indexOfNextPoint = this._findIndexOfPoint(this.indexOfNextPoint + (2 * this.direction), path.length);
+        this.nextPoint = [path[this.indexOfNextPoint], path[this.indexOfNextPoint+1]];
+        if (this.onPointReached)
+          this.onPointReached(this.currentPoint[0], this.currentPoint[1]);
+        // text.setText([this.startingPoint, this.currentPoint, this.nextPoint, this.indexOfNextPoint]);
+        // text2.setText([x, y]);
       }
     }
   }
