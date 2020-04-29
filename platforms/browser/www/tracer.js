@@ -36,6 +36,7 @@ class Tracer{
     var startingPoint;
     var startingPointIndex;
     // text2.setText(['ok']);
+    // text2.setText([this.path]);
     for (var i = 0; i < this.path.length; i+=2){
       this.dist = Phaser.Math.Distance.Between(x, y, this.path[i], this.path[i+1]);
       if (this.dist < this.distanceThreshold){

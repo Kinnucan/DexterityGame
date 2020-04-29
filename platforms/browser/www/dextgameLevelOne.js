@@ -15,6 +15,7 @@ class dextgameLevelOne extends Phaser.Scene{
     graphics = this.add.graphics();
     var pointer = this.input.addPointer(1);
     text = this.add.text(20,20, 'Welcome to Level One!');
+
     text2 = this.add.text(300,20, 'Text2');
     timeText1 = this.add.text(40, 40, 'Left: ');
     timeText2 = this.add.text(500, 40, 'Right: ');
@@ -88,12 +89,13 @@ class dextgameLevelOne extends Phaser.Scene{
 
       if (x <= 200){
         tracer1.start(x, y);
+        pointer.pointerId = 1;
         tracer1.pointerID = pointer.pointerId;
       }
       else if (x > 200){
         tracer2.start(x, y);
+        pointer.pointerId = 2;
         tracer2.pointerID = pointer.pointerId;
-        text.setText([pointer.pointerId == null]);
       }
 
     }, this);
@@ -134,7 +136,7 @@ class dextgameLevelOne extends Phaser.Scene{
     //is a loop that runs constantly
 
     //Sets timer var equal to time
-    timer1= time;
+    timer1 = time;
     timer2 = time;
 
     if (touchCounter < 2){
