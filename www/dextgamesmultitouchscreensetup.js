@@ -1,3 +1,5 @@
+// import {squareLeft, triangleLeft, leftShapeList} from './www/dextGameShapeDataBaseLeft.js';
+// import {squareRight, triangleRight, rightShapeList} from './www/dextGameShapeDataBaseRight.js';
 var config = {
   type: Phaser.AUTO,
   width: 800,
@@ -25,9 +27,8 @@ var leftShape;
 var rightShape;
 
 var game = new Phaser.Game(config);
-// 
-// import {squareLeft, triangleLeft, leftShapeList} from './dextGameShapeDataBaseLeft.js';
-// import {squareRight, triangleRight, rightShapeList} from './dextGameShapeDataBaseRight.js';
+//
+
 
 // function resize() {
 //         var canvas = game.canvas, width = window.innerWidth, height = window.innerHeight;
