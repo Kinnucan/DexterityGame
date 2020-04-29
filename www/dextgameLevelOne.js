@@ -8,6 +8,8 @@ class dextgameLevelOne extends Phaser.Scene{
     this.load.image('brush', 'www/img/brush1.png');
     touchCounter = 2;
 
+
+
   }
 
   create(){

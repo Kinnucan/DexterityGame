@@ -5,6 +5,7 @@ class dextgameWelcomeScreen extends Phaser.Scene{
 
   preload(){
     //Used for load music and pictures
+
   }
 
   create(){
