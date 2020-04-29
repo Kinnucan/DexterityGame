@@ -28,8 +28,8 @@ class dextgameLevelOne extends Phaser.Scene{
     // text2.setText([Phaser.Math.Distance.Between(trianglePoints[4], trianglePoints[5], trianglePoints[2], trianglePoints[3]),
     //               Phaser.Math.Distance.Between(trianglePoints[0], trianglePoints[1], trianglePoints[4], trianglePoints[5])]);
 
-    var tracer1 = new Tracer();
-    var tracer2 = new Tracer();
+    var tracer1 = new Tracer(squarePoints);
+    var tracer2 = new Tracer(trianglePoints);
 
     var checkedFirstPointer = false;
     var tracer1PointerId;
@@ -61,32 +61,35 @@ class dextgameLevelOne extends Phaser.Scene{
       var x = pointer.x;
       var y = pointer.y;
 
-      if (x >= 400 && !checkedFirstPointer){
-        tracer1.path = trianglePoints;
-        tracer1.pointerID = pointer.pointerId;
-        checkedFirstPointer = true;
-      }
-      else if (x < 400 && !checkedFirstPointer){
-        tracer1.path = squarePoints;
-        tracer1.pointerID = pointer.pointerId;
-        checkedFirstPointer = true;
-      }
+      // if (x >= 400 && !checkedFirstPointer){
+      //   tracer1.path = trianglePoints;
+      //   tracer1.pointerID = pointer.pointerId;
+      //   checkedFirstPointer = true;
+      // }
+      // else if (x < 400 && !checkedFirstPointer){
+      //   tracer1.path = squarePoints;
+      //   tracer1.pointerID = pointer.pointerId;
+      //   checkedFirstPointer = true;
+      // }
+      //
+      // if (x >= 400 && pointer.pointerId != tracer1.pointerID){
+      //   tracer2.path = trianglePoints;
+      //   tracer2.pointerID = pointer.pointerId;
+      // }
+      // else if (x < 400 && pointer.pointerId != tracer1.pointerID){
+      //   tracer2.path = squarePoints;
+      //   tracer2.pointerID = pointer.pointerId;
+      // }
 
-      if (x >= 400 && pointer.pointerId != tracer1.pointerID){
-        tracer2.path = trianglePoints;
+      if (x <= 400){
+        tracer1.start(x, y);
+        tracer1.pointerID = pointer.pointerId;
+      }
+      else if (x > 400){
+        tracer2.start(x, y);
         tracer2.pointerID = pointer.pointerId;
       }
-      else if (x < 400 && pointer.pointerId != tracer1.pointerID){
-        tracer2.path = squarePoints;
-        tracer2.pointerID = pointer.pointerId;
-      }
 
-      // text.setText([x, y]);
-
-      tracer1.start(x, y);
-      tracer2.start(x, y);
-
-      // text.setText([tracer1.startingPoint, tracer1.indexOfNextPoint]);
     }, this);
 
     //Allows user to draw when pressing finger down
@@ -103,10 +106,14 @@ class dextgameLevelOne extends Phaser.Scene{
         var x = pointer.x;
         var y = pointer.y;
 
-        if (pointer.pointerId == tracer1.pointerID)
+        if (pointer.pointerId == tracer1.pointerID){
           tracer1.trace(x, y);
-        else if (pointer.pointerId == tracer2.pointerID)
+          text.setText(['yay']);
+        }
+        else if (pointer.pointerId == tracer2.pointerID){
           tracer2.trace(x, y);
+          text2.setText(['yay2']);
+        }
 
         this.add.image(pointer.x, pointer.y, 'brush').setScale(0.5);
       }

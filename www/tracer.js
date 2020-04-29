@@ -1,6 +1,6 @@
 class Tracer{
-  constructor(){
-    this.path;
+  constructor(path){
+    this.path = path;
     this.pointerID;
     this.startingPoint;
     this.indexOfNextPoint;
@@ -20,6 +20,7 @@ class Tracer{
     this.checkedDirectionCounter = 0;
     this.nextPoint = null;
     this.currentPoint = null;
+    this.distanceThreshold = 100;
     this.direction = null;
     this.dist = null;
 
@@ -34,7 +35,7 @@ class Tracer{
 
     var startingPoint;
     var startingPointIndex;
-    // text2.setText([this.path]);
+    // text2.setText(['ok']);
     for (var i = 0; i < this.path.length; i+=2){
       this.dist = Phaser.Math.Distance.Between(x, y, this.path[i], this.path[i+1]);
       if (this.dist < this.distanceThreshold){
@@ -45,7 +46,7 @@ class Tracer{
     }
     this.startingPoint = startingPoint;
     this.indexOfNextPoint = startingPointIndex;
-    // text.setText([this.startingPoint, this.indexOfNextPoint]);
+    text.setText([this.startingPoint, this.indexOfNextPoint]);
   }
 
   trace(x, y){
