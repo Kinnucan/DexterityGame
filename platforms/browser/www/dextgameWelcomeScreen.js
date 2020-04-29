@@ -4,10 +4,13 @@ class dextgameWelcomeScreen extends Phaser.Scene{
   }
 
   preload(){
-    //USed for load music and pictures
+    //Used for load music and pictures
   }
 
   create(){
+    // window.addEventListener('resize', resize);
+    // resize();
+
     touchCounter = 0;
     //create objects
     graphics = this.add.graphics();

@@ -7,6 +7,7 @@ class dextgameLevelOne extends Phaser.Scene{
     //Used for load music and pictures
     this.load.image('brush', 'www/img/brush1.png');
     touchCounter = 2;
+
   }
 
   create(){
@@ -15,21 +16,25 @@ class dextgameLevelOne extends Phaser.Scene{
     var pointer = this.input.addPointer(1);
     text = this.add.text(20,20, 'Welcome to Level One!');
     text2 = this.add.text(300,20, 'Text2');
-    timeText = this.add.text(40, 40);
+    timeText1 = this.add.text(40, 40, 'Left: ');
+    timeText2 = this.add.text(500, 40, 'Right: ');
 
-    graphics.lineStyle(5, 0x0000FF, 1.0);
-    graphics.strokeRect(105, 250, 121.25, 121.25);
-    graphics.strokeTriangle(400, 371.25, 470, 250, 540, 371.25);
+    leftShape = leftShapeList[Math.floor(Math.random() * leftShapeList.length)];
+    rightShape = rightShapeList[Math.floor(Math.random() * rightShapeList.length)];
 
-    var squarePoints = [105, 250, 226.25, 250, 226.25, 371.25, 105, 371.25];
-    var trianglePoints = [400, 371.25, 470, 250, 540, 371.25];
+    //checks to make sure the two randomly picked shapes are not the same shape
+    while (rightShape.name == leftShape.name){
+      rightShape = rightShapeList[Math.floor(Math.random() * rightShapeList.length)];
+    }
+    rightShape.draw();
+    leftShape.draw();
 
     // text.setText(Phaser.Math.Distance.Between(trianglePoints[0], trianglePoints[1], trianglePoints[2], trianglePoints[3]));
     // text2.setText([Phaser.Math.Distance.Between(trianglePoints[4], trianglePoints[5], trianglePoints[2], trianglePoints[3]),
     //               Phaser.Math.Distance.Between(trianglePoints[0], trianglePoints[1], trianglePoints[4], trianglePoints[5])]);
 
-    var tracer1 = new Tracer(squarePoints);
-    var tracer2 = new Tracer(trianglePoints);
+    var tracer1 = new Tracer(leftShape.shapePoints);
+    var tracer2 = new Tracer(rightShape.shapePoints);
 
     var checkedFirstPointer = false;
     var tracer1PointerId;
@@ -81,13 +86,16 @@ class dextgameLevelOne extends Phaser.Scene{
       //   tracer2.pointerID = pointer.pointerId;
       // }
 
-      if (x <= 400){
+      if (x <= 200){
         tracer1.start(x, y);
+        pointer.pointerId = 1;
         tracer1.pointerID = pointer.pointerId;
       }
-      else if (x > 400){
+      else if (x > 200){
         tracer2.start(x, y);
+        pointer.pointerId = 2;
         tracer2.pointerID = pointer.pointerId;
+        text.setText([pointer.pointerId == null]);
       }
 
     }, this);
@@ -101,22 +109,25 @@ class dextgameLevelOne extends Phaser.Scene{
       // }, this);
       if (pointer.isDown){
 
-        // text.setText([timer]);
-
+        //timeText1.setText('Left: ' + [timer1]);
+        //timeText2.setText('Right: ' + [timer2]);
         var x = pointer.x;
         var y = pointer.y;
 
         if (pointer.pointerId == tracer1.pointerID){
           tracer1.trace(x, y);
           text.setText(['yay']);
+          timeText1.setText('Left: ' + [timer1]);
         }
         else if (pointer.pointerId == tracer2.pointerID){
           tracer2.trace(x, y);
           text2.setText(['yay2']);
+          timeText2.setText('Right: ' + [timer2]);
         }
-
         this.add.image(pointer.x, pointer.y, 'brush').setScale(0.5);
       }
+
+
     }, this);
   }
 
@@ -124,7 +135,8 @@ class dextgameLevelOne extends Phaser.Scene{
     //is a loop that runs constantly
 
     //Sets timer var equal to time
-    timer = time;
+    timer1= time;
+    timer2 = time;
 
     if (touchCounter < 2){
       // this.scene.pause();
