@@ -23,13 +23,13 @@ class dextgameLevelOne extends Phaser.Scene{
     leftShape = leftShapeList[Math.floor(Math.random() * leftShapeList.length)];
     rightShape = rightShapeList[Math.floor(Math.random() * rightShapeList.length)];
 
-    text.setText(leftShape.name);
-    text2.setText(rightShape.name);
-    
+    // text.setText(leftShape.name);
+    // text2.setText(rightShape.name);
+
     //checks to make sure the two randomly picked shapes are not the same shape
     while (rightShape.name == leftShape.name){
       rightShape = rightShapeList[Math.floor(Math.random() * rightShapeList.length)];
-      text2.setText(rightShape.name);
+      // text2.setText(rightShape.name);
 
     }
     rightShape.draw();
