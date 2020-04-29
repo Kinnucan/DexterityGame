@@ -19,4 +19,4 @@ const triangleLeft = {
 
 const leftShapeList = [squareLeft, triangleLeft];
 
-export {squareLeft, triangleLeft, leftShapeList};
+// export {squareLeft, triangleLeft, leftShapeList};

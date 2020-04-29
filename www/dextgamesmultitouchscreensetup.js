@@ -25,9 +25,9 @@ var leftShape;
 var rightShape;
 
 var game = new Phaser.Game(config);
-
-import {squareLeft, triangleLeft, leftShapeList} from './dextGameShapeDataBaseLeft.js';
-import {squareRight, triangleRight, rightShapeList} from './dextGameShapeDataBaseRight.js';
+// 
+// import {squareLeft, triangleLeft, leftShapeList} from './dextGameShapeDataBaseLeft.js';
+// import {squareRight, triangleRight, rightShapeList} from './dextGameShapeDataBaseRight.js';
 
 // function resize() {
 //         var canvas = game.canvas, width = window.innerWidth, height = window.innerHeight;
