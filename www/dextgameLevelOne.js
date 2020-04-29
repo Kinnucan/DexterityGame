@@ -23,18 +23,12 @@ class dextgameLevelOne extends Phaser.Scene{
     leftShape = leftShapeList[Math.floor(Math.random() * leftShapeList.length)];
     rightShape = rightShapeList[Math.floor(Math.random() * rightShapeList.length)];
 
-    // text.setText(leftShape.name);
-    // text2.setText(rightShape.name);
-
     //checks to make sure the two randomly picked shapes are not the same shape
     while (rightShape.name == leftShape.name){
       rightShape = rightShapeList[Math.floor(Math.random() * rightShapeList.length)];
-      // text2.setText(rightShape.name);
-
     }
     rightShape.draw();
     leftShape.draw();
-
 
     // text.setText(Phaser.Math.Distance.Between(trianglePoints[0], trianglePoints[1], trianglePoints[2], trianglePoints[3]));
     // text2.setText([Phaser.Math.Distance.Between(trianglePoints[4], trianglePoints[5], trianglePoints[2], trianglePoints[3]),
@@ -74,22 +68,22 @@ class dextgameLevelOne extends Phaser.Scene{
       var y = pointer.y;
 
       if (x >= 400 && !checkedFirstPointer){
-        tracer1.path = triangleRight.shapePoints;
+        tracer1.path = rightShape.shapePoints;
         tracer1.pointerID = pointer.pointerId;
         checkedFirstPointer = true;
       }
       else if (x < 400 && !checkedFirstPointer){
-        tracer1.path = squareLeft.shapePoints;
+        tracer1.path = leftShape.shapePoints;
         tracer1.pointerID = pointer.pointerId;
         checkedFirstPointer = true;
       }
 
       if (x >= 400 && pointer.pointerId != tracer1.pointerID){
-        tracer2.path = triangleRight.shapePoints;
+        tracer2.path = rightShape.shapePoints;
         tracer2.pointerID = pointer.pointerId;
       }
       else if (x < 400 && pointer.pointerId != tracer1.pointerID){
-        tracer2.path = squareLeft.shapePoints;
+        tracer2.path = leftShape.shapePoints;
         tracer2.pointerID = pointer.pointerId;
       }
 
