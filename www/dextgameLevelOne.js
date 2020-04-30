@@ -29,6 +29,8 @@ class dextgameLevelOne extends Phaser.Scene{
     //   rightShape = rightShapeList[Math.floor(Math.random() * rightShapeList.length)];
     // }
 
+    //TODO: Figure out how to add a changable attribute to a const object.
+
     var leftGraphics = this.strokeShape(leftShape.shapePoints);
     var rightGraphics = this.strokeShape(rightShape.shapePoints);
 
