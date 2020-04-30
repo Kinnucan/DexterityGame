@@ -21,16 +21,18 @@ class dextgameLevelOne extends Phaser.Scene{
     timeText1 = this.add.text(40, 40, 'Left: ');
     timeText2 = this.add.text(500, 40, 'Right: ');
 
-    leftShape = leftShapeList[Math.floor(Math.random() * leftShapeList.length)];
-    rightShape = rightShapeList[Math.floor(Math.random() * rightShapeList.length)];
+    leftShape = shapeList[Math.floor(Math.random() * shapeList.length)];
+    rightShape = shapeList[Math.floor(Math.random() * shapeList.length)];
 
     //checks to make sure the two randomly picked shapes are not the same shape
     // while (rightShape.name == leftShape.name){
     //   rightShape = rightShapeList[Math.floor(Math.random() * rightShapeList.length)];
     // }
 
+    var leftGraphics = this.strokeShape(leftShape.shapePoints);
     var rightGraphics = this.strokeShape(rightShape.shapePoints);
-    // var leftGraphics = this.strokeShape(leftShape.shapePoints);
+
+    leftGraphics.setPosition(105, 250);
     rightGraphics.setPosition(505, 250);
 
     var tracer1 = new Tracer(leftShape.shapePoints);
