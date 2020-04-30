@@ -7,9 +7,6 @@ class dextgameLevelOne extends Phaser.Scene{
     //Used for load music and pictures
     this.load.image('brush', 'www/img/brush1.png');
     touchCounter = 2;
-
-
-
   }
 
   create(){
@@ -21,21 +18,34 @@ class dextgameLevelOne extends Phaser.Scene{
     timeText1 = this.add.text(40, 40, 'Left: ');
     timeText2 = this.add.text(500, 40, 'Right: ');
 
+    //picks a shape from the shape database and checks to make sure we have not used this shape yet.
     leftShape = shapeList[Math.floor(Math.random() * shapeList.length)];
-    rightShape = shapeList[Math.floor(Math.random() * shapeList.length)];
+    // while(leftShape.hasUsed == true){
+    //   leftShape = shapeList[Math.floor(Math.random() * shapeList.length)];
+    // }
 
-    //checks to make sure the two randomly picked shapes are not the same shape
+    //picks a shape from the shape database and checks
+    //to make sure the two randomly picked shapes are not the same shape
+    //and checks to make sure we have not used this shape yet
+    rightShape = shapeList[Math.floor(Math.random() * shapeList.length)];
     while (rightShape.name == leftShape.name){
       rightShape = shapeList[Math.floor(Math.random() * shapeList.length)];
     }
+    //
+    // while (rightShape.name == leftShape.name && rightShape.hasUsed == true){
+    //   rightShape = shapeList[Math.floor(Math.random() * shapeList.length)];
+    // }
 
-    //TODO: Figure out how to add a changable attribute to a const object. So that for each new level, the game chooses new shapes based on whether or not the shape.hasUsed is true or false.
+    //marks the two shapes as used
+    leftShape.hasUsed = true;
+    rightShape.hasUsed = true;
 
     var leftGraphics = this.strokeShape(leftShape.shapePoints);
     var rightGraphics = this.strokeShape(rightShape.shapePoints);
 
-    leftGraphics.setPosition(105, 250);
-    rightGraphics.setPosition(505, 250);
+    leftGraphics.setPosition(150, 250);
+    rightGraphics.setPosition(550, 250);
+    // rightGraphics.setPosition(105, 250);
 
     var tracer1 = new Tracer(leftShape.shapePoints);
     var tracer2 = new Tracer(rightShape.shapePoints, rightGraphics);
