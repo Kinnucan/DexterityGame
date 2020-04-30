@@ -25,11 +25,11 @@ class dextgameLevelOne extends Phaser.Scene{
     rightShape = shapeList[Math.floor(Math.random() * shapeList.length)];
 
     //checks to make sure the two randomly picked shapes are not the same shape
-    // while (rightShape.name == leftShape.name){
-    //   rightShape = rightShapeList[Math.floor(Math.random() * rightShapeList.length)];
-    // }
+    while (rightShape.name == leftShape.name){
+      rightShape = shapeList[Math.floor(Math.random() * shapeList.length)];
+    }
 
-    //TODO: Figure out how to add a changable attribute to a const object.
+    //TODO: Figure out how to add a changable attribute to a const object. So that for each new level, the game chooses new shapes based on whether or not the shape.hasUsed is true or false.
 
     var leftGraphics = this.strokeShape(leftShape.shapePoints);
     var rightGraphics = this.strokeShape(rightShape.shapePoints);
