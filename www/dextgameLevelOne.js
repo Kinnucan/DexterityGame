@@ -14,7 +14,6 @@ class dextgameLevelOne extends Phaser.Scene{
 
   create(){
     //create objects
-    graphics = this.add.graphics();
     var pointer = this.input.addPointer(1);
     text = this.add.text(20,20, 'Welcome to Level One!');
 
@@ -26,18 +25,16 @@ class dextgameLevelOne extends Phaser.Scene{
     rightShape = rightShapeList[Math.floor(Math.random() * rightShapeList.length)];
 
     //checks to make sure the two randomly picked shapes are not the same shape
-    while (rightShape.name == leftShape.name){
-      rightShape = rightShapeList[Math.floor(Math.random() * rightShapeList.length)];
-    }
-    rightShape.draw();
-    leftShape.draw();
+    // while (rightShape.name == leftShape.name){
+    //   rightShape = rightShapeList[Math.floor(Math.random() * rightShapeList.length)];
+    // }
 
-    // text.setText(Phaser.Math.Distance.Between(trianglePoints[0], trianglePoints[1], trianglePoints[2], trianglePoints[3]));
-    // text2.setText([Phaser.Math.Distance.Between(trianglePoints[4], trianglePoints[5], trianglePoints[2], trianglePoints[3]),
-    //               Phaser.Math.Distance.Between(trianglePoints[0], trianglePoints[1], trianglePoints[4], trianglePoints[5])]);
+    var rightGraphics = this.strokeShape(rightShape.shapePoints);
+    // var leftGraphics = this.strokeShape(leftShape.shapePoints);
+    rightGraphics.setPosition(505, 250);
 
     var tracer1 = new Tracer(leftShape.shapePoints);
-    var tracer2 = new Tracer(rightShape.shapePoints);
+    var tracer2 = new Tracer(rightShape.shapePoints, rightGraphics);
 
     var checkedFirstPointer = false;
     var tracer1PointerId;
@@ -133,6 +130,19 @@ class dextgameLevelOne extends Phaser.Scene{
 
 
     }, this);
+  }
+
+  strokeShape(shapePoints){
+    var graphics = this.add.graphics();
+    graphics.lineStyle(5, 0xFF000, 1.0);
+    graphics.beginPath();
+    for (var i = 0; i < shapePoints.length; i += 2) {
+      var lineOp = (i == 0) ? "moveTo" : "lineTo";
+      graphics[lineOp](shapePoints[i], shapePoints[i+1]);
+    }
+    graphics.closePath();
+    graphics.stroke();
+    return graphics;
   }
 
   update(time){

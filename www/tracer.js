@@ -1,5 +1,5 @@
 class Tracer{
-  constructor(path){
+  constructor(path, graphicsObject){
     this.path = path;
     this.pointerID;
     this.startingPoint;
@@ -11,9 +11,14 @@ class Tracer{
     this.direction;
     this.distanceThreshold = 100;
     this.dist;
+    this.offsetX = graphicsObject.x;
+    //etc
   }
 
   start(x, y){
+    x -= this.offsetX;
+    //etc
+
     this.startingPoint = null;
     this.indexOfNextPoint = null;
     this.checkedDirection = null;
