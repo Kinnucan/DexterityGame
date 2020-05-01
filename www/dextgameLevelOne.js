@@ -1,6 +1,7 @@
 class dextgameLevelOne extends Phaser.Scene{
   constructor(){
     super({key:"levelOne"});
+    this.winCondition;
   }
 
   preload(){
@@ -89,15 +90,15 @@ class dextgameLevelOne extends Phaser.Scene{
 
         if (pointer.pointerId == tracer1.pointerID){
           tracer1.trace(x, y);
-          text.setText(['yay']);
           timeText1.setText('Left: ' + [timer1]);
         }
         else if (pointer.pointerId == tracer2.pointerID){
           tracer2.trace(x, y);
-          text2.setText(['yay2']);
           timeText2.setText('Right: ' + [timer2]);
         }
         this.add.image(pointer.x, pointer.y, 'brush').setScale(0.5);
+        if (tracer1.pathFinished && tracer2.pathFinished)
+          this.winCondition = true;
       }
 
 
@@ -142,6 +143,11 @@ class dextgameLevelOne extends Phaser.Scene{
       this.scene.start("pauseScreen");
     }
 
+    if (this.winCondition){
+      this.winCondition = false;
+      userLevel += 1;
+      this.scene.start("levelOne");
+    }
 
   }
 

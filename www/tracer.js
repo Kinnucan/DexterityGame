@@ -13,6 +13,7 @@ class Tracer{
     this.dist;
     this.offsetX = graphicsObject.x;
     this.offsetY = graphicsObject.y;
+    this.pathFinished = false;
   }
 
   start(x, y){
@@ -84,6 +85,9 @@ class Tracer{
         this.nextPoint = [path[this.indexOfNextPoint], path[this.indexOfNextPoint+1]];
         if (this.onPointReached)
           this.onPointReached(this.currentPoint[0] + this.offsetX, this.currentPoint[1] + this.offsetY);
+        text2.setText([this.startingPoint, this.currentPoint]);
+        if (this.startingPoint[0] == this.currentPoint[0] && this.startingPoint[1] == this.currentPoint[1])
+          this.pathFinished = true;
       }
     }
   }
