@@ -96,7 +96,7 @@ class dextgameLevelOne extends Phaser.Scene{
           tracer2.trace(x, y);
           timeText2.setText('Right: ' + [timer2]);
         }
-        this.add.image(pointer.x, pointer.y, 'brush').setScale(0.5);
+        this.add.image(x, y, 'brush').setScale(0.5);
         if (tracer1.pathFinished && tracer2.pathFinished)
           this.winCondition = true;
       }
