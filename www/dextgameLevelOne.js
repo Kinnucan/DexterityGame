@@ -146,7 +146,7 @@ class dextgameLevelOne extends Phaser.Scene{
     if (this.winCondition){
       this.winCondition = false;
       userLevel += 1;
-      this.scene.start("levelOne");
+      this.scene.start("scoreScreen");
     }
 
   }

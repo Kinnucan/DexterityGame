@@ -19,7 +19,7 @@ class dextgameRulesScreen extends Phaser.Scene{
     var endMessage = this.add.text(135,370, 'If you feel like you understand the rules, place two fingers down to move on to Level One!');
     endMessage.setText(['If you feel like you understand the rules,', 'place two fingers down to move on to Level One!']);
 
-    this.input.on('pointerdown', function (pointer1) {touchCounter++;}, this);
+    this.input.on('pointerdown', function (pointer) {touchCounter++;}, this);
   }
 
   update(){
