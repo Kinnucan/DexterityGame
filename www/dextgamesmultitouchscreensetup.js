@@ -15,10 +15,6 @@ var timeText2;
 var timer1;
 var timer2;
 
-var textScoreLeft;
-var textScoreRight;
-var userStrokeLineLeft;
-var userStrokeLineRight;
 var graphics;
 var timeoutID;
 var touchCounter;

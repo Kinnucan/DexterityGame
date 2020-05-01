@@ -24,15 +24,6 @@ class Tracer{
     this.direction = null;
     this.dist = null;
 
-    // if (this.onPointReached){
-    //   if (x < 400){
-    //     this.setPath(1);
-    //   }
-    //   else if (x >= 400){
-    //     this.setPath(2);
-    //   }
-    // }
-
     var startingPoint;
     var startingPointIndex;
     // text2.setText(['ok']);
