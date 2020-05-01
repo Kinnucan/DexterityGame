@@ -11,26 +11,43 @@ class dextgameLevelOne extends Phaser.Scene{
 
   create(){
     //create objects
-    graphics = this.add.graphics();
     var pointer = this.input.addPointer(1);
-    text = this.add.text(20,20, 'Welcome to Level One!');
+    text = this.add.text(20,20, 'Welcome to Level: '+ userLevel+'!');
 
     text2 = this.add.text(300,20, 'Text2');
     timeText1 = this.add.text(40, 40, 'Left: ');
     timeText2 = this.add.text(500, 40, 'Right: ');
 
-    leftShape = leftShapeList[Math.floor(Math.random() * leftShapeList.length)];
-    rightShape = rightShapeList[Math.floor(Math.random() * rightShapeList.length)];
+    //picks a shape from the shape database and checks to make sure we have not used this shape yet.
+    leftShape = shapeList[Math.floor(Math.random() * shapeList.length)];
+    // while(leftShape.hasUsed == true){
+    //   leftShape = shapeList[Math.floor(Math.random() * shapeList.length)];
+    // }
 
-    //checks to make sure the two randomly picked shapes are not the same shape
+    //picks a shape from the shape database and checks
+    //to make sure the two randomly picked shapes are not the same shape
+    //and checks to make sure we have not used this shape yet
+    rightShape = shapeList[Math.floor(Math.random() * shapeList.length)];
     while (rightShape.name == leftShape.name){
-      rightShape = rightShapeList[Math.floor(Math.random() * rightShapeList.length)];
+      rightShape = shapeList[Math.floor(Math.random() * shapeList.length)];
     }
-    rightShape.draw();
-    leftShape.draw();
+    //
+    // while (rightShape.name == leftShape.name && rightShape.hasUsed == true){
+    //   rightShape = shapeList[Math.floor(Math.random() * shapeList.length)];
+    // }
 
-    var tracer1 = new Tracer(leftShape.shapePoints);
-    var tracer2 = new Tracer(rightShape.shapePoints);
+    //marks the two shapes as used
+    leftShape.hasUsed = true;
+    rightShape.hasUsed = true;
+
+    var leftGraphics = this.strokeShape(leftShape.shapePoints);
+    var rightGraphics = this.strokeShape(rightShape.shapePoints);
+
+    leftGraphics.setPosition(150, 250);
+    rightGraphics.setPosition(550, 250);
+
+    var tracer1 = new Tracer(leftShape.shapePoints, leftGraphics);
+    var tracer2 = new Tracer(rightShape.shapePoints, rightGraphics);
 
     for (var tracer of [tracer1, tracer2]){
       tracer.onPointReached = (x, y) =>{
@@ -87,6 +104,31 @@ class dextgameLevelOne extends Phaser.Scene{
     }, this);
   }
 
+  strokeShape(shapePoints){
+    var graphics = this.add.graphics();
+    graphics.lineStyle(5, 0xFF000, 1.0);
+    graphics.beginPath();
+    for (var i = 0; i < shapePoints.length; i += 2) {
+      var lineOp = (i == 0) ? "moveTo" : "lineTo";
+      graphics[lineOp](shapePoints[i], shapePoints[i+1]);
+    }
+    graphics.closePath();
+    graphics.stroke();
+    return graphics;
+  }
+
+  // advanceToNewLevel(){
+  //   //Pseudocode that determines when the user wins the level they are playing
+  //   if(userScore >= winThreshHold){
+  //     // userWin = true;
+  //     this.scene.restart(true, false, {level: this.level+1});
+  //   }else {
+  //     //else if the user does not
+  //     this.scene.restart(true,false{level: this.level});
+  //   }
+  //
+  // }
+
   update(time){
     //is a loop that runs constantly
 
@@ -99,6 +141,8 @@ class dextgameLevelOne extends Phaser.Scene{
       // this.scene.launch("pauseScreen");
       this.scene.start("pauseScreen");
     }
+
+
   }
 
 }

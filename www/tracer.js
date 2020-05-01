@@ -1,5 +1,5 @@
 class Tracer{
-  constructor(path){
+  constructor(path, graphicsObject){
     this.path = path;
     this.pointerID;
     this.startingPoint;
@@ -11,9 +11,14 @@ class Tracer{
     this.direction;
     this.distanceThreshold = 100;
     this.dist;
+    this.offsetX = graphicsObject.x;
+    this.offsetY = graphicsObject.y;
   }
 
   start(x, y){
+    x -= this.offsetX;
+    y -= this.offsetY;
+
     this.startingPoint = null;
     this.indexOfNextPoint = null;
     this.checkedDirection = null;
@@ -26,7 +31,6 @@ class Tracer{
 
     var startingPoint;
     var startingPointIndex;
-    // text2.setText(['ok']);
     for (var i = 0; i < this.path.length; i+=2){
       this.dist = Phaser.Math.Distance.Between(x, y, this.path[i], this.path[i+1]);
       if (this.dist < this.distanceThreshold){
@@ -37,10 +41,11 @@ class Tracer{
     }
     this.startingPoint = startingPoint;
     this.indexOfNextPoint = startingPointIndex;
-    // text.setText([this.startingPoint, this.indexOfNextPoint]);
   }
 
   trace(x, y){
+    x -= this.offsetX;
+    y -= this.offsetY;
     if (!this.checkedDirection){
       this._findDirectionAndNextPoint(x, y, this.path);
       this.checkedDirectionCounter ++;
@@ -78,9 +83,7 @@ class Tracer{
         this.indexOfNextPoint = this._findIndexOfPoint(this.indexOfNextPoint + (2 * this.direction), path.length);
         this.nextPoint = [path[this.indexOfNextPoint], path[this.indexOfNextPoint+1]];
         if (this.onPointReached)
-          this.onPointReached(this.currentPoint[0], this.currentPoint[1]);
-        // text.setText([this.startingPoint, this.currentPoint, this.nextPoint, this.indexOfNextPoint]);
-        // text2.setText([x, y]);
+          this.onPointReached(this.currentPoint[0] + this.offsetX, this.currentPoint[1] + this.offsetY);
       }
     }
   }
