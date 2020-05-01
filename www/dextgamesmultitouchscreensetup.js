@@ -26,6 +26,10 @@ var touchCounter;
 var leftShape;
 var rightShape;
 
+var userLevel=1;
+
+// var userWin = false;
+
 var game = new Phaser.Game(config);
 //
 

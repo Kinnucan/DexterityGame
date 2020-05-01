@@ -12,7 +12,7 @@ class dextgameLevelOne extends Phaser.Scene{
   create(){
     //create objects
     var pointer = this.input.addPointer(1);
-    text = this.add.text(20,20, 'Welcome to Level One!');
+    text = this.add.text(20,20, 'Welcome to Level: '+ userLevel+'!');
 
     text2 = this.add.text(300,20, 'Text2');
     timeText1 = this.add.text(40, 40, 'Left: ');
@@ -159,6 +159,18 @@ class dextgameLevelOne extends Phaser.Scene{
     return graphics;
   }
 
+  // advanceToNewLevel(){
+  //   //Pseudocode that determines when the user wins the level they are playing
+  //   if(userScore >= winThreshHold){
+  //     // userWin = true;
+  //     this.scene.restart(true, false, {level: this.level+1});
+  //   }else {
+  //     //else if the user does not
+  //     this.scene.restart(true,false{level: this.level});
+  //   }
+  //
+  // }
+
   update(time){
     //is a loop that runs constantly
 
@@ -171,6 +183,8 @@ class dextgameLevelOne extends Phaser.Scene{
       // this.scene.launch("pauseScreen");
       this.scene.start("pauseScreen");
     }
+
+
   }
 
 }
