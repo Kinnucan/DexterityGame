@@ -10,7 +10,7 @@ class dextgameLevelOne extends Phaser.Scene{
     //Used for load music and pictures
     // this.load.image('brush', 'www/img/brush1.png');
     touchCounter = 2;
-    this.load.atlas('flares', 'assets/particles/flares.png', 'assets/particles/flares.json');
+    this.load.image('flares', 'assets/particles/blue.png');
   }
 
   create(){
@@ -62,15 +62,16 @@ class dextgameLevelOne extends Phaser.Scene{
     for (var tracer of [tracer1, tracer2]){
       tracer.onPointReached = (x, y) =>{
         //TODO: Change these to sparks
-        // particles = this.add.particles('flares');
-        // particles.createEmitter({
-        //   frame: ['red', 'yellow', 'green'],
-        //   x: x, y:y,
-        //   lifespan:200,
-        //   speed: {min: 100, max:250},
-        //   scale: {start: 0.4, end:0},
-        //   blendMode: 'ADD'
-        // });
+        var particles = this.add.particles('flares');
+        var emitter = particles.createEmitter();
+
+        emitter.setPosition(x, y);
+        emitter.setSpeed(200);
+        emitter.setBlendMode(Phaser.BlendModes.ADD);
+
+
+        // emitter.makeParticles('flares');
+        // particles.emitParticles(50, x,y);
         var circleOne = new Phaser.Geom.Circle(x, y, 20);
         graphicsDrawing.fillCircleShape(circleOne);
 

@@ -20,7 +20,7 @@ var avg;
 var perc;
 var diff;
 
-var particles;
+// var particles;
 
 var graphics;
 var timeoutID;
