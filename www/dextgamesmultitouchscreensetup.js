@@ -32,6 +32,8 @@ var sceneChangeCondition;
 // var userScore;
 var winCondition = false;
 
+var continueButton;
+
 var game = new Phaser.Game(config);
 
 //
