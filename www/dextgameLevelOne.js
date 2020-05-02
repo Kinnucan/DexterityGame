@@ -1,7 +1,7 @@
 class dextgameLevelOne extends Phaser.Scene{
   constructor(){
     super({key:"levelOne"});
-    this.winCondition;
+    // this.winCondition;
     this.timer1;
     this.timer2;
   }
@@ -131,7 +131,7 @@ class dextgameLevelOne extends Phaser.Scene{
             sceneChangeCondition = 1;
 
           }
-          this.winCondition = true;
+          winCondition = true;
         }
       }
 
@@ -180,10 +180,10 @@ class dextgameLevelOne extends Phaser.Scene{
       this.scene.start("pauseScreen");
     }
 
-    if (this.winCondition){
+    if (winCondition){
       // this.add.text(20,500, sceneChangeCondition);
-      this.winCondition = false;
-      userLevel += 1;
+      // winCondition = false;
+      // userLevel += 1;
       // this.add.text(20,20, "HI")
       this.scene.start("scoreScreen");
     }

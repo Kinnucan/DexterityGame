@@ -30,7 +30,7 @@ var rightShape;
 var userLevel=1;
 var sceneChangeCondition;
 // var userScore;
-// var userWin = false;
+var winCondition = false;
 
 var game = new Phaser.Game(config);
 
