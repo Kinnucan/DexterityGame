@@ -93,7 +93,7 @@ class dextgameLevelOne extends Phaser.Scene{
         var x = pointer.x;
         var y = pointer.y;
         avg = total/2;
-        perc = (avg/total)*100;
+        perc = (avg/130000)*100;
         score = perc - ((diff)/total)*100;
         scoreText.setText([diff, total, avg, perc, score]);
 
