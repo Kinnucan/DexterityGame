@@ -16,7 +16,6 @@ class dextgameLevelOne extends Phaser.Scene{
     //create objects
     var pointer = this.input.addPointer(1);
     text = this.add.text(20,20, 'Welcome to Level: '+ userLevel+'!');
-
     text2 = this.add.text(300,20, 'Text2');
     timeText1 = this.add.text(40, 40, 'Left: ');
     timeText2 = this.add.text(500, 40, 'Right: ');
@@ -110,8 +109,18 @@ class dextgameLevelOne extends Phaser.Scene{
 
         this.add.image(x, y, 'brush').setScale(0.5);
 
-        if (tracer1.pathFinished && tracer2.pathFinished)
-          this.winCondition = true;
+        if (tracer1.pathFinished && tracer2.pathFinished){
+          if (score >= 80){
+            this.winCondition = true;
+
+          }
+          else{
+            this.add.text(300,200, 'YOU LOSE!');
+
+          }
+
+          
+        }
       }
 
 
