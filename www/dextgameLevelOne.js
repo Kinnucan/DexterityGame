@@ -2,6 +2,8 @@ class dextgameLevelOne extends Phaser.Scene{
   constructor(){
     super({key:"levelOne"});
     this.winCondition;
+    this.timer1;
+    this.timer2;
   }
 
   preload(){
@@ -18,8 +20,8 @@ class dextgameLevelOne extends Phaser.Scene{
     text2 = this.add.text(300,20, 'Text2');
     timeText1 = this.add.text(40, 40, 'Left: ');
     timeText2 = this.add.text(500, 40, 'Right: ');
-    score = this.add.text(300, 50, 'Score: ')
-    
+    var scoreText = this.add.text(300, 50, 'Score: ' + score);
+
 
     //picks a shape from the shape database and checks to make sure we have not used this shape yet.
     leftShape = shapeList[Math.floor(Math.random() * shapeList.length)];
@@ -86,37 +88,30 @@ class dextgameLevelOne extends Phaser.Scene{
       // this.input.on('pointerup', function (pointer1){
       //   this.scene.start("pauseScreen");
       // }, this);
-      
+
       if (pointer.isDown){
         var x = pointer.x;
         var y = pointer.y;
-        // avg = total/2;
-        // perc = (avg/total)*100;
-        // score = perc - (abs(diff)/total)*100;
-        
+        avg = total/2;
+        perc = (avg/total)*100;
+        score = perc - ((diff)/total)*100;
+        scoreText.setText([diff, total, avg, perc, score]);
 
         if (pointer.pointerId == tracer1.pointerID){
           tracer1.trace(x, y);
           timeText1.setText('Left: ' + [timer1]);
-          
+          this.timer1 = timer1;
         }
         else if (pointer.pointerId == tracer2.pointerID){
-          
-          
           tracer2.trace(x, y);
           timeText2.setText('Right: ' + [timer2]);
-          score.setText('Score: ' + parseFloat(score));
-          
+          this.timer2 = timer2;
         }
+
         this.add.image(x, y, 'brush').setScale(0.5);
-        
-        if (tracer1.pathFinished && tracer2.pathFinished){
-          
-         
+
+        if (tracer1.pathFinished && tracer2.pathFinished)
           this.winCondition = true;
-          
-          
-        }
       }
 
 
@@ -154,9 +149,9 @@ class dextgameLevelOne extends Phaser.Scene{
     //Sets timer var equal to time
     timer1 = time;
     timer2 = time;
-    total = (130000-timer1) + (130000 -timer2); 
-    diff = (timer1 - timer2);
-    
+    total = (130000-this.timer1) + (130000-this.timer2);
+    diff = Phaser.Math.Difference(this.timer1, this.timer2);
+
 
     if (touchCounter < 2){
       // this.scene.pause();

@@ -5,7 +5,7 @@ var config = {
   width: 800,
   height: 600,
   backgroundColor: 0x000000,
-  scene: [dextgameWelcomeScreen, dextgameRulesScreen, dextgamePauseScreen, dextgameLevelOne]
+  scene: [dextgameWelcomeScreen, dextgameRulesScreen, dextgameScoreScreen, dextgamePauseScreen, dextgameLevelOne]
 };
 
 var text;
