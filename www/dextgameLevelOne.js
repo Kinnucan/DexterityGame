@@ -10,16 +10,17 @@ class dextgameLevelOne extends Phaser.Scene{
     //Used for load music and pictures
     // this.load.image('brush', 'www/img/brush1.png');
     touchCounter = 2;
+    this.load.atlas('flares', 'assets/particles/flares.png', 'assets/particles/flares.json');
   }
 
   create(){
     //create objects
     var pointer = this.input.addPointer(1);
     text = this.add.text(20,20, 'Welcome to Level: '+ userLevel+'!');
-    text2 = this.add.text(300,20, 'Text2');
-    timeText1 = this.add.text(40, 40, 'Left: ');
-    timeText2 = this.add.text(500, 40, 'Right: ');
-    var scoreText = this.add.text(300, 50, 'Score: ' + score);
+    text2 = this.add.text(300,20, '');
+    timeText1 = this.add.text(40, 40, 'Left Timer: ');
+    timeText2 = this.add.text(500, 40, 'Right Timer: ');
+    scoreText = this.add.text(300, 50, 'Score: ' + score);
     var graphicsDrawing = this.add.graphics({ fillStyle: { color: 0x9400D3 } });
 
 
@@ -61,6 +62,15 @@ class dextgameLevelOne extends Phaser.Scene{
     for (var tracer of [tracer1, tracer2]){
       tracer.onPointReached = (x, y) =>{
         //TODO: Change these to sparks
+        // particles = this.add.particles('flares');
+        // particles.createEmitter({
+        //   frame: ['red', 'yellow', 'green'],
+        //   x: x, y:y,
+        //   lifespan:200,
+        //   speed: {min: 100, max:250},
+        //   scale: {start: 0.4, end:0},
+        //   blendMode: 'ADD'
+        // });
         var circleOne = new Phaser.Geom.Circle(x, y, 20);
         graphicsDrawing.fillCircleShape(circleOne);
 
@@ -103,16 +113,17 @@ class dextgameLevelOne extends Phaser.Scene{
         avg = total/2;
         perc = (avg/130000)*100;
         score = perc - ((diff)/total)*100;
-        scoreText.setText([diff, total, avg, perc, score]);
+        // scoreText.setText("Score: "+ Math.floor(score));
+        scoreText.setText(["Diff: " + diff, "Total: "+ total, "AVG: "+avg, "Perc: "+perc, "Score: "+score]);
 
         if (pointer.pointerId == tracer1.pointerID){
           tracer1.trace(x, y);
-          timeText1.setText('Left: ' + [timer1]);
+          timeText1.setText('Left: ' + Math.floor([timer1]));
           this.timer1 = timer1;
         }
         else if (pointer.pointerId == tracer2.pointerID){
           tracer2.trace(x, y);
-          timeText2.setText('Right: ' + [timer2]);
+          timeText2.setText('Right: ' + Math.floor([timer2]));
           this.timer2 = timer2;
         }
 
@@ -184,13 +195,8 @@ class dextgameLevelOne extends Phaser.Scene{
       // this.add.text(20,500, sceneChangeCondition);
       // winCondition = false;
       // userLevel += 1;
-      // this.add.text(20,20, "HI")
       this.scene.start("scoreScreen");
     }
-    // else if (true) {
-    //   this.scene.start();
-    // }
-
   }
 
 }

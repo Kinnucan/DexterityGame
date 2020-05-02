@@ -20,6 +20,8 @@ var avg;
 var perc;
 var diff;
 
+var particles;
+
 var graphics;
 var timeoutID;
 var touchCounter;
@@ -29,10 +31,10 @@ var rightShape;
 
 var userLevel=1;
 var sceneChangeCondition;
-// var userScore;
 var winCondition = false;
 
 var continueButton;
+var scoreText;
 
 var game = new Phaser.Game(config);
 
