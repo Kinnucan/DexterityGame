@@ -14,17 +14,17 @@ class dextgameWelcomeScreen extends Phaser.Scene{
 
     touchCounter = 0;
     //create objects
-    graphics = this.add.graphics({ fillStyle: { color: 0x9400D3 } });
+    // graphics = this.add.graphics({ fillStyle: { color: 0x9400D3 } });
     // var circle = new Phaser.Geom.Circle(200, 200, 80);
     //
     // graphics.fillCircleShape(circle);
 
-    this.input.on('pointermove', (pointer) => {
-        var x = pointer.x;
-        var y = pointer.y;
-        var circle = new Phaser.Geom.Rectangle(x, y, 10, 10);
-        graphics.fillRectShape(circle);
-    }, this);
+    // this.input.on('pointermove', (pointer) => {
+    //     var x = pointer.x;
+    //     var y = pointer.y;
+    //     var circle = new Phaser.Geom.Rectangle(x, y, 10, 10);
+    //     graphics.fillRectShape(circle);
+    // }, this);
 
     // var pointer1 = this.input.addPointer();
     // var pointer2 = this.input.addPointer();

@@ -8,7 +8,7 @@ class dextgameLevelOne extends Phaser.Scene{
 
   preload(){
     //Used for load music and pictures
-    this.load.image('brush', 'www/img/brush1.png');
+    // this.load.image('brush', 'www/img/brush1.png');
     touchCounter = 2;
   }
 
@@ -20,6 +20,7 @@ class dextgameLevelOne extends Phaser.Scene{
     timeText1 = this.add.text(40, 40, 'Left: ');
     timeText2 = this.add.text(500, 40, 'Right: ');
     var scoreText = this.add.text(300, 50, 'Score: ' + score);
+    var graphicsDrawing = this.add.graphics({ fillStyle: { color: 0x9400D3 } });
 
 
     //picks a shape from the shape database and checks to make sure we have not used this shape yet.
@@ -55,7 +56,11 @@ class dextgameLevelOne extends Phaser.Scene{
 
     for (var tracer of [tracer1, tracer2]){
       tracer.onPointReached = (x, y) =>{
-        this.add.image(x, y, 'brush');
+        //TODO: Change these to sparks
+        var circleone = new Phaser.Geom.Circle(x, y, 20);
+        graphicsDrawing.fillCircleShape(circleone);
+
+        // this.add.image(x, y, 'brush');
       };
     }
 
@@ -107,7 +112,9 @@ class dextgameLevelOne extends Phaser.Scene{
           this.timer2 = timer2;
         }
 
-        this.add.image(x, y, 'brush').setScale(0.5);
+        // this.add.image(x, y, 'brush').setScale(0.5);
+        var circle = new Phaser.Geom.Circle(x, y, 10);
+        graphicsDrawing.fillCircleShape(circle);
 
         if (tracer1.pathFinished && tracer2.pathFinished){
           if (score >= 80){
@@ -119,7 +126,7 @@ class dextgameLevelOne extends Phaser.Scene{
 
           }
 
-          
+
         }
       }
 
