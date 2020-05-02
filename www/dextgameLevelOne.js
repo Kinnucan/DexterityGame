@@ -51,14 +51,18 @@ class dextgameLevelOne extends Phaser.Scene{
     leftGraphics.setPosition(150, 250);
     rightGraphics.setPosition(550, 250);
 
+    //Allows the User to draw *over* the shapes
+    leftGraphics.setDepth(-10);
+    rightGraphics.setDepth(-10);
+
     var tracer1 = new Tracer(leftShape.shapePoints, leftGraphics);
     var tracer2 = new Tracer(rightShape.shapePoints, rightGraphics);
 
     for (var tracer of [tracer1, tracer2]){
       tracer.onPointReached = (x, y) =>{
         //TODO: Change these to sparks
-        var circleone = new Phaser.Geom.Circle(x, y, 20);
-        graphicsDrawing.fillCircleShape(circleone);
+        var circleOne = new Phaser.Geom.Circle(x, y, 20);
+        graphicsDrawing.fillCircleShape(circleOne);
 
         // this.add.image(x, y, 'brush');
       };
@@ -113,20 +117,21 @@ class dextgameLevelOne extends Phaser.Scene{
         }
 
         // this.add.image(x, y, 'brush').setScale(0.5);
-        var circle = new Phaser.Geom.Circle(x, y, 10);
-        graphicsDrawing.fillCircleShape(circle);
+        var circleTwo = new Phaser.Geom.Circle(x, y, 5);
+        graphicsDrawing.fillCircleShape(circleTwo);
 
         if (tracer1.pathFinished && tracer2.pathFinished){
           if (score >= 80){
-            this.winCondition = true;
-
+            // this.winCondition = true;
+            sceneChangeCondition=0;
           }
           else{
-            this.add.text(300,200, 'YOU LOSE!');
+            // this.add.text(300,200, 'YOU LOSE!');
+            // this.winCondition = true;
+            sceneChangeCondition = 1;
 
           }
-
-
+          this.winCondition = true;
         }
       }
 
@@ -168,7 +173,7 @@ class dextgameLevelOne extends Phaser.Scene{
     total = (130000-this.timer1) + (130000-this.timer2);
     diff = Phaser.Math.Difference(this.timer1, this.timer2);
 
-
+    // this.input.on('pointerup', function (pointer) {touchCounter--;}, this);
     if (touchCounter < 2){
       // this.scene.pause();
       // this.scene.launch("pauseScreen");
@@ -176,10 +181,15 @@ class dextgameLevelOne extends Phaser.Scene{
     }
 
     if (this.winCondition){
+      // this.add.text(20,500, sceneChangeCondition);
       this.winCondition = false;
       userLevel += 1;
-      this.scene.start("levelOne");
+      // this.add.text(20,20, "HI")
+      this.scene.start("scoreScreen");
     }
+    // else if (true) {
+    //   this.scene.start();
+    // }
 
   }
 
