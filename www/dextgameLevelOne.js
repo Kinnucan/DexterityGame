@@ -45,8 +45,8 @@ class dextgameLevelOne extends Phaser.Scene{
     leftShape.hasUsed = true;
     rightShape.hasUsed = true;
 
-    var leftGraphics = this.strokeShape(leftShape.shapePoints);
-    var rightGraphics = this.strokeShape(rightShape.shapePoints);
+    var leftGraphics = this.strokeShape(leftShape.shapePoints, 0x0000FF);
+    var rightGraphics = this.strokeShape(rightShape.shapePoints, 0xFF0000);
 
     leftGraphics.setPosition(150, 250);
     rightGraphics.setPosition(550, 250);
@@ -93,9 +93,9 @@ class dextgameLevelOne extends Phaser.Scene{
         var x = pointer.x;
         var y = pointer.y;
         avg = total/2;
-        perc = (avg/total)*100;
+        perc = (avg/130000)*100;
         score = perc - ((diff)/total)*100;
-        scoreText.setText([diff, total, avg, perc, score]);
+        scoreText.setText([diff, total, avg, perc, ((diff)/total)*100, score]);
 
         if (pointer.pointerId == tracer1.pointerID){
           tracer1.trace(x, y);
@@ -118,9 +118,9 @@ class dextgameLevelOne extends Phaser.Scene{
     }, this);
   }
 
-  strokeShape(shapePoints){
+  strokeShape(shapePoints, color){
     var graphics = this.add.graphics();
-    graphics.lineStyle(5, 0xFF000, 1.0);
+    graphics.lineStyle(5, color, 1.0);
     graphics.beginPath();
     for (var i = 0; i < shapePoints.length; i += 2) {
       var lineOp = (i == 0) ? "moveTo" : "lineTo";
@@ -151,7 +151,6 @@ class dextgameLevelOne extends Phaser.Scene{
     timer2 = time;
     total = (130000-this.timer1) + (130000-this.timer2);
     diff = Phaser.Math.Difference(this.timer1, this.timer2);
-
 
     if (touchCounter < 2){
       // this.scene.pause();
