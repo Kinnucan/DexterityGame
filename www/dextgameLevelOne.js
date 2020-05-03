@@ -8,9 +8,10 @@ class dextgameLevelOne extends Phaser.Scene{
 
   preload(){
     //Used for load music and pictures
-    // this.load.image('brush', 'www/img/brush1.png');
+    this.load.image('brush', 'img/brush1.png');
     touchCounter = 2;
     this.load.image('flares', 'assets/particles/blue.png');
+    // this.load.atlas('flares', 'assets/particles/flares.png', 'assets/particles/flares.json');
   }
 
   create(){
@@ -63,19 +64,26 @@ class dextgameLevelOne extends Phaser.Scene{
       tracer.onPointReached = (x, y) =>{
         //TODO: Change these to sparks
         var particles = this.add.particles('flares');
+        // particles.setScale(0.1);
         var emitter = particles.createEmitter();
-
         emitter.setPosition(x, y);
-        emitter.setSpeed(200);
+        // emitter.emitParticleAt(x,y);
+        emitter.setLifespan(4000);
+        emitter.setAlpha(0.5);
+        emitter.setSpeed(50);
+        // emitter.setRadius(0.2);
+        emitter.setScale(0.2);
         emitter.setBlendMode(Phaser.BlendModes.ADD);
+
+
 
 
         // emitter.makeParticles('flares');
         // particles.emitParticles(50, x,y);
-        var circleOne = new Phaser.Geom.Circle(x, y, 20);
-        graphicsDrawing.fillCircleShape(circleOne);
+        // var circleOne = new Phaser.Geom.Circle(x, y, 20);
+        // graphicsDrawing.fillCircleShape(circleOne);
 
-        // this.add.image(x, y, 'brush');
+        // this.add.image(x, y, 'brush').setScale(0.5);
       };
     }
 
@@ -128,9 +136,9 @@ class dextgameLevelOne extends Phaser.Scene{
           this.timer2 = timer2;
         }
 
-        // this.add.image(x, y, 'brush').setScale(0.5);
-        var circleTwo = new Phaser.Geom.Circle(x, y, 5);
-        graphicsDrawing.fillCircleShape(circleTwo);
+        this.add.image(x, y, 'brush').setScale(0.5).setAlpha(0.3);
+        // var circleTwo = new Phaser.Geom.Circle(x, y, 5);
+        // graphicsDrawing.fillCircleShape(circleTwo);
 
         if (tracer1.pathFinished && tracer2.pathFinished){
           if (score >= 80){
