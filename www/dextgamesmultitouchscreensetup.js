@@ -5,7 +5,7 @@ var config = {
   width: 800,
   height: 600,
   backgroundColor: 0x000000,
-  scene: [dextgameWelcomeScreen, dextgameRulesScreen, dextgameScoreScreen, dextgamePauseScreen, dextgameLevelOne]
+  scene: [dextgameWelcomeScreen, dextgameRulesScreen, dextgamePauseScreen, dextgameLevelOne, dextgameScoreScreen]
 };
 
 var text;
@@ -20,6 +20,8 @@ var avg;
 var perc;
 var diff;
 
+// var particles;
+
 var graphics;
 var timeoutID;
 var touchCounter;
@@ -28,8 +30,11 @@ var leftShape;
 var rightShape;
 
 var userLevel=1;
+var sceneChangeCondition;
+var winCondition = false;
 
-// var userWin = false;
+var continueButton;
+var scoreText;
 
 var game = new Phaser.Game(config);
 

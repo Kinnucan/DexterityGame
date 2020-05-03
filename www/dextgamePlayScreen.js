@@ -11,8 +11,8 @@ class dextgamePlayScreen extends Phaser.Scene{
 
   create(){
     //create objects
-    while (userWin == false){
-      this.scene.run("levelOne");
+    // while (userWin == false){
+    //   this.scene.run("levelOne");
     }
 
   }
