@@ -4,6 +4,12 @@ var config = {
   type: Phaser.AUTO,
   width: 800,
   height: 600,
+  scale: {
+        mode: Phaser.Scale.RESIZE,
+        parent: 'phaser-example',
+        width: '100%',
+        height: '100%'
+    },
   backgroundColor: 0x000000,
   scene: [dextgameWelcomeScreen, dextgameRulesScreen, dextgamePauseScreen, dextgameLevelOne, dextgameScoreScreen]
 };
@@ -37,10 +43,22 @@ var winCondition = false;
 
 var continueButton;
 var scoreText;
-
 var game = new Phaser.Game(config);
 
+
+
 //
+
+function resize (gameSize, baseSize, displaySize, resolution)
+{
+    var width = gameSize.width;
+    var height = gameSize.height;
+
+    this.cameras.resize(width, height);
+
+    // this.bg.setSize(width, height);
+    // this.logo.setPosition(width / 2, height / 2);
+}
 
 
 // function resize() {
