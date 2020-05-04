@@ -10,7 +10,9 @@ class dextgameWelcomeScreen extends Phaser.Scene{
 
   create(){
     // this.scale.on('resize', resize, this);
-    this.gameScale.setMode('resize');
+    // this.gameScale.setMode('resize');
+    // this.scene.gameScale.setMode('resize');
+
 
     touchCounter = 0;
     //create objects

@@ -21,7 +21,7 @@ var config = {
         snap: null,          // Snap interval, in px}
     }
   }]
-  }
+},
   backgroundColor: 0x000000,
   scene: [dextgameWelcomeScreen, dextgameRulesScreen, dextgamePauseScreen, dextgameLevelOne, dextgameScoreScreen]
 };
@@ -56,6 +56,9 @@ var winCondition = false;
 var continueButton;
 var scoreText;
 var game = new Phaser.Game(config);
+
+this.gameScale.setMode('resize');
+
 
 
 
