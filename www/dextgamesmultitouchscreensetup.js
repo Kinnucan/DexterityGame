@@ -46,10 +46,44 @@ var rulesButton;
 var scoreText;
 var cumulativeScore=0;
 
+// var gameRatio = window.innerWidth/window.innerHeight;
+// var firstRunLandscape;
+
 
 var game = new Phaser.Game(config);
 
 game.scale.lockOrientation('landscape');
+
+
+// firstRunLandscape = game.scale.isGameLandscape;
+// // game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+// game.scale.forceOrientation(false, true);
+// game.scale.enterIncorrectOrientation.add(handleIncorrect);
+// game.scale.leaveIncorrectOrientation.add(handleCorrect);
+//
+// function handleIncorrect(){
+//     // if(!game.device.desktop){
+//       document.getElementById("turn").style.display="block";
+//     // }
+// }
+//
+//
+//
+// function handleCorrect(){
+//   // if(!game.device.desktop){
+//     if(firstRunLandscape){
+//       gameRatio = window.innerWidth/window.innerHeight;
+//       game.width = Math.ceil(640*gameRatio);
+//       game.height = 640;
+//       game.renderer.resize(game.width,game.height);
+//     // }
+//     document.getElementById("turn").style.display="none";
+//   }
+// }
+
+
+
+// game.scale.lockOrientation('landscape');
 
 // window.addEventListener('resize', () => {
 //     game.resize(window.innerWidth, window.innerHeight);

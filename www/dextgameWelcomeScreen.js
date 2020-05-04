@@ -5,12 +5,15 @@ class dextgameWelcomeScreen extends Phaser.Scene{
 
   preload(){
     //Used for load music and pictures
+    // this.scene.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    // this.scene.scale.forceOrientation(false, true);
+
 
   }
 
   create(){
     // var orientation = this.scene.scale.orientation;
-    // this.scene.scale.lockOrientation('landscape');
+    // this.scale.lockOrientation('landscape');
     // this.scale.on('resize', function(gameSize, baseSize, displaySize, resolution, previousWidth, previousHeight) {
     //   this.scene.scale.resize(window.innerWidth, window.innerHeight);
     // });
