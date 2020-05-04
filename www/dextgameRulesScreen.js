@@ -8,6 +8,9 @@ class dextgameRulesScreen extends Phaser.Scene{
   }
 
   create(){
+    // this.scale.on('resize', function(gameSize, baseSize, displaySize, resolution, previousWidth, previousHeight) {
+    //   this.scene.scale.resize(window.innerWidth, window.innerHeight);
+    // });
     // this.scale.on('resize', resize, this);
 
     // const screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;

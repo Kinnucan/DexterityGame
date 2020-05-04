@@ -9,9 +9,13 @@ class dextgameWelcomeScreen extends Phaser.Scene{
   }
 
   create(){
-    // this.scale.on('resize', resize, this);
+    // this.scale.on('resize', function(gameSize, baseSize, displaySize, resolution, previousWidth, previousHeight) {
+    //   this.scene.scale.resize(window.innerWidth, window.innerHeight);
+    // });
     // this.gameScale.setMode('resize');
-    // this.scene.gameScale.setMode('resize');
+    // this.scene.gameScale.setMode('resize')
+    // this.scale.on('resize', resize, this);
+    // this.scene.scale.resize(window.innerWidth, window.innerHeight);
 
 
 

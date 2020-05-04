@@ -5,28 +5,12 @@ var config = {
   width: 800,
   height: 600,
   scale: {
-        mode: Phaser.Scale.RESIZE,
-        width: '100%',
-        height: '100%'
+    parent: 'phaser-example',
+        mode: Phaser.DOM.FIT,
+        autoCenter: Phaser.DOM.CENTER_BOTH,
+        width: 800,
+        height: 600
     },
-  plugins: {
-    global: [{
-      key: 'GameScalePlugin',
-      plugin: Phaser.Plugins.GameScalePlugin,
-      mapping: 'gameScale',
-      data: {
-        debounce: false,
-        debounceDelay: 50,   // Debounce interval, in ms
-        maxHeight: Infinity,
-        maxWidth: Infinity,
-        minHeight: 0,
-        minWidth: 0,
-        mode: 'fit',
-        resizeCameras: true, // Resize each scene camera when resizing the game
-        snap: null,          // Snap interval, in px}
-      }
-    }]
-  },
   backgroundColor: 0x000000,
   scene: [dextgameWelcomeScreen, dextgameRulesScreen, dextgamePauseScreen, dextgameGameScreen, dextgameScoreScreen, dextgameLoseScreen, dextgameWinScreen]
 };
@@ -64,33 +48,49 @@ var scoreText;
 var cumulativeScore=0;
 var game = new Phaser.Game(config);
 
-function resize() {
-    const canvas = this.canvas;
-    if (canvas) {
-        const w = window.innerWidth;
-        const h = window.innerHeight;
-        const scale = Math.min(w / this.BaseWidth, h / this.BaseHeight);
 
-        canvas.setAttribute("style",
-            " -ms-transform: scale(" + scale + "); -webkit-transform: scale3d(" + scale + ", 1);" +
-            " -moz-transform: scale(" + scale + "); -o-transform: scale(" + scale + "); transform: scale(" + scale + ");" +
-            " transform-origin: top left;",
-        );
 
-        const width = w / scale;
-        const height = h / scale;
-        this.scale.resize(width, height);
-    }
-}
-function BaseWidth() {
-    return Number(this.config.width);
-}
-function BaseHeight() {
-    return Number(this.config.height);
-}
-function BaseRatio() {
-    return this.BaseWidth / this.BaseHeight;
-}
+// window.addEventListener('resize', () => {
+//     game.resize(window.innerWidth, window.innerHeight);
+// });
+
+
+// function resize (gameSize, baseSize, displaySize, resolution)
+// {
+//     var width = gameSize.width;
+//     var height = gameSize.height;
+//
+//     this.cameras.resize(width, height);
+// }
+
+
+// function resize() {
+//     const canvas = this.canvas;
+//     if (canvas) {
+//         const w = window.innerWidth;
+//         const h = window.innerHeight;
+//         const scale = Math.min(w / this.BaseWidth, h / this.BaseHeight);
+//
+//         canvas.setAttribute("style",
+//             " -ms-transform: scale(" + scale + "); -webkit-transform: scale3d(" + scale + ", 1);" +
+//             " -moz-transform: scale(" + scale + "); -o-transform: scale(" + scale + "); transform: scale(" + scale + ");" +
+//             " transform-origin: top left;",
+//         );
+//
+//         const width = w / scale;
+//         const height = h / scale;
+//         this.scale.resize(width, height);
+//     }
+// }
+// function BaseWidth() {
+//     return Number(this.config.width);
+// }
+// function BaseHeight() {
+//     return Number(this.config.height);
+// }
+// function BaseRatio() {
+//     return this.BaseWidth / this.BaseHeight;
+// }
 
 
 
