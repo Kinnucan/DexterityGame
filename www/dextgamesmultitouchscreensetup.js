@@ -49,8 +49,7 @@ var cumulativeScore=0;
 
 var game = new Phaser.Game(config);
 
-checkOriention(this.scale.orientation);
-
+checkOriention(game.scale.orientation);
 game.scale.on('orientationchange', checkOriention, this);
 
 function checkOriention (orientation)
