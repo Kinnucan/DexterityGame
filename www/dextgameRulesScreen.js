@@ -29,7 +29,7 @@ class dextgameRulesScreen extends Phaser.Scene{
 
   update(){
     if (touchCounter == 2){
-      this.scene.start("levelOne");
+      this.scene.start("game");
     }
   }
 

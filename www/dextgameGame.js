@@ -1,6 +1,6 @@
-class dextgameLevelOne extends Phaser.Scene{
+class dextgameGame extends Phaser.Scene{
   constructor(){
-    super({key:"levelOne"});
+    super({key:"game"});
     this.timer1;
     this.timer2;
   }
@@ -8,15 +8,16 @@ class dextgameLevelOne extends Phaser.Scene{
   preload(){
     //Used for load music and pictures
     this.load.image('brush', 'img/brush1.png');
-    touchCounter = 2;
     this.load.image('flares', 'assets/particles/blue.png');
+    touchCounter = 2;
+    score = 0;
     // this.load.atlas('flares', 'assets/particles/flares.png', 'assets/particles/flares.json');
   }
 
   create(){
     //create objects
     var pointer = this.input.addPointer(1);
-    text = this.add.text(20,20, 'Welcome to Level '+ userLevel+'!');
+    text = this.add.text(20,20, 'Welcome to Level ' + userLevel + '!');
     text2 = this.add.text(300,20, '');
     timeText1 = this.add.text(40, 40, 'Left Timer: ');
     timeText2 = this.add.text(500, 40, 'Right Timer: ');
@@ -87,7 +88,6 @@ class dextgameLevelOne extends Phaser.Scene{
     }
     //Finds the point that the player is starting nearest on the shape
     this.input.on('pointerdown', (pointer) => {
-
       var x = pointer.x;
       var y = pointer.y;
 
@@ -101,6 +101,15 @@ class dextgameLevelOne extends Phaser.Scene{
         pointer.pointerId = 2;
         tracer2.pointerID = pointer.pointerId;
       }
+
+      this.input.on('pointerup', (pointer) => {
+        if (pointer.pointerId == tracer1.pointerID){
+          touchCounter--;
+        }
+        else if (pointer.pointerId == tracer2.pointerID){
+          touchCounter--;
+        }
+      }, this);
 
     }, this);
 
@@ -119,6 +128,7 @@ class dextgameLevelOne extends Phaser.Scene{
           timeText1.setText('Left: ' + Math.floor([timer1]));
           this.timer1 = timer1;
           this.add.image(x, y, 'brush').setScale(0.5).setAlpha(0.3).setTint(0xFF000);
+          text.setText([tracer1.nextPoint, tracer.currentPoint, x, y]);
         }
         else if (pointer.pointerId == tracer2.pointerID){
           tracer2.trace(x, y);
@@ -141,8 +151,6 @@ class dextgameLevelOne extends Phaser.Scene{
           winCondition = true;
         }
       }
-
-
     }, this);
   }
 
@@ -174,6 +182,8 @@ class dextgameLevelOne extends Phaser.Scene{
   update(time){
     //is a loop that runs constantly
 
+    text.setText([touchCounter]);
+
     //Sets timer var equal to time
     timer1 = time;
     timer2 = time;
@@ -182,15 +192,17 @@ class dextgameLevelOne extends Phaser.Scene{
 
     // this.input.on('pointerup', function (pointer) {touchCounter--;}, this);
     if (touchCounter < 2){
-      // this.scene.pause();
-      // this.scene.launch("pauseScreen");
-      this.scene.start("pauseScreen");
+      this.scene.start("loseScreen");
     }
 
     if (winCondition){
       // this.add.text(20,500, sceneChangeCondition);
       // winCondition = false;
       // userLevel += 1;
+      cumulativeScore += score;
+      if (){
+
+      }
       this.scene.start("scoreScreen");
     }
   }
