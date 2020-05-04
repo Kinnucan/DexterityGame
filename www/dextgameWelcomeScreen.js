@@ -7,11 +7,32 @@ class dextgameWelcomeScreen extends Phaser.Scene{
     //Used for load music and pictures
     // this.scene.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     // this.scene.scale.forceOrientation(false, true);
+    this.load.image('pic', "img/playportrait.png");
 
 
   }
 
   create(){
+
+    var ship = this.add.image(0, 0, 'pic').setOrigin(0);
+    var orientationText = this.add.text(320, 128, 'Please set your\nphone to landscape', { font: '48px Courier', fill: '#00ff00', align: 'center' }).setOrigin(0.5);
+    checkOriention(this.scale.orientation);
+    this.scale.on('orientationchange', checkOriention, this);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // if(screen.isLandscape){
     //   var checkText;
     //   checkText = this.add.text(100,100, "hi");
@@ -55,6 +76,21 @@ class dextgameWelcomeScreen extends Phaser.Scene{
     this.input.on('pointerdown', function (pointer) {touchCounter++;}, this);
 
 
+  }
+
+  checkOriention (orientation){
+      if (orientation === Phaser.Scale.PORTRAIT)
+      {
+        ship.alpha = 0.2;
+      text.setVisible(true);
+          // document.getElementById("turn").style.display="block";
+      }
+      else if (orientation === Phaser.Scale.LANDSCAPE)
+      {
+        ship.alpha = 1;
+      text.setVisible(false);
+          // document.getElementById("turn").style.display="none";
+      }
   }
 
   update(){
