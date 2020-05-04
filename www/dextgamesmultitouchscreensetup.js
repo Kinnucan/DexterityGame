@@ -4,6 +4,11 @@ var config = {
   type: Phaser.AUTO,
   width: 800,
   height: 600,
+  scale: {
+        mode: Phaser.Scale.RESIZE,
+        width: '100%',
+        height: '100%'
+    },
   plugins: {
     global: [{
       key: 'GameScalePlugin',
@@ -57,18 +62,44 @@ var continueButton;
 var scoreText;
 var game = new Phaser.Game(config);
 
-this.gameScale.setMode('resize-and-fit');
+function resize() {
+    const canvas = this.canvas;
+    if (canvas) {
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        const scale = Math.min(w / this.BaseWidth, h / this.BaseHeight);
+
+        canvas.setAttribute("style",
+            " -ms-transform: scale(" + scale + "); -webkit-transform: scale3d(" + scale + ", 1);" +
+            " -moz-transform: scale(" + scale + "); -o-transform: scale(" + scale + "); transform: scale(" + scale + ");" +
+            " transform-origin: top left;",
+        );
+
+        const width = w / scale;
+        const height = h / scale;
+        this.scale.resize(width, height);
+    }
+}
+function BaseWidth() {
+    return Number(this.config.width);
+}
+function BaseHeight() {
+    return Number(this.config.height);
+}
+function BaseRatio() {
+    return this.BaseWidth / this.BaseHeight;
+}
+
+
+
+
+// this.gameScale.setMode('resize-and-fit');
 
 
 
 
 
-// scale: {
-//       mode: Phaser.Scale.RESIZE,
-//       parent: 'phaser-example',
-//       width: '100%',
-//       height: '100%'
-//   },
+
 
 
 //

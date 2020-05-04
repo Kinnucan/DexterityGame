@@ -14,6 +14,9 @@ class dextgameWelcomeScreen extends Phaser.Scene{
     // this.scene.gameScale.setMode('resize');
 
 
+
+
+
     touchCounter = 0;
     //create objects
     // const screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
