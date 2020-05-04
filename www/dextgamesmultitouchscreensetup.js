@@ -46,6 +46,9 @@ var rulesButton;
 var scoreText;
 var cumulativeScore=0;
 
+var orientationText;
+var ship;
+
 var game = new Phaser.Game(config);
 
 
