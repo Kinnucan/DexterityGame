@@ -12,11 +12,6 @@ class dextgameWelcomeScreen extends Phaser.Scene{
   }
 
   create(){
-    this.scene.scale.on('orientationchange', function(orientation){
-      if(this.scene.scale.isLandscape){
-        document.getElementById("turn").style.display="block";
-      }
-    });
 
 
     // this.scene.scale.lockOrientation('landscape');
@@ -44,6 +39,16 @@ class dextgameWelcomeScreen extends Phaser.Scene{
     text.setColor('aqua');
     // text.setOrigin(5);
     this.input.on('pointerdown', function (pointer) {touchCounter++;}, this);
+
+
+    this.scale.on('orientationchange', function(orientation){
+      if(this.scene.scale.isLandscape){
+        text.setText("Hi");
+        document.getElementById("turn").style.display="block";
+      }
+    });
+
+
   }
 
   update(){
