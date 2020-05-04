@@ -16,6 +16,9 @@ class dextgameGameScreen extends Phaser.Scene{
 
   create(){
     //create objects
+
+
+
     var pointer = this.input.addPointer(1);
     text = this.add.text(20,20, 'Welcome to Level ' + userLevel + '!');
     text2 = this.add.text(300,20, '');
@@ -118,17 +121,20 @@ class dextgameGameScreen extends Phaser.Scene{
       if (pointer.isDown){
         var x = pointer.x;
         var y = pointer.y;
+
         avg = total/2;
         perc = (avg/130000)*100;
         score = perc - ((diff)/total)*100;
+
         scoreText.setText(["Diff: " + diff, "Total: "+ total, "AVG: "+avg, "Perc: "+perc, "Score: "+score]);
+
 
         if (pointer.pointerId == tracer1.pointerID){
           tracer1.trace(x, y);
           timeText1.setText('Left: ' + Math.floor([timer1]));
           this.timer1 = timer1;
           this.add.image(x, y, 'brush').setScale(0.5).setAlpha(0.3).setTint(0xFF000);
-          text.setText([tracer1.nextPoint, tracer.currentPoint, x, y]);
+          // text.setText([tracer1.nextPoint, tracer.currentPoint, x, y]);
         }
         else if (pointer.pointerId == tracer2.pointerID){
           tracer2.trace(x, y);
@@ -182,7 +188,7 @@ class dextgameGameScreen extends Phaser.Scene{
   update(time){
     //is a loop that runs constantly
 
-    text.setText([touchCounter]);
+    // text.setText([touchCounter]);
 
     //Sets timer var equal to time
     timer1 = time;

@@ -28,7 +28,6 @@ var config = {
     }]
   },
   backgroundColor: 0x000000,
-  // scene: [dextgameWelcomeScreen, dextgameRulesScreen, dextgamePauseScreen, dextgameGameScreen]
   scene: [dextgameWelcomeScreen, dextgameRulesScreen, dextgamePauseScreen, dextgameGameScreen, dextgameScoreScreen, dextgameLoseScreen, dextgameWinScreen]
 };
 
@@ -61,6 +60,7 @@ var winCondition = false;
 
 var continueButton;
 var scoreText;
+var cumulativeScore=0;
 var game = new Phaser.Game(config);
 
 function resize() {
