@@ -85,14 +85,11 @@ class dextgameLevelOne extends Phaser.Scene{
         // this.add.image(x, y, 'brush').setScale(0.5);
       };
     }
-
     //Finds the point that the player is starting nearest on the shape
     this.input.on('pointerdown', (pointer) => {
 
       var x = pointer.x;
       var y = pointer.y;
-
-      console.log(pointer);
 
       if (x <= 400){
         tracer1.start(x, y);
@@ -109,36 +106,26 @@ class dextgameLevelOne extends Phaser.Scene{
 
     //Allows user to draw when pressing finger down
     this.input.on('pointermove', (pointer) => {
-
-      //This can be used as an anti-cheating method
-      // this.input.on('pointerup', function (pointer1){
-      //   this.scene.start("pauseScreen");
-      // }, this);
-
       if (pointer.isDown){
         var x = pointer.x;
         var y = pointer.y;
         avg = total/2;
         perc = (avg/130000)*100;
         score = perc - ((diff)/total)*100;
-        scoreText.setText([diff, total, avg, perc, ((diff)/total)*100, score]);
-        // scoreText.setText("Score: "+ Math.floor(score));
         scoreText.setText(["Diff: " + diff, "Total: "+ total, "AVG: "+avg, "Perc: "+perc, "Score: "+score]);
 
         if (pointer.pointerId == tracer1.pointerID){
           tracer1.trace(x, y);
           timeText1.setText('Left: ' + Math.floor([timer1]));
           this.timer1 = timer1;
+          this.add.image(x, y, 'brush').setScale(0.5).setAlpha(0.3).setTint(0xFF000);
         }
         else if (pointer.pointerId == tracer2.pointerID){
           tracer2.trace(x, y);
           timeText2.setText('Right: ' + Math.floor([timer2]));
           this.timer2 = timer2;
+          this.add.image(x, y, 'brush').setScale(0.5).setAlpha(0.3).setTint(0x9400D3);
         }
-
-        this.add.image(x, y, 'brush').setScale(0.5).setAlpha(0.3);
-        // var circleTwo = new Phaser.Geom.Circle(x, y, 5);
-        // graphicsDrawing.fillCircleShape(circleTwo);
 
         if (tracer1.pathFinished && tracer2.pathFinished){
           if (score >= 80){

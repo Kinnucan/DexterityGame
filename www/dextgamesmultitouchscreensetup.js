@@ -14,7 +14,9 @@ var timeText1;
 var timeText2;
 var timer1;
 var timer2;
+
 var score;
+var avgScore;
 var total;
 var avg;
 var perc;
