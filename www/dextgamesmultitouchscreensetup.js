@@ -57,7 +57,7 @@ var continueButton;
 var scoreText;
 var game = new Phaser.Game(config);
 
-this.gameScale.setMode('resize');
+this.gameScale.setMode('resize-and-fit');
 
 
 
