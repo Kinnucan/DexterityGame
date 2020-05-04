@@ -1,6 +1,6 @@
-class dextgameGame extends Phaser.Scene{
+class dextgameGameScreen extends Phaser.Scene{
   constructor(){
-    super({key:"game"});
+    super({key:"gameScreen"});
     this.timer1;
     this.timer2;
   }
@@ -102,14 +102,14 @@ class dextgameGame extends Phaser.Scene{
         tracer2.pointerID = pointer.pointerId;
       }
 
-      this.input.on('pointerup', (pointer) => {
-        if (pointer.pointerId == tracer1.pointerID){
-          touchCounter--;
-        }
-        else if (pointer.pointerId == tracer2.pointerID){
-          touchCounter--;
-        }
-      }, this);
+      // this.input.on('pointerup', (pointer) => {
+      //   if (pointer.pointerId == tracer1.pointerID){
+      //     touchCounter--;
+      //   }
+      //   else if (pointer.pointerId == tracer2.pointerID){
+      //     touchCounter--;
+      //   }
+      // }, this);
 
     }, this);
 
@@ -200,9 +200,9 @@ class dextgameGame extends Phaser.Scene{
       // winCondition = false;
       // userLevel += 1;
       cumulativeScore += score;
-      if (){
-
-      }
+      // if (){
+      //
+      // }
       this.scene.start("scoreScreen");
     }
   }

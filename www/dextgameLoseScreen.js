@@ -19,12 +19,12 @@ class dextgameLoseScreen extends Phaser.Scene{
   }
 
   actionOnRelease(){
-    this.scene.start('game');
+    this.scene.start("welcomeScreen");
   }
 
 
   update(){
-    
+
   }
 
 }

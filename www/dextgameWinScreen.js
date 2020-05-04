@@ -21,7 +21,7 @@ class dextgameWinScreen extends Phaser.Scene{
   }
 
   actionOnRelease(){
-    this.scene.start('game');
+    this.scene.start("gameScreen");
   }
 
 

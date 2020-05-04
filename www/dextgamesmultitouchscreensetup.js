@@ -24,11 +24,12 @@ var config = {
         mode: 'fit',
         resizeCameras: true, // Resize each scene camera when resizing the game
         snap: null,          // Snap interval, in px}
-    }
-  }]
-},
+      }
+    }]
+  },
   backgroundColor: 0x000000,
-  scene: [dextgameWelcomeScreen, dextgameRulesScreen, dextgamePauseScreen, dextgameGame, dextgameScoreScreen, dextgameLoseScreen, dextgameWinScreen]
+  // scene: [dextgameWelcomeScreen, dextgameRulesScreen, dextgamePauseScreen, dextgameGameScreen]
+  scene: [dextgameWelcomeScreen, dextgameRulesScreen, dextgamePauseScreen, dextgameGameScreen, dextgameScoreScreen, dextgameLoseScreen, dextgameWinScreen]
 };
 
 var text;
@@ -39,7 +40,7 @@ var timer1;
 var timer2;
 
 var score;
-var cumulativeScore;
+var avgScore;
 var total;
 var avg;
 var perc;
