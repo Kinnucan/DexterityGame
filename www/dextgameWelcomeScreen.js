@@ -12,11 +12,11 @@ class dextgameWelcomeScreen extends Phaser.Scene{
   }
 
   create(){
-    if(this.scene.scale.isLandscape){
-      var checkText;
-      checkText = this.add.text(100,100, "hi");
-
-    }
+    // if(screen.isLandscape){
+    //   var checkText;
+    //   checkText = this.add.text(100,100, "hi");
+    //
+    // }
 
     // window.addEventListener('orientationchange', function(orientation){
     //   // alert(screen.orientation);
