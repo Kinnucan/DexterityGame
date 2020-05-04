@@ -4,12 +4,24 @@ var config = {
   type: Phaser.AUTO,
   width: 800,
   height: 600,
-  scale: {
-        mode: Phaser.Scale.RESIZE,
-        parent: 'phaser-example',
-        width: '100%',
-        height: '100%'
-    },
+  plugins: {
+    global: [{
+      key: 'GameScalePlugin',
+      plugin: Phaser.Plugins.GameScalePlugin,
+      mapping: 'gameScale',
+      data: {
+        debounce: false,
+        debounceDelay: 50,   // Debounce interval, in ms
+        maxHeight: Infinity,
+        maxWidth: Infinity,
+        minHeight: 0,
+        minWidth: 0,
+        mode: 'fit',
+        resizeCameras: true, // Resize each scene camera when resizing the game
+        snap: null,          // Snap interval, in px}
+    }
+  }]
+},
   backgroundColor: 0x000000,
   scene: [dextgameWelcomeScreen, dextgameRulesScreen, dextgamePauseScreen, dextgameGame, dextgameScoreScreen, dextgameLoseScreen, dextgameEndScreen]
 };
@@ -44,20 +56,29 @@ var continueButton;
 var scoreText;
 var game = new Phaser.Game(config);
 
+this.gameScale.setMode('resize-and-fit');
+
+
+
+
+
+// scale: {
+//       mode: Phaser.Scale.RESIZE,
+//       parent: 'phaser-example',
+//       width: '100%',
+//       height: '100%'
+//   },
 
 
 //
 
-function resize (gameSize, baseSize, displaySize, resolution)
-{
-    var width = gameSize.width;
-    var height = gameSize.height;
-
-    this.cameras.resize(width, height);
-
-    // this.bg.setSize(width, height);
-    // this.logo.setPosition(width / 2, height / 2);
-}
+// function resize (gameSize, baseSize, displaySize, resolution)
+// {
+//     var width = gameSize.width;
+//     var height = gameSize.height;
+//
+//     this.cameras.resize(width, height);
+// }
 
 
 // function resize() {
