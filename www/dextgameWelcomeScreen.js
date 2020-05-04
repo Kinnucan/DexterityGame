@@ -95,6 +95,7 @@ class dextgameWelcomeScreen extends Phaser.Scene{
 
   update(){
     //is a loop that runs constantly
+    checkOriention(this.scale.orientation);
     this.scale.on('orientationchange', checkOriention, this);
 
     if (touchCounter == 2){
