@@ -46,21 +46,13 @@ var rulesButton;
 var scoreText;
 var cumulativeScore=0;
 
-var gameRatio = window.innerWidth/window.innerHeight;
-var firstRunLandscape;
-
 
 var game = new Phaser.Game(config);
 
 // game.scale.forceOrientation(true, false);
-
-
-firstRunLandscape = game.scale.isGameLandscape;
-
-// game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-game.scale.lockOrientation(true, false);
+// game.scale.lockOrientation(true, false);
 game.scale.on('orientationchange', function(orientation){
-  if(!game.scale.isGameLandscape){
+  if(game.scale.isGamePortrait){
     document.getElementById("turn").style.display="block";
   }
 });
