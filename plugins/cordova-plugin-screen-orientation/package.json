@@ -1,0 +1,74 @@
+{
+  "_from": "git+https://github.com/apache/cordova-plugin-screen-orientation.git",
+  "_id": "cordova-plugin-screen-orientation@3.0.3-dev",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/cordova-plugin-screen-orientation",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "https://github.com/apache/cordova-plugin-screen-orientation",
+    "rawSpec": "https://github.com/apache/cordova-plugin-screen-orientation",
+    "saveSpec": "git+https://github.com/apache/cordova-plugin-screen-orientation.git",
+    "fetchSpec": "https://github.com/apache/cordova-plugin-screen-orientation.git",
+    "gitCommittish": null
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/apache/cordova-plugin-screen-orientation.git#01c10dce27f5ddde30f6bb3cec2b6c7e3d5c222e",
+  "_spec": "https://github.com/apache/cordova-plugin-screen-orientation",
+  "_where": "/Users/zaharaspilka/Documents/GitHub/DexterityGame",
+  "author": {
+    "name": "Apache Software Foundation"
+  },
+  "bugs": {
+    "url": "https://github.com/apache/cordova-plugin-screen-orientation/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-screen-orientation",
+    "platforms": [
+      "android",
+      "ios",
+      "windows"
+    ]
+  },
+  "deprecated": false,
+  "description": "Cordova Screen Orientation plugin",
+  "devDependencies": {
+    "jshint": "^2.9.4"
+  },
+  "engines": {
+    "cordovaDependencies": {
+      "4.0.0": {
+        "cordova": ">100"
+      }
+    }
+  },
+  "homepage": "https://github.com/apache/cordova-plugin-screen-orientation#readme",
+  "keywords": [
+    "cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-windows",
+    "device",
+    "ecosystem:cordova",
+    "screen",
+    "orientation",
+    "portrait",
+    "landscape"
+  ],
+  "license": "Apache-2.0",
+  "name": "cordova-plugin-screen-orientation",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apache/cordova-plugin-screen-orientation.git"
+  },
+  "scripts": {
+    "jshint": "node node_modules/jshint/bin/jshint www && node node_modules/jshint/bin/jshint src && node node_modules/jshint/bin/jshint demo/www",
+    "test": "npm run jshint"
+  },
+  "version": "3.0.3-dev"
+}

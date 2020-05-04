@@ -28,7 +28,8 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src * 'self' data: https:;"> -->
+        <!-- <meta http-equiv="Content-Security-Policy" content="default-src *;img-src http://localhost:1234/ 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *;style-src  'self' 'unsafe-inline' *"> -->
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
@@ -44,13 +45,16 @@
             </div>
         </div> -->
         <script type="text/javascript" src="cordova.js"></script>
-        <!-- <script type="text/javascript" src="js/index.js"></script> -->
         <script src="phaser-3.22.0/dist/phaser.js"></script>
+        <script src="dextGameShapeDataBase.js"></script>
         <script src="dextgameWelcomeScreen.js"></script>
+        <script src="dextgameRulesScreen.js"></script>
         <script src="tracer.js"></script>
-        <!-- <script src="dextgamePlayScreen.js"></script> -->
         <script src="dextgamePauseScreen.js"></script>
-        <script src="dextgameLevelOne.js"></script>
+        <script src="dextgameGameScreen.js"></script>
+        <script src="dextgameScoreScreen.js"></script>
+        <script src="dextgameLoseScreen.js"></script>
+        <script src="dextgameWinScreen.js"></script>
         <script src="dextgamesmultitouchscreensetup.js"></script>
     </body>
 </html>

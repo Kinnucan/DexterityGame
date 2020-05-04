@@ -13,10 +13,12 @@
   "author": "Apache Cordova Team",
   "license": "Apache-2.0",
   "dependencies": {
-    "cordova-browser": "^6.0.0",
-    "cordova-ios": "^5.1.1",
-    "cordova-osx": "^5.0.0",
+    "cordova-android": "8.1.0",
+    "cordova-browser": "6.0.0",
+    "cordova-ios": "5.1.1",
+    "cordova-osx": "5.0.0",
     "cordova-plugin-browsersync": "^1.1.0",
+    "cordova-plugin-screen-orientation": "git+https://github.com/apache/cordova-plugin-screen-orientation.git",
     "phaser": "^3.22.0",
     "window": "^4.2.7"
   },
@@ -26,12 +28,9 @@
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},
-      "cordova-plugin-browsersync": {}
+      "cordova-plugin-browsersync": {},
+      "cordova-plugin-screen-orientation": {}
     },
-    "platforms": [
-      "ios",
-      "browser",
-      "osx"
-    ]
+    "platforms": []
   }
 }

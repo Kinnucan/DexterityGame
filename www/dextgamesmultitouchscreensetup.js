@@ -45,9 +45,11 @@ var continueButton;
 var rulesButton;
 var scoreText;
 var cumulativeScore=0;
+
+
 var game = new Phaser.Game(config);
 
-
+game.scale.lockOrientation('landscape');
 
 // window.addEventListener('resize', () => {
 //     game.resize(window.innerWidth, window.innerHeight);

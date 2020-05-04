@@ -9,6 +9,8 @@ class dextgameWelcomeScreen extends Phaser.Scene{
   }
 
   create(){
+    // var orientation = this.scene.scale.orientation;
+    // this.scene.scale.lockOrientation('landscape');
     // this.scale.on('resize', function(gameSize, baseSize, displaySize, resolution, previousWidth, previousHeight) {
     //   this.scene.scale.resize(window.innerWidth, window.innerHeight);
     // });

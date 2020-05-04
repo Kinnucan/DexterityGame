@@ -4,32 +4,39 @@ class dextgameWelcomeScreen extends Phaser.Scene{
   }
 
   preload(){
-    //USed for load music and pictures
+    //Used for load music and pictures
+
   }
 
   create(){
+    this.scene.scale.lockOrientation('landscape');
+    // this.scale.on('resize', function(gameSize, baseSize, displaySize, resolution, previousWidth, previousHeight) {
+    //   this.scene.scale.resize(window.innerWidth, window.innerHeight);
+    // });
+    // this.gameScale.setMode('resize');
+    // this.scene.gameScale.setMode('resize')
+    // this.scale.on('resize', resize, this);
+    // this.scene.scale.resize(window.innerWidth, window.innerHeight);
+
+
+
+
+
     touchCounter = 0;
     //create objects
-    graphics = this.add.graphics();
-    // var pointer1 = this.input.addPointer();
-    // var pointer2 = this.input.addPointer();
+    // const screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
+    // const screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
     this.input.addPointer(1);
     text = this.add.text(20,20, 'Welcome! Place Two Fingers Down To Begin');
-    this.input.on('pointerdown', function (pointer1) {touchCounter++;}, this);
-    // this.input.on('pointerdown', function (pointer2) {touchCounter++;}, this);
-    // this.scene.start("playScreen");
-    // this.input.on('pointerdown', function (pointer1) {touchCounter++;}, this);
-    // this.input.on('pointerdown', function (pointer2) {touchCounter++;}, this);
-    // if (this.input.on('pointerdown', function(pointer1){}, this) || this.input.on('pointerdown', function(pointer2){}, this)){
-    //   this.scene.start('pauseScreen');
-    // }// var pointer1 = this.input.activePointer;
-    // var pointer2 = this.input.activePointer;
+    text.setColor('aqua');
+    // text.setOrigin(5);
+    this.input.on('pointerdown', function (pointer) {touchCounter++;}, this);
   }
 
   update(){
     //is a loop that runs constantly
     if (touchCounter == 2){
-      this.scene.start("levelOne");
+      this.scene.start("rulesScreen");
     }
   }
 

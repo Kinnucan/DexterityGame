@@ -7,7 +7,6 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-whitelist": {},
     "cordova-plugin-browsersync": {}
   },
   "dependent_plugins": {}

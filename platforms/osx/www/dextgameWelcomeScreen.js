@@ -3,44 +3,41 @@ class dextgameWelcomeScreen extends Phaser.Scene{
     super({key:"welcomeScreen"});
   }
 
-  // init() {
-  //   //prepare data
-  // }
-
   preload(){
-    //USed for load music and pictures
+    //Used for load music and pictures
 
   }
 
   create(){
+    this.scene.scale.lockOrientation('landscape');
+    // this.scale.on('resize', function(gameSize, baseSize, displaySize, resolution, previousWidth, previousHeight) {
+    //   this.scene.scale.resize(window.innerWidth, window.innerHeight);
+    // });
+    // this.gameScale.setMode('resize');
+    // this.scene.gameScale.setMode('resize')
+    // this.scale.on('resize', resize, this);
+    // this.scene.scale.resize(window.innerWidth, window.innerHeight);
+
+
+
+
+
+    touchCounter = 0;
     //create objects
-    graphics = this.add.graphics();
+    // const screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
+    // const screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
     this.input.addPointer(1);
     text = this.add.text(20,20, 'Welcome! Place Two Fingers Down To Begin');
-    // this.scene.start("playScreen");
+    text.setColor('aqua');
+    // text.setOrigin(5);
+    this.input.on('pointerdown', function (pointer) {touchCounter++;}, this);
   }
 
   update(){
     //is a loop that runs constantly
-    if (this.input.pointer1.isDown || this.input.pointer2.isDown){
-      graphics.clear();
-      // this.scene.start("playScreen");
+    if (touchCounter == 2){
+      this.scene.start("rulesScreen");
     }
-
-    text.setText([
-            'pointer1.isDown: ' + this.input.pointer1.isDown,
-            'pointer2.isDown: ' + this.input.pointer2.isDown,
-
-        ]);
-
-        graphics.fillStyle(0xff0000, 1);
-        graphics.fillRect(this.input.pointer1.x, this.input.pointer1.y, 64, 64);
-
-        graphics.fillStyle(0x00ff00, 1);
-        graphics.fillRect(this.input.pointer2.x, this.input.pointer2.y, 64, 64);
-
-
-
-
   }
+
 }
