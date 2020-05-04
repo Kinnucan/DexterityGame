@@ -49,6 +49,10 @@ var cumulativeScore=0;
 
 var game = new Phaser.Game(config);
 
+// window.addEventListener("orientationchange", function{
+//   alert(screen.orientation);
+// }, false);
+
 // game.scale.forceOrientation(true, false);
 // game.scale.lockOrientation(true, false);
 // game.scale.on('orientationchange', function(orientation){

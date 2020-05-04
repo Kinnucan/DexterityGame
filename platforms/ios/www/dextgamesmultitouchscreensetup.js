@@ -45,9 +45,39 @@ var continueButton;
 var rulesButton;
 var scoreText;
 var cumulativeScore=0;
+
+
 var game = new Phaser.Game(config);
 
+window.addEventListener("orientationchange", function{
+  alert(screen.orientation);
+}, false);
 
+// game.scale.forceOrientation(true, false);
+// game.scale.lockOrientation(true, false);
+// game.scale.on('orientationchange', function(orientation){
+//   if(game.scale.isLandscape){
+//     document.getElementById("turn").style.display="block";
+//   }
+// });
+
+
+//
+// function handleCorrect(){
+//   if(!game.device.desktop){
+//     if(firstRunLandscape){
+//       gameRatio = window.innerWidth/window.innerHeight;
+//       game.width = Math.ceil(640*gameRatio);
+//       game.height = 640;
+//       game.renderer.resize(game.width,game.height);
+//     }
+//     document.getElementById("turn").style.display="none";
+//   }
+// }
+
+
+
+// game.scale.lockOrientation('landscape');
 
 // window.addEventListener('resize', () => {
 //     game.resize(window.innerWidth, window.innerHeight);

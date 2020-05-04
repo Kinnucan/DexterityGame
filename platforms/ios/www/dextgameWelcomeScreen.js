@@ -5,11 +5,33 @@ class dextgameWelcomeScreen extends Phaser.Scene{
 
   preload(){
     //Used for load music and pictures
+    // this.scene.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    // this.scene.scale.forceOrientation(false, true);
+
 
   }
 
   create(){
-    this.scene.scale.lockOrientation('landscape');
+    // if(screen.isLandscape){
+    //   var checkText;
+    //   checkText = this.add.text(100,100, "hi");
+    //
+    // }
+
+    // window.addEventListener('orientationchange', function(orientation){
+    //   // alert(screen.orientation);
+    //   // if(this.scene.scale.isLandscape){
+        // var checkText;
+        // checkText = this.add.text(100,100, "hi");
+    //   //   // document.getElementById("turn").style.display="block";
+    //   // }
+    // });
+
+
+    // this.scene.scale.lockOrientation('landscape');
+
+    // var orientation = this.scene.scale.orientation;
+    // this.scale.lockOrientation('landscape');
     // this.scale.on('resize', function(gameSize, baseSize, displaySize, resolution, previousWidth, previousHeight) {
     //   this.scene.scale.resize(window.innerWidth, window.innerHeight);
     // });
@@ -31,6 +53,8 @@ class dextgameWelcomeScreen extends Phaser.Scene{
     text.setColor('aqua');
     // text.setOrigin(5);
     this.input.on('pointerdown', function (pointer) {touchCounter++;}, this);
+
+
   }
 
   update(){
