@@ -49,6 +49,26 @@ var cumulativeScore=0;
 
 var game = new Phaser.Game(config);
 
+checkOriention(this.scale.orientation);
+
+game.scale.on('orientationchange', checkOriention, this);
+
+function checkOriention (orientation)
+{
+    if (orientation === Phaser.Scale.PORTRAIT)
+    {
+        // ship.alpha = 0.2;
+        document.getElementById("turn").style.display="block";
+        // text.setVisible(true);
+    }
+    else if (orientation === Phaser.Scale.LANDSCAPE)
+    {
+        // ship.alpha = 1;
+        document.getElementById("turn").style.display="none";
+    }
+}
+
+
 // window.addEventListener("orientationchange", function{
 //   alert(screen.orientation);
 // }, false);
