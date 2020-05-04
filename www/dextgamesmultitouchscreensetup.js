@@ -52,7 +52,7 @@ var cumulativeScore=0;
 
 var game = new Phaser.Game(config);
 
-game.scale.lockOrientation('landscape');
+// game.scale.lockOrientation('landscape');
 
 
 // firstRunLandscape = game.scale.isGameLandscape;
