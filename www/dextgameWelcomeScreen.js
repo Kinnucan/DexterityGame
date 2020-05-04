@@ -56,10 +56,12 @@ class dextgameWelcomeScreen extends Phaser.Scene{
     //     var circle = new Phaser.Geom.Rectangle(x, y, 10, 10);
     //     graphics.fillRectShape(circle);
     // }, this);
-
+    // const screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
+    // const screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
     this.input.addPointer(1);
     text = this.add.text(20,20, 'Welcome! Place Two Fingers Down To Begin');
     text.setColor('aqua');
+    // text.setOrigin(5);
     this.input.on('pointerdown', function (pointer) {touchCounter++;}, this);
   }
 

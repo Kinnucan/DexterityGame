@@ -41,8 +41,9 @@ var winCondition = false;
 
 var continueButton;
 var scoreText;
-
 var game = new Phaser.Game(config);
+
+
 
 //
 
