@@ -46,7 +46,6 @@ var rulesButton;
 var scoreText;
 var cumulativeScore=0;
 
-
 var game = new Phaser.Game(config);
 
 

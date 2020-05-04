@@ -82,13 +82,13 @@ class dextgameWelcomeScreen extends Phaser.Scene{
       if (orientation === Phaser.Scale.PORTRAIT)
       {
         ship.alpha = 0.2;
-      text.setVisible(true);
+      orientationText.setVisible(true);
           // document.getElementById("turn").style.display="block";
       }
       else if (orientation === Phaser.Scale.LANDSCAPE)
       {
         ship.alpha = 1;
-      text.setVisible(false);
+      orientationText.setVisible(false);
           // document.getElementById("turn").style.display="none";
       }
   }
