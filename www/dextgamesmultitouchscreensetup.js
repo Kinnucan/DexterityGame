@@ -52,7 +52,7 @@ var game = new Phaser.Game(config);
 // game.scale.forceOrientation(true, false);
 // game.scale.lockOrientation(true, false);
 game.scale.on('orientationchange', function(orientation){
-  if(game.scale.isGamePortrait){
+  if(game.scale.isLandscape){
     document.getElementById("turn").style.display="block";
   }
 });
