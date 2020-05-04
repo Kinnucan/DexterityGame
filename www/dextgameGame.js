@@ -10,6 +10,7 @@ class dextgameGame extends Phaser.Scene{
     this.load.image('brush', 'img/brush1.png');
     this.load.image('flares', 'assets/particles/blue.png');
     touchCounter = 2;
+    score = 0;
     // this.load.atlas('flares', 'assets/particles/flares.png', 'assets/particles/flares.json');
   }
 
@@ -198,6 +199,7 @@ class dextgameGame extends Phaser.Scene{
       // this.add.text(20,500, sceneChangeCondition);
       // winCondition = false;
       // userLevel += 1;
+      cumulativeScore += score;
       if (){
 
       }

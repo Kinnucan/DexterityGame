@@ -23,7 +23,7 @@ var config = {
   }]
 },
   backgroundColor: 0x000000,
-  scene: [dextgameWelcomeScreen, dextgameRulesScreen, dextgamePauseScreen, dextgameGame, dextgameScoreScreen, dextgameLoseScreen, dextgameEndScreen]
+  scene: [dextgameWelcomeScreen, dextgameRulesScreen, dextgamePauseScreen, dextgameGame, dextgameScoreScreen, dextgameLoseScreen, dextgameWinScreen]
 };
 
 var text;
@@ -34,6 +34,7 @@ var timer1;
 var timer2;
 
 var score;
+var cumulativeScore;
 var total;
 var avg;
 var perc;

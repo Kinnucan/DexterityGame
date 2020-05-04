@@ -14,7 +14,7 @@ class dextgameScoreScreen extends Phaser.Scene{
     if (sceneChangeCondition == 0){
       var congratsText = this.add.text(323, 200, 'Nice going!');
       var displayScore = this.add.text(300, 240, 'Current Score: ' + Math.floor(score));
-      var displayAvgScore = this.add.text(300, 260, 'Average Score: ' + Math.floor(score/userLevel))
+      var displayAvgScore = this.add.text(300, 260, 'Average Score: ' + Math.floor(cumulativeScore/userLevel))
       var instructions = this.add.text(80, 280, 'When ready, press the button below to move on to the next level!');
 
       continueButton = this.add.text(400,450, "Click me to Continue", {fill: '#0f0'}).setInteractive()
@@ -31,7 +31,7 @@ class dextgameScoreScreen extends Phaser.Scene{
       .on('pointerup', ()=>this.actionOnRelease());
     }
     else if (sceneChangeCondition == 2){
-      this.scene.start('endScreen');
+      this.scene.start('winScreen');
     }
 
   }
