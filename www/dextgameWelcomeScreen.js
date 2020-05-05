@@ -84,8 +84,9 @@ class dextgameWelcomeScreen extends Phaser.Scene{
     // const screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
     // const screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
     this.input.addPointer(1);
-    text = this.add.text(20,20, 'Welcome! Place Two Fingers Down To Begin');
+    text = this.add.text(60,60, 'Welcome! Place Two Fingers Down To Begin', { fontSize: '25px', fill: '#000' } );
     text.setColor('aqua');
+    this.load.image('flares', 'assets/320633713.png');
     // text.setText(window.scene.orientation.type);
     // text.setOrigin(5);
     this.input.on('pointerdown', function (pointer) {touchCounter++;}, this);
