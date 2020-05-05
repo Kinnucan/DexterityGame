@@ -14,15 +14,15 @@ class dextgameWelcomeScreen extends Phaser.Scene{
 
   create(){
 
-    ship = this.add.image(0, 0, 'pic').setOrigin(0);
-    orientationText = this.add.text(25, 128, 'Please set your\nphone to landscape', {fill: '#00ff00'}).setOrigin(0);
+    // ship = this.add.image(0, 0, 'pic').setOrigin(0);
+    // orientationText = this.add.text(25, 128, 'Please set your\nphone to landscape', {fill: '#00ff00'}).setOrigin(0);
 
     // orientationText = this.add.text(320, 128, 'Please set your\nphone to landscape', { font: '48px Courier', fill: '#00ff00', align: 'center' }).setOrigin(0.5);
-    orientationText.setText(window.screen.orientation.type);
-    this.checkOriention(window.screen.orientation.type);
-    this.scale.on('orientationchange', function (){
-      this.checkOriention(window.screen.orientation.type)
-    }, this);
+    // orientationText.setText(window.screen.orientation.type);
+    // this.checkOriention(window.screen.orientation.type);
+    // this.scale.on('orientationchange', function (){
+    //   this.checkOriention(window.screen.orientation.type)
+    // }, this);
 
 
     //
@@ -94,27 +94,25 @@ class dextgameWelcomeScreen extends Phaser.Scene{
   }
 
   checkOriention (orientation){
-      if (orientation === Phaser.Scale.PORTRAIT){
-        backgroundColor.setColor("white");
-        ship.setVisible(true);
-        orientationText.setVisible(true);
-        text.setVisible(false);
-          // document.getElementById("turn").style.display="block";
-      }
-      else if (orientation === Phaser.Scale.LANDSCAPE){
-        ship.setVisible(false);
-        orientationText.setVisible(false);
-        text.setVisible(true);
-          // document.getElementById("turn").style.display="none";
-      }
-}
+    if (orientation === Phaser.Scale.PORTRAIT){
+      ship.setVisible(true);
+      orientationText.setVisible(true);
+      text.setVisible(false);
+      // document.getElementById("turn").style.display="block";
+    }else if (orientation === Phaser.Scale.LANDSCAPE){
+      ship.setVisible(false);
+      orientationText.setVisible(false);
+      text.setVisible(true);
+      // document.getElementById("turn").style.display="none";
+    }
+  }
 
   update(){
     //is a loop that runs constantly
     // this.checkOriention(window.screen.orientation.type);
-    this.scale.on('orientationchange', function (){
-      this.checkOriention(window.screen.orientation.type)
-    }, this);
+    // this.scale.on('orientationchange', function (){
+    //   this.checkOriention(window.screen.orientation.type)
+    // }, this);
     if (touchCounter == 2){
       this.scene.start("rulesScreen");
     }
