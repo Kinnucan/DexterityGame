@@ -16,7 +16,7 @@ class dextgameWelcomeScreen extends Phaser.Scene{
 
     ship = this.add.image(0, 0, 'pic').setOrigin(0);
     orientationText = this.add.text(320, 128, 'Please set your\nphone to landscape', { font: '48px Courier', fill: '#00ff00', align: 'center' }).setOrigin(0.5);
-    checkOriention(this.scale.orientation);
+    checkOriention(screen.orientation);
     this.scale.on('orientationchange', checkOriention, this);
 
 
