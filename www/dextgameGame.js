@@ -11,7 +11,6 @@ class dextgameGame extends Phaser.Scene{
     this.load.image('flares', 'assets/particles/blue.png');
     touchCounter = 2;
     score = 0;
-    // this.load.atlas('flares', 'assets/particles/flares.png', 'assets/particles/flares.json');
   }
 
   create(){
@@ -62,7 +61,6 @@ class dextgameGame extends Phaser.Scene{
 
     for (var tracer of [tracer1, tracer2]){
       tracer.onPointReached = (x, y) =>{
-        //TODO: Change these to sparks
         var particles = this.add.particles('flares');
         // particles.setScale(0.1);
         var emitter = particles.createEmitter();
@@ -74,16 +72,6 @@ class dextgameGame extends Phaser.Scene{
         // emitter.setRadius(0.2);
         emitter.setScale(0.2);
         emitter.setBlendMode(Phaser.BlendModes.ADD);
-
-
-
-
-        // emitter.makeParticles('flares');
-        // particles.emitParticles(50, x,y);
-        // var circleOne = new Phaser.Geom.Circle(x, y, 20);
-        // graphicsDrawing.fillCircleShape(circleOne);
-
-        // this.add.image(x, y, 'brush').setScale(0.5);
       };
     }
     //Finds the point that the player is starting nearest on the shape
@@ -139,12 +127,9 @@ class dextgameGame extends Phaser.Scene{
 
         if (tracer1.pathFinished && tracer2.pathFinished){
           if (score >= 80){
-            // this.winCondition = true;
             sceneChangeCondition=0;
           }
           else{
-            // this.add.text(300,200, 'YOU LOSE!');
-            // this.winCondition = true;
             sceneChangeCondition = 1;
 
           }
@@ -167,18 +152,6 @@ class dextgameGame extends Phaser.Scene{
     return graphics;
   }
 
-  // advanceToNewLevel(){
-  //   //Pseudocode that determines when the user wins the level they are playing
-  //   if(userScore >= winThreshHold){
-  //     // userWin = true;
-  //     this.scene.restart(true, false, {level: this.level+1});
-  //   }else {
-  //     //else if the user does not
-  //     this.scene.restart(true,false{level: this.level});
-  //   }
-  //
-  // }
-
   update(time){
     //is a loop that runs constantly
 
@@ -195,7 +168,10 @@ class dextgameGame extends Phaser.Scene{
     }
 
     if (winCondition){
+<<<<<<< HEAD
       winCondition = false;
+=======
+>>>>>>> e4d6d377fe91c0ceb85190f11d9184a97e201195
       cumulativeScore += score;
 
       //TODO: Add code so that when the player completes all the shapes they go to winScreen

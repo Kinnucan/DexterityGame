@@ -11,14 +11,10 @@ class dextgameGameScreen extends Phaser.Scene{
     this.load.image('flares', 'assets/particles/blue.png');
     touchCounter = 2;
     score = 0;
-    // this.load.atlas('flares', 'assets/particles/flares.png', 'assets/particles/flares.json');
-  }
+    }
 
   create(){
     //create objects
-
-
-
     var pointer = this.input.addPointer(1);
     text = this.add.text(20,20, 'Welcome to Level ' + userLevel + '!');
     text2 = this.add.text(300,20, '');
@@ -65,7 +61,6 @@ class dextgameGameScreen extends Phaser.Scene{
 
     for (var tracer of [tracer1, tracer2]){
       tracer.onPointReached = (x, y) =>{
-        //TODO: Change these to sparks
         var particles = this.add.particles('flares');
         // particles.setScale(0.1);
         var emitter = particles.createEmitter();
@@ -77,16 +72,6 @@ class dextgameGameScreen extends Phaser.Scene{
         // emitter.setRadius(0.2);
         emitter.setScale(0.2);
         emitter.setBlendMode(Phaser.BlendModes.ADD);
-
-
-
-
-        // emitter.makeParticles('flares');
-        // particles.emitParticles(50, x,y);
-        // var circleOne = new Phaser.Geom.Circle(x, y, 20);
-        // graphicsDrawing.fillCircleShape(circleOne);
-
-        // this.add.image(x, y, 'brush').setScale(0.5);
       };
     }
     //Finds the point that the player is starting nearest on the shape
@@ -105,14 +90,14 @@ class dextgameGameScreen extends Phaser.Scene{
         tracer2.pointerID = pointer.pointerId;
       }
 
-      // this.input.on('pointerup', (pointer) => {
-      //   if (pointer.pointerId == tracer1.pointerID){
-      //     touchCounter--;
-      //   }
-      //   else if (pointer.pointerId == tracer2.pointerID){
-      //     touchCounter--;
-      //   }
-      // }, this);
+      this.input.on('pointerup', (pointer) => {
+        if (pointer.pointerId == tracer1.pointerID){
+          touchCounter--;
+        }
+        else if (pointer.pointerId == tracer2.pointerID){
+          touchCounter--;
+        }
+      }, this);
 
     }, this);
 
@@ -126,7 +111,7 @@ class dextgameGameScreen extends Phaser.Scene{
         perc = (avg/130000)*100;
         score = perc - ((diff)/total)*100;
 
-        scoreText.setText(["Diff: " + diff, "Total: "+ total, "AVG: "+avg, "Perc: "+perc, "Score: "+score]);
+        // scoreText.setText(["Diff: " + diff, "Total: "+ total, "AVG: "+avg, "Perc: "+perc, "Score: "+score]);
 
 
         if (pointer.pointerId == tracer1.pointerID){
@@ -145,12 +130,9 @@ class dextgameGameScreen extends Phaser.Scene{
 
         if (tracer1.pathFinished && tracer2.pathFinished){
           if (score >= 80){
-            // this.winCondition = true;
             sceneChangeCondition=0;
           }
           else{
-            // this.add.text(300,200, 'YOU LOSE!');
-            // this.winCondition = true;
             sceneChangeCondition = 1;
 
           }
@@ -173,38 +155,19 @@ class dextgameGameScreen extends Phaser.Scene{
     return graphics;
   }
 
-  // advanceToNewLevel(){
-  //   //Pseudocode that determines when the user wins the level they are playing
-  //   if(userScore >= winThreshHold){
-  //     // userWin = true;
-  //     this.scene.restart(true, false, {level: this.level+1});
-  //   }else {
-  //     //else if the user does not
-  //     this.scene.restart(true,false{level: this.level});
-  //   }
-  //
-  // }
-
   update(time){
     //is a loop that runs constantly
-
-    // text.setText([touchCounter]);
-
     //Sets timer var equal to time
     timer1 = time;
     timer2 = time;
     total = (130000-this.timer1) + (130000-this.timer2);
     diff = Phaser.Math.Difference(this.timer1, this.timer2);
 
-    // this.input.on('pointerup', function (pointer) {touchCounter--;}, this);
     if (touchCounter < 2){
       this.scene.start("loseScreen");
     }
 
     if (winCondition){
-      // this.add.text(20,500, sceneChangeCondition);
-      // winCondition = false;
-      // userLevel += 1;
       cumulativeScore += score;
       // if (){
       //
