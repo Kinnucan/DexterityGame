@@ -7,7 +7,7 @@ class dextgameWelcomeScreen extends Phaser.Scene{
     //Used for load music and pictures
     // this.scene.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     // this.scene.scale.forceOrientation(false, true);
-    this.load.image('pic', "img/playportrait.png");
+    // this.load.image('pic', "img/playportrait.png");
 
 
   }
@@ -93,19 +93,19 @@ class dextgameWelcomeScreen extends Phaser.Scene{
 
   }
 
-  checkOriention (orientation){
-    if (orientation === Phaser.Scale.PORTRAIT){
-      ship.setVisible(true);
-      orientationText.setVisible(true);
-      text.setVisible(false);
-      // document.getElementById("turn").style.display="block";
-    }else if (orientation === Phaser.Scale.LANDSCAPE){
-      ship.setVisible(false);
-      orientationText.setVisible(false);
-      text.setVisible(true);
-      // document.getElementById("turn").style.display="none";
-    }
-  }
+  // checkOriention (orientation){
+  //   if (orientation === Phaser.Scale.PORTRAIT){
+  //     ship.setVisible(true);
+  //     orientationText.setVisible(true);
+  //     text.setVisible(false);
+  //     // document.getElementById("turn").style.display="block";
+  //   }else if (orientation === Phaser.Scale.LANDSCAPE){
+  //     ship.setVisible(false);
+  //     orientationText.setVisible(false);
+  //     text.setVisible(true);
+  //     // document.getElementById("turn").style.display="none";
+  //   }
+  // }
 
   update(){
     //is a loop that runs constantly
