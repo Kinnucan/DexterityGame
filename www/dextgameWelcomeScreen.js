@@ -23,9 +23,18 @@ class dextgameWelcomeScreen extends Phaser.Scene{
     this.scale.on('orientationchange', checkOriention, this);
 
 
-
-
-
+    // 
+    //
+    // if (window.screen.orientation === Phaser.Scale.PORTRAIT){
+    //   ship.alpha = 0.2;
+    //   orientationText.setVisible(true);
+    //     // document.getElementById("turn").style.display="block";
+    // }
+    // else if (window.screen.orientation === Phaser.Scale.LANDSCAPE){
+    //   ship.alpha = 1;
+    //   orientationText.setVisible(false);
+    //     // document.getElementById("turn").style.display="none";
+    // }
 
 
 
@@ -82,23 +91,21 @@ class dextgameWelcomeScreen extends Phaser.Scene{
   }
 
   checkOriention (orientation){
-      if (orientation === Phaser.Scale.PORTRAIT)
-      {
+      if (orientation === Phaser.Scale.PORTRAIT){
         ship.alpha = 0.2;
-      orientationText.setVisible(true);
+        orientationText.setVisible(true);
           // document.getElementById("turn").style.display="block";
       }
-      else if (orientation === Phaser.Scale.LANDSCAPE)
-      {
+      else if (orientation === Phaser.Scale.LANDSCAPE){
         ship.alpha = 1;
-      orientationText.setVisible(false);
+        orientationText.setVisible(false);
           // document.getElementById("turn").style.display="none";
       }
-  }
+}
 
   update(){
     //is a loop that runs constantly
-    checkOriention(this.scale.orientation);
+    checkOriention(window.screen.orientation);
     this.scale.on('orientationchange', checkOriention, this);
 
     if (touchCounter == 2){
