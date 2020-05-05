@@ -4,11 +4,10 @@ class dextgameRulesScreen extends Phaser.Scene{
   }
 
   preload(){
-
+    touchCounter = 0;
   }
 
   create(){
-    touchCounter = 0;
     var welcomeMessage = this.add.text(135,130, 'Here are the rules to play the game. Read carefully!');
     var rule1 = this.add.text(135,190);
     rule1.setText(['Rule #1: As soon as both fingers touch the screen,', 'both must stay down until the shapes are completed!']);

@@ -11,7 +11,7 @@ class dextgameGameScreen extends Phaser.Scene{
     this.load.image('flares', 'assets/particles/blue.png');
     touchCounter = 2;
     score = 0;
-    }
+  }
 
   create(){
     //create objects
@@ -23,28 +23,34 @@ class dextgameGameScreen extends Phaser.Scene{
     scoreText = this.add.text(300, 50, 'Score: ' + Math.floor(score));
     var graphicsDrawing = this.add.graphics({ fillStyle: { color: 0x9400D3 } });
 
-
     //picks a shape from the shape database and checks to make sure we have not used this shape yet.
-    leftShape = shapeList[Math.floor(Math.random() * shapeList.length)];
-    // while(leftShape.hasUsed == true){
-    //   leftShape = shapeList[Math.floor(Math.random() * shapeList.length)];
-    // }
+    var indexLeft = Math.floor(Math.random() * shapeList.length);
+    var indexRight = Math.floor(Math.random() * shapeList.length);
+
+    leftShape = shapeList[indexLeft];
+    while(leftShape.hasUsed == true){
+      indexLeft = Math.floor(Math.random() * shapeList.length);
+      leftShape = shapeList[indexLeft];
+    }
 
     //picks a shape from the shape database and checks
     //to make sure the two randomly picked shapes are not the same shape
     //and checks to make sure we have not used this shape yet
-    rightShape = shapeList[Math.floor(Math.random() * shapeList.length)];
-    while (rightShape.name == leftShape.name){
-      rightShape = shapeList[Math.floor(Math.random() * shapeList.length)];
+    rightShape = shapeList[indexRight];
+    while (rightShape.name == leftShape.name || rightShape.hasUsed == true){
+      indexRight = Math.floor(Math.random() * shapeList.length);
+      rightShape = shapeList[indexRight];
     }
-    //
+
     // while (rightShape.name == leftShape.name && rightShape.hasUsed == true){
     //   rightShape = shapeList[Math.floor(Math.random() * shapeList.length)];
     // }
 
     //marks the two shapes as used
-    leftShape.hasUsed = true;
-    rightShape.hasUsed = true;
+    // leftShape.hasUsed = true;
+    // rightShape.hasUsed = true;
+    shapeList[indexLeft].hasUsed = true;
+    shapeList[indexRight].hasUsed = true;
 
     var leftGraphics = this.strokeShape(leftShape.shapePoints, 0x0000FF);
     var rightGraphics = this.strokeShape(rightShape.shapePoints, 0xFF0000);
@@ -111,20 +117,14 @@ class dextgameGameScreen extends Phaser.Scene{
         perc = (avg/130000)*100;
         score = perc - ((diff)/total)*100;
 
-        // scoreText.setText(["Diff: " + diff, "Total: "+ total, "AVG: "+avg, "Perc: "+perc, "Score: "+score]);
-
-
         if (pointer.pointerId == tracer1.pointerID){
           tracer1.trace(x, y);
-          timeText1.setText('Left: ' + Math.floor([timer1]));
-          this.timer1 = timer1;
+          timeText1.setText('Left: ' + Math.floor([this.timer1]));
           this.add.image(x, y, 'brush').setScale(0.5).setAlpha(0.3).setTint(0xFF000);
-          // text.setText([tracer1.nextPoint, tracer.currentPoint, x, y]);
         }
         else if (pointer.pointerId == tracer2.pointerID){
           tracer2.trace(x, y);
-          timeText2.setText('Right: ' + Math.floor([timer2]));
-          this.timer2 = timer2;
+          timeText2.setText('Right: ' + Math.floor([this.timer2]));
           this.add.image(x, y, 'brush').setScale(0.5).setAlpha(0.3).setTint(0x9400D3);
         }
 
@@ -134,7 +134,6 @@ class dextgameGameScreen extends Phaser.Scene{
           }
           else{
             sceneChangeCondition = 1;
-
           }
           winCondition = true;
         }
@@ -158,21 +157,25 @@ class dextgameGameScreen extends Phaser.Scene{
   update(time){
     //is a loop that runs constantly
     //Sets timer var equal to time
-    timer1 = time;
-    timer2 = time;
+    this.timer1 = time;
+    this.timer2 = time;
     total = (130000-this.timer1) + (130000-this.timer2);
     diff = Phaser.Math.Difference(this.timer1, this.timer2);
 
-    if (touchCounter < 2){
-      this.scene.start("loseScreen");
-    }
+    // if (touchCounter < 2){
+    //   this.scene.start("loseScreen");
+    // }
 
     if (winCondition){
       cumulativeScore += score;
-      // if (){
-      //
-      // }
-      this.scene.start("scoreScreen");
+      completedShapes += 2;
+      timer1 = time;
+      timer2 = time;
+      if (completedShapes == 6 && score >= 80){
+        this.scene.start("winScreen");
+      }
+      else
+        this.scene.start("scoreScreen");
     }
   }
 

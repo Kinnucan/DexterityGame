@@ -168,10 +168,7 @@ class dextgameGame extends Phaser.Scene{
     }
 
     if (winCondition){
-<<<<<<< HEAD
       winCondition = false;
-=======
->>>>>>> e4d6d377fe91c0ceb85190f11d9184a97e201195
       cumulativeScore += score;
 
       //TODO: Add code so that when the player completes all the shapes they go to winScreen

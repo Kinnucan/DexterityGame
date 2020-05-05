@@ -36,12 +36,9 @@ class dextgameScoreScreen extends Phaser.Scene{
       .on('pointerdown', ()=>this.actionOnClick())
       .on('pointerup', ()=>this.actionOnRelease());
 
-      rulesButton = this.add.text(350,450, "Rules", {fill: '#0f0'}).setInteractive()
-      .on('pointerdown', ()=>this.actionOnClick())
-      .on('pointerup', ()=>this.actionOnReleaseRules());
-    }
-    else if (sceneChangeCondition == 2){
-      this.scene.start('winScreen');
+      // rulesButton = this.add.text(350,450, "Rules", {fill: '#0f0'}).setInteractive()
+      // .on('pointerdown', ()=>this.actionOnClick())
+      // .on('pointerup', ()=>this.actionOnReleaseRules());
     }
 
   }
@@ -52,7 +49,7 @@ class dextgameScoreScreen extends Phaser.Scene{
 
   actionOnRelease(){
     if (this.loseCondition)
-      this.scene.start("welcomeScreen");
+      this.scene.start("restart");
     else
       this.scene.start("gameScreen");
   }
@@ -62,7 +59,9 @@ class dextgameScoreScreen extends Phaser.Scene{
   }
 
   update(){
-
+    winCondition = false;
+    var newText = this.add.text(400, 500);
+    newText.setText([completedShapes, winCondition]);
   }
 
 }

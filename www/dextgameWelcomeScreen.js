@@ -6,22 +6,19 @@ class dextgameWelcomeScreen extends Phaser.Scene{
   preload(){
     //Used for load music and pictures
     this.load.image('pic', "img/playportrait.png");
-
-
+    this.load.image('flares', 'assets/particles/320633713.png');
+    touchCounter = 0;
   }
 
   create(){
     //Creates objects
     ship = this.add.image(0, 0, 'pic').setOrigin(0);
     orientationText = this.add.text(320, 128, 'Please set your\nphone to landscape', { font: '48px Courier', fill: '#00ff00', align: 'center' }).setOrigin(0.5);
-    touchCounter = 0;
     this.input.addPointer(1);
     text = this.add.text(60,60, 'Welcome! Place Two Fingers Down To Begin', { fontSize: '25px', fill: '#000' } );
     text.setColor('aqua');
-    this.load.image('flares', 'assets/320633713.png');
+    this.add.image(300, 200, 'flares').setScale(0.1).setDepth(-20);
     this.input.on('pointerdown', function (pointer) {touchCounter++;}, this);
-
-
   }
 
   checkOriention (width, height){
