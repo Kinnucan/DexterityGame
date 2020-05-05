@@ -17,7 +17,7 @@ class dextgameGameScreen extends Phaser.Scene{
     //create objects
     var pointer = this.input.addPointer(1);
     text = this.add.text(20,20, 'Welcome to Level ' + userLevel + '!');
-    text2 = this.add.text(300,20, '');
+    text.setColor('aqua');
     timeText1 = this.add.text(40, 40, 'Left Timer: ');
     timeText2 = this.add.text(500, 40, 'Right Timer: ');
     scoreText = this.add.text(300, 50, 'Score: ' + Math.floor(score));

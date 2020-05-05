@@ -13,7 +13,6 @@ var config = {
 };
 
 var text;
-var text2;
 var timeText1;
 var timeText2;
 var timer1 = 0;
