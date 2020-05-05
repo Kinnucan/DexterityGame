@@ -7,15 +7,15 @@ class dextgameWelcomeScreen extends Phaser.Scene{
     //Used for load music and pictures
     // this.scene.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     // this.scene.scale.forceOrientation(false, true);
-    // this.load.image('pic', "img/playportrait.png");
+    this.load.image('pic', "img/playportrait.png");
 
 
   }
 
   create(){
 
-    // ship = this.add.image(0, 0, 'pic').setOrigin(0);
-    // orientationText = this.add.text(25, 128, 'Please set your\nphone to landscape', {fill: '#00ff00'}).setOrigin(0);
+    ship = this.add.image(0, 0, 'pic').setOrigin(0);
+    orientationText = this.add.text(25, 128, 'Please set your\nphone to landscape', {fill: '#00ff00'}).setOrigin(0);
 
     // orientationText = this.add.text(320, 128, 'Please set your\nphone to landscape', { font: '48px Courier', fill: '#00ff00', align: 'center' }).setOrigin(0.5);
     // orientationText.setText(window.screen.orientation.type);
@@ -93,23 +93,23 @@ class dextgameWelcomeScreen extends Phaser.Scene{
 
   }
 
-  // checkOriention (orientation){
-  //   if (orientation === Phaser.Scale.PORTRAIT){
-  //     ship.setVisible(true);
-  //     orientationText.setVisible(true);
-  //     text.setVisible(false);
-  //     // document.getElementById("turn").style.display="block";
-  //   }else if (orientation === Phaser.Scale.LANDSCAPE){
-  //     ship.setVisible(false);
-  //     orientationText.setVisible(false);
-  //     text.setVisible(true);
-  //     // document.getElementById("turn").style.display="none";
-  //   }
-  // }
+  checkOriention (width, height){
+    if (window.innerWidth < window.innerHeight){
+      ship.setVisible(true);
+      orientationText.setVisible(true);
+      text.setVisible(false);
+      // document.getElementById("turn").style.display="block";
+    }else if (window.innerWidth > window.innerHeight){
+      ship.setVisible(false);
+      orientationText.setVisible(false);
+      text.setVisible(true);
+      // document.getElementById("turn").style.display="none";
+    }
+  }
 
   update(){
     //is a loop that runs constantly
-    // this.checkOriention(window.screen.orientation.type);
+    this.checkOriention(window.innerWidth, window.innerHeight);
     // this.scale.on('orientationchange', function (){
     //   this.checkOriention(window.screen.orientation.type)
     // }, this);
