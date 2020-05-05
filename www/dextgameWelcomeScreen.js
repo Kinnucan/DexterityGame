@@ -15,9 +15,11 @@ class dextgameWelcomeScreen extends Phaser.Scene{
   create(){
 
     ship = this.add.image(0, 0, 'pic').setOrigin(0);
-    orientationText = this.add.text(320, 128, 'Please set your\nphone to landscape', { font: '48px Courier', fill: '#00ff00', align: 'center' }).setOrigin(0.5);
-    orientationText.setText(screen.orientation);
-    checkOriention(screen.orientation);
+    orientationText = this.add.text(320, 128, 'Please set your\nphone to landscape');
+
+    // orientationText = this.add.text(320, 128, 'Please set your\nphone to landscape', { font: '48px Courier', fill: '#00ff00', align: 'center' }).setOrigin(0.5);
+    orientationText.setText(window.screen.orientation);
+    checkOriention(window.screen.orientation);
     this.scale.on('orientationchange', checkOriention, this);
 
 
