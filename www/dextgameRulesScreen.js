@@ -8,14 +8,6 @@ class dextgameRulesScreen extends Phaser.Scene{
   }
 
   create(){
-    // this.scale.on('resize', function(gameSize, baseSize, displaySize, resolution, previousWidth, previousHeight) {
-    //   this.scene.scale.resize(window.innerWidth, window.innerHeight);
-    // });
-    // this.scale.on('resize', resize, this);
-
-    // const screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
-    // const screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
-
     touchCounter = 0;
     var welcomeMessage = this.add.text(135,130, 'Here are the rules to play the game. Read carefully!');
     var rule1 = this.add.text(135,190);
