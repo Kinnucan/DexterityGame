@@ -105,14 +105,14 @@ class dextgameGameScreen extends Phaser.Scene{
         tracer2.pointerID = pointer.pointerId;
       }
 
-      // this.input.on('pointerup', (pointer) => {
-      //   if (pointer.pointerId == tracer1.pointerID){
-      //     touchCounter--;
-      //   }
-      //   else if (pointer.pointerId == tracer2.pointerID){
-      //     touchCounter--;
-      //   }
-      // }, this);
+      this.input.on('pointerup', (pointer) => {
+        if (pointer.pointerId == tracer1.pointerID){
+          touchCounter--;
+        }
+        else if (pointer.pointerId == tracer2.pointerID){
+          touchCounter--;
+        }
+      }, this);
 
     }, this);
 
