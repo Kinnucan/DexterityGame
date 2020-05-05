@@ -15,10 +15,10 @@ class dextgameWelcomeScreen extends Phaser.Scene{
   create(){
 
     // ship = this.add.image(0, 0, 'pic').setOrigin(0);
-    // orientationText = this.add.text(25, 128, 'Please set your\nphone to landscape', {fill: '#00ff00'}).setOrigin(0);
+    orientationText = this.add.text(25, 128, 'Please set your\nphone to landscape', {fill: '#00ff00'}).setOrigin(0);
 
     // orientationText = this.add.text(320, 128, 'Please set your\nphone to landscape', { font: '48px Courier', fill: '#00ff00', align: 'center' }).setOrigin(0.5);
-    // orientationText.setText(window.screen.orientation.type);
+    orientationText.setText(window.screen.orientation.type);
     // this.checkOriention(window.screen.orientation.type);
     // this.scale.on('orientationchange', function (){
     //   this.checkOriention(window.screen.orientation.type)
@@ -86,7 +86,7 @@ class dextgameWelcomeScreen extends Phaser.Scene{
     this.input.addPointer(1);
     text = this.add.text(20,20, 'Welcome! Place Two Fingers Down To Begin');
     text.setColor('aqua');
-    text.setText(window.scene.orientation.type);
+    // text.setText(window.scene.orientation.type);
     // text.setOrigin(5);
     this.input.on('pointerdown', function (pointer) {touchCounter++;}, this);
 
