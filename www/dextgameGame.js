@@ -190,16 +190,15 @@ class dextgameGame extends Phaser.Scene{
     total = (130000-this.timer1) + (130000-this.timer2);
     diff = Phaser.Math.Difference(this.timer1, this.timer2);
 
-    // this.input.on('pointerup', function (pointer) {touchCounter--;}, this);
     if (touchCounter < 2){
       this.scene.start("loseScreen");
     }
 
     if (winCondition){
-      // this.add.text(20,500, sceneChangeCondition);
-      // winCondition = false;
-      // userLevel += 1;
+      winCondition = false;
       cumulativeScore += score;
+
+      //TODO: Add code so that when the player completes all the shapes they go to winScreen
       if (){
 
       }

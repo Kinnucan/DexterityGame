@@ -1,16 +1,14 @@
 class dextgameScoreScreen extends Phaser.Scene{
   constructor(){
     super({key:"scoreScreen"});
+    this.loseCondition;
   }
 
   preload(){
-
+    this.loseCondition = false;
   }
 
   create(){
-
-    winCondition = false;
-
     if (sceneChangeCondition == 0){
       var congratsText = this.add.text(323, 200, 'Nice going!');
       var displayScore = this.add.text(300, 240, 'Current Score: ' + Math.floor(score));
@@ -26,14 +24,14 @@ class dextgameScoreScreen extends Phaser.Scene{
       rulesButton = this.add.text(350,450, "Rules", {fill: '#0f0'}).setInteractive()
       .on('pointerdown', ()=>this.actionOnClick())
       .on('pointerup', ()=>this.actionOnReleaseRules());
-
-
-
     }
     else if (sceneChangeCondition==1) {
-      var loseText = this.add.text(323, 200, 'YOU LOSE! Would you like to try again?');
+      var loseText = this.add.text(323, 200, 'YOU LOSE! Would you like to play again?');
       var displayScore = this.add.text(300, 220, 'Current Score: ' + Math.floor(score));
-      var displayAvgScore = this.add.text(300, 240, 'Average Score: ' + Math.floor(score/userLevel))
+      var displayAvgScore = this.add.text(300, 240, 'Average Score: ' + Math.floor(score/userLevel));
+
+      this.loseCondition = true;
+
       continueButton = this.add.text(450,450, "Try Again", {fill: '#0f0'}).setInteractive()
       .on('pointerdown', ()=>this.actionOnClick())
       .on('pointerup', ()=>this.actionOnRelease());
@@ -53,7 +51,10 @@ class dextgameScoreScreen extends Phaser.Scene{
   }
 
   actionOnRelease(){
-    this.scene.start("gameScreen");
+    if (this.loseCondition)
+      this.scene.start("welcomeScreen");
+    else
+      this.scene.start("gameScreen");
   }
 
   actionOnReleaseRules(){

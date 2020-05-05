@@ -22,7 +22,7 @@ var timer1;
 var timer2;
 
 var score;
-var avgScore;
+var cumulativeScore=0;
 var total;
 var avg;
 var perc;
@@ -44,7 +44,6 @@ var winCondition = false;
 var continueButton;
 var rulesButton;
 var scoreText;
-var cumulativeScore=0;
 
 
 var game = new Phaser.Game(config);
