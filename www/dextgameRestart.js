@@ -18,6 +18,7 @@ class dextgameRestart extends Phaser.Scene{
     userLevel = 1;
     cumulativeScore = 0;
     winCondition = false;
+    touchCounter = 0;
     this.scene.start("welcomeScreen");
   }
 

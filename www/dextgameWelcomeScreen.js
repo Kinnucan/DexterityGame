@@ -6,7 +6,7 @@ class dextgameWelcomeScreen extends Phaser.Scene{
   preload(){
     //Used for load music and pictures
     this.load.image('pic', "img/playportrait.png");
-    this.load.image('flares', 'assets/particles/320633713.png');
+    this.load.image('welcomeBackground', 'assets/particles/320633713.png');
     touchCounter = 0;
   }
 
@@ -17,7 +17,7 @@ class dextgameWelcomeScreen extends Phaser.Scene{
     this.input.addPointer(1);
     text = this.add.text(60,60, 'Welcome! Place Two Fingers Down To Begin', { fontSize: '25px', fill: '#000' } );
     text.setColor('aqua');
-    this.add.image(300, 200, 'flares').setScale(0.1).setDepth(-20);
+    this.add.image(300, 200, 'welcomeBackground').setScale(0.1).setDepth(-20);
     this.input.on('pointerdown', function (pointer) {touchCounter++;}, this);
   }
 
