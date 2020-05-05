@@ -16,8 +16,8 @@ var text;
 var text2;
 var timeText1;
 var timeText2;
-var timer1;
-var timer2;
+var timer1 = 0;
+var timer2 = 0;
 
 var score;
 var cumulativeScore=0;

@@ -159,8 +159,8 @@ class dextgameGameScreen extends Phaser.Scene{
     //Sets timer var equal to time
     this.timer1 = time;
     this.timer2 = time;
-    total = (130000-this.timer1) + (130000-this.timer2);
-    diff = Phaser.Math.Difference(this.timer1, this.timer2);
+    total = (130000-(this.timer1-timer1)) + (130000-(this.timer2-timer2));
+    diff = Phaser.Math.Difference((this.timer1-timer1), (this.timer2-timer2));
 
     // if (touchCounter < 2){
     //   this.scene.start("loseScreen");
