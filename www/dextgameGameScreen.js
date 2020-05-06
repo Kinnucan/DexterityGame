@@ -128,7 +128,7 @@ class dextgameGameScreen extends Phaser.Scene{
           this.tweens.add({
             targets: userTrail,
             alpha: 0,
-            duration: 2000,
+            duration: 2500,
             ease: 'Power2'
           }, this);
         }
@@ -139,7 +139,7 @@ class dextgameGameScreen extends Phaser.Scene{
           this.tweens.add({
             targets: userTrail,
             alpha: 0,
-            duration: 2000,
+            duration: 2500,
             ease: 'Power2'
           }, this);
         }
