@@ -8,7 +8,7 @@ class dextgameWinScreen extends Phaser.Scene{
   }
 
   create(){
-    var endText = this.add.text(323, 200, 'Congrats! You beat all the shapes! Would you like to play again and try to beat your score?');
+    var endText = this.add.text(window.innerWidth/4, 200, 'Congrats! You beat all the shapes! \nWould you like to play again and try to beat your score?', {align:'center'});
     endText.setColor('aqua');
     var displayScore = this.add.text(300, 240, 'Current Score: ' + Math.floor(score));
     var displayAvgScore = this.add.text(300, 260, 'Average Score: ' + Math.floor(cumulativeScore/userLevel))
