@@ -45,3 +45,17 @@ var orientationText;
 var ship;
 
 var game = new Phaser.Game(config);
+
+function checkOriention (width, height){
+  if (window.innerWidth < window.innerHeight){
+    // ship.setVisible(true);
+    // orientationText.setVisible(true);
+    // text.setVisible(false);
+    document.getElementById("turn").style.display="block";
+  }else if (window.innerWidth > window.innerHeight){
+    // ship.setVisible(false);
+    // orientationText.setVisible(false);
+    // text.setVisible(true);
+    document.getElementById("turn").style.display="none";
+  }
+}

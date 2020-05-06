@@ -20,6 +20,8 @@ class dextgamePauseScreen extends Phaser.Scene{
 
   update(){
     //is a loop that runs constantly
+    checkOriention(window.innerWidth, window.innerHeight);
+    
     if (touchCounter == 2){
       this.scene.start("welcomeScreen");
     }

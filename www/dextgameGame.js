@@ -153,6 +153,8 @@ class dextgameGame extends Phaser.Scene{
   }
 
   update(time){
+    checkOriention(window.innerWidth, window.innerHeight);
+    
     //is a loop that runs constantly
 
     text.setText([touchCounter]);

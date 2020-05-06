@@ -161,9 +161,9 @@ class dextgameGameScreen extends Phaser.Scene{
     var graphics = this.add.graphics();
     graphics.lineStyle(5, color, 1.0);
     graphics.beginPath();
-    for (var i = 0; i < shapePoints.length; i += 2) {
+    for (var [i, point] of shapePoints.entries()) {
       var lineOp = (i == 0) ? "moveTo" : "lineTo";
-      graphics[lineOp](shapePoints[i], shapePoints[i+1]);
+      graphics[lineOp](point[0], point[1]);
     }
     graphics.closePath();
     graphics.stroke();
@@ -171,6 +171,8 @@ class dextgameGameScreen extends Phaser.Scene{
   }
 
   update(time){
+    checkOriention(window.innerWidth, window.innerHeight);
+    
     //is a loop that runs constantly
     //Sets timer var equal to time
     this.timer1 = time;

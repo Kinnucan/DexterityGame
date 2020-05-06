@@ -14,6 +14,7 @@ class dextgameRestart extends Phaser.Scene{
   }
 
   update(){
+    checkOriention(window.innerWidth, window.innerHeight);
     completedShapes = 0;
     userLevel = 1;
     cumulativeScore = 0;
