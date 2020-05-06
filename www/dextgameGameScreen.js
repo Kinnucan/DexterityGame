@@ -171,6 +171,8 @@ class dextgameGameScreen extends Phaser.Scene{
   }
 
   update(time){
+    checkOriention(window.innerWidth, window.innerHeight);
+    
     //is a loop that runs constantly
     //Sets timer var equal to time
     this.timer1 = time;

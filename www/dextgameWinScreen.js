@@ -23,6 +23,7 @@ class dextgameWinScreen extends Phaser.Scene{
   }
 
   actionOnRelease(){
+    checkOriention(window.innerWidth, window.innerHeight);
     this.scene.start("restart");
   }
 

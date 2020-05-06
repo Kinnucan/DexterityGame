@@ -28,6 +28,8 @@ class dextgameRulesScreen extends Phaser.Scene{
   }
 
   update(){
+    checkOriention(window.innerWidth, window.innerHeight);
+    
     if (touchCounter == 2){
       this.scene.start("gameScreen");
     }
