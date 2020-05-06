@@ -65,19 +65,23 @@ class dextgameGameScreen extends Phaser.Scene{
     var tracer1 = new Tracer(leftShape.shapePoints, leftGraphics);
     var tracer2 = new Tracer(rightShape.shapePoints, rightGraphics);
 
+    // var particles = this.add.particles('flares');
+    // var emitter = particles.createEmitter();
+
     for (var tracer of [tracer1, tracer2]){
       tracer.onPointReached = (x, y) =>{
         var particles = this.add.particles('flares');
-        // particles.setScale(0.1);
         var emitter = particles.createEmitter();
-        emitter.setPosition(x, y);
+        // particles.setScale(0.1);
         // emitter.emitParticleAt(x,y);
-        emitter.setLifespan(1000);
+        emitter.setLifespan(800);
         emitter.setAlpha(0.5);
-        emitter.setSpeed(50);
+        emitter.setSpeed(80);
         // emitter.setRadius(0.2);
         emitter.setScale(0.2);
         emitter.setBlendMode(Phaser.BlendModes.ADD);
+        this.add.image(x, y, 'brush').setScale(0.8).setDepth(-20).setTint(0xFFA500);
+        emitter.explode(60, x, y)
       };
     }
     //Finds the point that the player is starting nearest on the shape
@@ -120,12 +124,24 @@ class dextgameGameScreen extends Phaser.Scene{
         if (pointer.pointerId == tracer1.pointerID){
           tracer1.trace(x, y);
           timeText1.setText('Left: ' + Math.floor([this.timer1]));
-          this.add.image(x, y, 'brush').setScale(0.5).setAlpha(0.3).setTint(0xFF000);
+          var userTrail = this.add.image(x, y, 'brush').setScale(0.5).setAlpha(0.3).setTint(0xFF000);
+          this.tweens.add({
+            targets: userTrail,
+            alpha: 0,
+            duration: 2000,
+            ease: 'Power2'
+          }, this);
         }
         else if (pointer.pointerId == tracer2.pointerID){
           tracer2.trace(x, y);
           timeText2.setText('Right: ' + Math.floor([this.timer2]));
-          this.add.image(x, y, 'brush').setScale(0.5).setAlpha(0.3).setTint(0x9400D3);
+          var userTrail = this.add.image(x, y, 'brush').setScale(0.5).setAlpha(0.3).setTint(0x9400D3);
+          this.tweens.add({
+            targets: userTrail,
+            alpha: 0,
+            duration: 2000,
+            ease: 'Power2'
+          }, this);
         }
 
         if (tracer1.pathFinished && tracer2.pathFinished){
