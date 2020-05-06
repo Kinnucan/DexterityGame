@@ -1,6 +1,7 @@
 class Tracer{
   constructor(path, graphicsObject){
-    this.path = path;
+    this.pathSpacing = 3;
+    this.path = resamplePath(path, this.pathSpacing);
     this.pointerID;
     this.startingPoint;
     this.indexOfNextPoint;
@@ -29,6 +30,7 @@ class Tracer{
     this.distanceThreshold = 100;
     this.direction = null;
     this.dist = null;
+    this.previousTrace = [x, y];
 
     var startingPoint;
     var startingPointIndex;
@@ -47,6 +49,23 @@ class Tracer{
   trace(x, y){
     x -= this.offsetX;
     y -= this.offsetY;
+
+    // interpolate from previous x,y to the new one
+    var interpolatedTrace = interpolate(this.previousTrace, [x,y], this.pathSpacing)
+
+    // do _traceSinglePoint for each of the interpolated points on the way to x,y
+    for(var point of interpolatedTrace){
+      this._traceSinglePoint(point[0], point[1]);
+    }
+
+    // do _traceSinglePoint for x,y itself
+    this._traceSinglePoint(x,y);
+
+    // remember x,y as the previous position
+    this.previousTrace = [x, y];
+  }
+
+  _traceSinglePoint(x,y){
     if (!this.checkedDirection){
       this._findDirectionAndNextPoint(x, y, this.path);
       this.checkedDirectionCounter ++;
