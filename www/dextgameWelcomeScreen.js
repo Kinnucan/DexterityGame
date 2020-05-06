@@ -26,8 +26,8 @@ class dextgameWelcomeScreen extends Phaser.Scene{
     //is a loop that runs constantly
     checkOriention(window.innerWidth, window.innerHeight);
     if (touchCounter == 2){
-      this.scene.start("winScreen");
-      // this.scene.start("rulesScreen");
+      // this.scene.start("winScreen");
+      this.scene.start("rulesScreen");
     }
   }
 
