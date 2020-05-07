@@ -123,7 +123,7 @@ class dextgameGameScreen extends Phaser.Scene{
 
         if (pointer.pointerId == tracer1.pointerID){
           tracer1.trace(x, y);
-          timeText1.setText('Left: ' + Math.floor([this.timer1]));
+          timeText1.setText('Left: ' + Math.floor([this.timer1-timer1]));
           var userTrail = this.add.image(x, y, 'brush').setScale(0.5).setAlpha(0.3).setTint(0xFF000);
           this.tweens.add({
             targets: userTrail,
@@ -134,7 +134,7 @@ class dextgameGameScreen extends Phaser.Scene{
         }
         else if (pointer.pointerId == tracer2.pointerID){
           tracer2.trace(x, y);
-          timeText2.setText('Right: ' + Math.floor([this.timer2]));
+          timeText2.setText('Right: ' + Math.floor([this.timer2-timer2]));
           var userTrail = this.add.image(x, y, 'brush').setScale(0.5).setAlpha(0.3).setTint(0x9400D3);
           this.tweens.add({
             targets: userTrail,
