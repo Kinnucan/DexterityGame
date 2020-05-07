@@ -5,7 +5,7 @@ class dextgameRulesScreen extends Phaser.Scene{
 
   preload(){
     touchCounter = 0;
-    this.load.image('ruleback', 'assets/particles/320633713.png');
+    this.load.image('ruleback', 'assets/particles/gameback.png');
   }
 
   create(){
