@@ -18,13 +18,13 @@ class dextgameScoreScreen extends Phaser.Scene{
 
       continueButton = this.add.text(450,450, "Continue", {fill: '#0f0'}).setInteractive()
       .on('pointerdown', ()=>this.actionOnClick())
-      .on('pointerup', ()=>this.actionOnRelease());
+      .on('pointerup', ()=>this.actionOnRelease()).setFontSize(25);
       userLevel += 1;
 
 
-      rulesButton = this.add.text(350,450, "Rules", {fill: '#0f0'}).setInteractive()
+      rulesButton = this.add.text(300,450, "Rules", {fill: '#0f0'}).setInteractive()
       .on('pointerdown', ()=>this.actionOnClickRules())
-      .on('pointerup', ()=>this.actionOnReleaseRules());
+      .on('pointerup', ()=>this.actionOnReleaseRules()).setFontSize(25);
     }
     else if (sceneChangeCondition==1) {
       var loseText = this.add.text(323, 200, 'YOU LOSE! Would you like to play again?');
@@ -36,11 +36,7 @@ class dextgameScoreScreen extends Phaser.Scene{
 
       continueButton = this.add.text(450,450, "Try Again", {fill: '#0f0'}).setInteractive()
       .on('pointerdown', ()=>this.actionOnClick())
-      .on('pointerup', ()=>this.actionOnRelease());
-
-      // rulesButton = this.add.text(350,450, "Rules", {fill: '#0f0'}).setInteractive()
-      // .on('pointerdown', ()=>this.actionOnClick())
-      // .on('pointerup', ()=>this.actionOnReleaseRules());
+      .on('pointerup', ()=>this.actionOnRelease()).setFontSize(25);
     }
 
   }

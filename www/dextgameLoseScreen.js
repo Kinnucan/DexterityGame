@@ -11,7 +11,7 @@ class dextgameLoseScreen extends Phaser.Scene{
     var loseText = this.add.text(200, 200, 'Whoops, you took a finger off and lost the game! Would you like to try again?');
     continueButton = this.add.text(400,450, "Click me to Try Again", {fill: '#0f0'}).setInteractive()
     .on('pointerdown', ()=>this.actionOnClick())
-    .on('pointerup', ()=>this.actionOnRelease());
+    .on('pointerup', ()=>this.actionOnRelease()).setFontSize(25);
   }
 
   actionOnClick(){
@@ -25,8 +25,6 @@ class dextgameLoseScreen extends Phaser.Scene{
 
   update(){
     checkOriention(window.innerWidth, window.innerHeight);
-    
-
   }
 
 }

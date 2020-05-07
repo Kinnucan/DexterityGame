@@ -20,7 +20,6 @@ class dextgameGameScreen extends Phaser.Scene{
     text.setColor('aqua');
     timeText1 = this.add.text(40, 40, 'Left Timer: ');
     timeText2 = this.add.text(500, 40, 'Right Timer: ');
-    scoreText = this.add.text(300, 50, 'Score: ' + Math.floor(score));
     var graphicsDrawing = this.add.graphics({ fillStyle: { color: 0x9400D3 } });
 
     //picks a shape from the shape database and checks to make sure we have not used this shape yet.
@@ -42,13 +41,6 @@ class dextgameGameScreen extends Phaser.Scene{
       rightShape = shapeList[indexRight];
     }
 
-    // while (rightShape.name == leftShape.name && rightShape.hasUsed == true){
-    //   rightShape = shapeList[Math.floor(Math.random() * shapeList.length)];
-    // }
-
-    //marks the two shapes as used
-    // leftShape.hasUsed = true;
-    // rightShape.hasUsed = true;
     shapeList[indexLeft].hasUsed = true;
     shapeList[indexRight].hasUsed = true;
 
@@ -64,9 +56,6 @@ class dextgameGameScreen extends Phaser.Scene{
 
     var tracer1 = new Tracer(leftShape.shapePoints, leftGraphics);
     var tracer2 = new Tracer(rightShape.shapePoints, rightGraphics);
-
-    // var particles = this.add.particles('flares');
-    // var emitter = particles.createEmitter();
 
     for (var tracer of [tracer1, tracer2]){
       tracer.onPointReached = (x, y) =>{
@@ -173,7 +162,6 @@ class dextgameGameScreen extends Phaser.Scene{
   update(time){
     checkOriention(window.innerWidth, window.innerHeight);
 
-    //is a loop that runs constantly
     //Sets timer var equal to time
     this.timer1 = time;
     this.timer2 = time;

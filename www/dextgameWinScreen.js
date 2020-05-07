@@ -15,7 +15,7 @@ class dextgameWinScreen extends Phaser.Scene{
     userLevel = 0;
     continueButton = this.add.text(400,450, "Click me to Play Again!", {fill: '#0f0'}).setInteractive()
     .on('pointerdown', ()=>this.actionOnClick())
-    .on('pointerup', ()=>this.actionOnRelease());
+    .on('pointerup', ()=>this.actionOnRelease()).setFontSize(25);
   }
 
   actionOnClick(){
@@ -29,7 +29,6 @@ class dextgameWinScreen extends Phaser.Scene{
 
   update(){
     checkOriention(window.innerWidth, window.innerHeight);
-
   }
 
 }
