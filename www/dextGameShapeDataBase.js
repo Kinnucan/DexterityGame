@@ -70,19 +70,11 @@ var triangle = {
   hasUsed: false
 };
 
-
-
-
-
-
-
-
-
 // var pentagon = {
 //   name: "pentagon",
 //   shapePoints: [[-60.625, -60.625], [0, 0], [60.625, 60.625], [60.625, 121.25], [0, 121.25], [-60.625, 121.25]],
 //   hasUsed: false
 // };
 
-// var shapeList = [arrow, diamond, heptagon, hexagon, octagon, pentagon, rectangle, rhombus, square, star, triangle, trapezoid];
-var shapeList = [arrow,hexagon];
+var shapeList = [arrow, diamond, heptagon, hexagon, octagon, pentagon, rectangle, rhombus, square, star, triangle, trapezoid];
+// var shapeList = [arrow,hexagon];
