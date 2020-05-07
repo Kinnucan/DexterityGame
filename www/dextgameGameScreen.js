@@ -74,9 +74,9 @@ class dextgameGameScreen extends Phaser.Scene{
         var emitter = particles.createEmitter();
         // particles.setScale(0.1);
         // emitter.emitParticleAt(x,y);
-        emitter.setLifespan(800);
+        emitter.setLifespan(200);
         emitter.setAlpha(0.5);
-        emitter.setSpeed(80);
+        emitter.setSpeed(240);
         // emitter.setRadius(0.2);
         emitter.setScale(0.2);
         emitter.setBlendMode(Phaser.BlendModes.ADD);
@@ -172,7 +172,7 @@ class dextgameGameScreen extends Phaser.Scene{
 
   update(time){
     checkOriention(window.innerWidth, window.innerHeight);
-    
+
     //is a loop that runs constantly
     //Sets timer var equal to time
     this.timer1 = time;
