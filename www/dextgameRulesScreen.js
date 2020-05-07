@@ -5,6 +5,7 @@ class dextgameRulesScreen extends Phaser.Scene{
 
   preload(){
     touchCounter = 0;
+    this.load.image('ruleback', 'assets/particles/320633713.png');
   }
 
   create(){
@@ -23,6 +24,7 @@ class dextgameRulesScreen extends Phaser.Scene{
     var endMessage = this.add.text(135,435);
     endMessage.setText(['If you feel like you understand the rules,', 'place two fingers down to move on to Level One!']);
     endMessage.setColor('aqua');
+    this.add.image(400, 400, 'ruleback').setScale(0.5).setDepth(-20);
 
     this.input.on('pointerdown', function (pointer) {touchCounter++;}, this);
   }
