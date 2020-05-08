@@ -9,12 +9,15 @@ class dextgameGameScreen extends Phaser.Scene{
     //Used for load music and pictures
     this.load.image('brush', 'img/brush1.png');
     this.load.image('flares', 'assets/particles/blue.png');
+    this.load.image('tileback', 'assets/particles/star2.jpg');
     touchCounter = 2;
     score = 0;
   }
 
   create(){
     //create objects
+    this.add.image(400, 300, 'tileback').setScale(0.6).setDepth(-20);
+    this.back = this.add.tileSprite(0,0,5000,5000, 'tileback').setScale(0.8).setDepth(-20);
     var pointer = this.input.addPointer(1);
     text = this.add.text(20,20, 'Welcome to Level ' + userLevel + '!');
     text.setColor('aqua');
@@ -31,6 +34,7 @@ class dextgameGameScreen extends Phaser.Scene{
       indexLeft = Math.floor(Math.random() * shapeList.length);
       leftShape = shapeList[indexLeft];
     }
+  
 
     //picks a shape from the shape database and checks
     //to make sure the two randomly picked shapes are not the same shape
@@ -161,7 +165,7 @@ class dextgameGameScreen extends Phaser.Scene{
 
   update(time){
     checkOriention(window.innerWidth, window.innerHeight);
-
+    this.back.tilePositionX +=0.5;
     //Sets timer var equal to time
     this.timer1 = time;
     this.timer2 = time;
