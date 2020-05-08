@@ -43,6 +43,7 @@ var scoreText;
 
 var orientationText;
 var ship;
+var spacefield;
 
 var game = new Phaser.Game(config);
 
