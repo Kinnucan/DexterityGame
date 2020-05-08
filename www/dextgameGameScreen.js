@@ -181,9 +181,9 @@ class dextgameGameScreen extends Phaser.Scene{
     diff = Phaser.Math.Difference((this.timer1-timer1), (this.timer2-timer2));
 
     //TODO: Add this back in when the game is complete
-    // if (touchCounter < 2){
-    //   this.scene.start("loseScreen");
-    // }
+    if (touchCounter < 2){
+      this.scene.start("loseScreen");
+    }
 
     if (winCondition){
       cumulativeScore += score;
