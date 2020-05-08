@@ -10,7 +10,10 @@ This is a single-player, 2-Dimensional game created with Phaser software. Openin
 Currently, there is no way to install the app. Once the developers have received copyrights and licensing for this game, they will release their game on digital markets, such as the mobile App Store.
 
 ## Authors and Acknowlegments
-Created by Nana Amoah, Paul Hero, Ryan Kinnucan, and Zahara Spilka with special guidance from Professor Paul Cantrell, this game was developed during the 2020 spring semester at Macalester College.
+Created by Nana Amoah, Paul Hero, Ryan Kinnucan, and Zahara Spilka with special guidance from Professor Paul Cantrell, this game was developed during the 2020 spring semester at Macalester College. Written in JavaScript and HTML5, this app was developed using Phaser software, and tested using Cordova and GapCoder.
+
+Special thanks to Professor Paul Cantrell of Macalester College for providing an excellent class experience and resources for this project.
+
 
 ## License
 At this time, the game is a private app. In the future, we hope to further develop the game, get copyrights and licensing, and release it digital markets like the App Store.
