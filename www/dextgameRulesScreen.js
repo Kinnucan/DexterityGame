@@ -9,8 +9,11 @@ class dextgameRulesScreen extends Phaser.Scene{
   }
 
   create(){
-    var welcomeMessage = this.add.text(135,100, 'Here are the rules to play the game. Read carefully!');
+    var welcomeMessage = this.add.text(350,100, 'RULES');
     welcomeMessage.setColor('aqua');
+    welcomeMessage.setFontFamily('Cursive');
+    welcomeMessage.setFontSize('30px');
+    
     var rule1 = this.add.text(135,160);
     rule1.setText(['Rule #1: As soon as both fingers touch the screen,', 'both must stay down until the shapes are completed!']);
     var rule2 = this.add.text(135,210);
@@ -21,9 +24,10 @@ class dextgameRulesScreen extends Phaser.Scene{
     rule4.setText(['Rule #4: Once both fingers are down, they both must remain', 'on the screen. If you take one off, you lose the game!']);
     var rule5 = this.add.text(135,360);
     rule5.setText(['Rule #5: Once you pick a direciton to trace a shape, you', 'must keep tracing in that direction. No take-backsies!']);
-    var endMessage = this.add.text(135,435);
+    var endMessage = this.add.text(180,435);
     endMessage.setText(['If you feel like you understand the rules,', 'place two fingers down to move on to Level One!']);
     endMessage.setColor('aqua');
+    endMessage.setAlign('center')
     this.add.image(400, 400, 'ruleback').setScale(0.5).setDepth(-20);
 
     this.input.on('pointerdown', function (pointer) {touchCounter++;}, this);
