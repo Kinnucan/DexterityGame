@@ -2,6 +2,9 @@
 
 AMBID is a Phaser game that tests and builds its user's ambidexterity.
 
+##Project Status
+While this is a fully functioning game, the developers want to further the game before releasing it to the public. For now, production has stopped as the creators work on other projects and final exams. Although production has stopped for the time being, there are still different ideas and features the developers want to implement in the future. The developers hope to come together and start working again on this app over the summer of 2020.
+
 ##Description
 
 This is a single-player, 2-Dimensional game created with Phaser software. Opening on a welcome screen, the game gives the user instructions on how to play before preceding to the first level. To play the game, the user uses two fingers, one from each hand, to trace the shapes on the screen simultaneously. If the user completes this goal with a sufficient score, they proceed to the score screen. Here the user can see how well they did, rest their hands, and have the opportunity to review the rules if they so choose. When they are ready, the user then proceeds to the next level with new shapes for them to trace. As the user moves through the game, they build and strengthen their ambidexterity. If the user can successfully beat each level, they win the game and have the opportunity to play again and beat their previous scores.
