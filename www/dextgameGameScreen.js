@@ -94,6 +94,8 @@ class dextgameGameScreen extends Phaser.Scene{
 
     for (var tracer of [tracer1, tracer2]){
       tracer.onPointReached = (x, y) =>{
+        //create a partilce effects that will go off as the user traces the shapes
+        //the particles will only occur if the user is tracing accuretly
         var particles = this.add.particles('flares');
         var emitter = particles.createEmitter();
         emitter.setLifespan(200);
