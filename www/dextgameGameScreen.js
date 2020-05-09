@@ -92,6 +92,8 @@ class dextgameGameScreen extends Phaser.Scene{
     var tracer1 = new Tracer(leftShape.shapePoints, leftGraphics);
     var tracer2 = new Tracer(rightShape.shapePoints, rightGraphics);
 
+
+    //Adds particle effect and background outline to the poitns on the shape that the user hits
     for (var tracer of [tracer1, tracer2]){
       tracer.onPointReached = (x, y) =>{
         //create a partilce effects that will go off as the user traces the shapes
@@ -113,6 +115,7 @@ class dextgameGameScreen extends Phaser.Scene{
       var x = pointer.x;
       var y = pointer.y;
 
+      //Determines which shape the user's finger is tracing then calls first tracing function
       if (x <= 400){
         tracer1.start(x, y);
         pointer.pointerId = 1;
@@ -124,6 +127,7 @@ class dextgameGameScreen extends Phaser.Scene{
         tracer2.pointerID = pointer.pointerId;
       }
 
+      //Checks if the user takes one of their fingers off
       this.input.on('pointerup', (pointer) => {
         if (pointer.pointerId == tracer1.pointerID){
           touchCounter--;
@@ -145,6 +149,7 @@ class dextgameGameScreen extends Phaser.Scene{
         perc = (avg/130000)*100;
         score = perc - ((diff)/total)*100;
 
+        //Traces the user's touch and updates their time when they move their finger
         if (pointer.pointerId == tracer1.pointerID){
           tracer1.trace(x, y);
           timeTextLeft.setText('Left: ' + Math.floor([this.timerLeft-accumulatedLeftTime]));
@@ -168,6 +173,7 @@ class dextgameGameScreen extends Phaser.Scene{
           }, this);
         }
 
+        //Checks if the user has finished both shapes
         if (tracer1.pathFinished && tracer2.pathFinished){
           if (score >= 80){
             sceneChangeCondition=0;

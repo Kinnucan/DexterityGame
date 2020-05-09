@@ -17,6 +17,8 @@ class Tracer{
     this.pathFinished = false;
   }
 
+
+  //Finds the point on the path shape where the player starts
   start(x, y){
     x -= this.offsetX;
     y -= this.offsetY;
@@ -46,6 +48,7 @@ class Tracer{
     this.indexOfNextPoint = startingPointIndex;
   }
 
+  //Calls methods to interpolate new points on shape and trace the user's drawing
   trace(x, y){
     x -= this.offsetX;
     y -= this.offsetY;
@@ -65,6 +68,7 @@ class Tracer{
     this.previousTrace = [x, y];
   }
 
+  //Traces a single point
   _traceSinglePoint(x,y){
     if (!this.checkedDirection){
       this._findDirectionAndNextPoint(x, y, this.path);
@@ -75,10 +79,12 @@ class Tracer{
     this._traceUserTouch(x, y, this.path);
   }
 
+  //Finds the index of a point within the array of points
   _findIndexOfPoint(index, arrayLength){
     return ((index % arrayLength) + arrayLength) % arrayLength;
   }
 
+  //Finds the direction the player goes in and the next point to look for
   _findDirectionAndNextPoint(x, y, path){
     var nextPoint = path[this._findIndexOfPoint(this.indexOfNextPoint+1, path.length)];
     var prevPoint = path[this._findIndexOfPoint(this.indexOfNextPoint-1, path.length)];
@@ -93,6 +99,7 @@ class Tracer{
     }
   }
 
+  //Traces the user's drawing and calls callback function to add images to user's path
   _traceUserTouch(x, y, path){
     if (this.direction && this.checkedDirection){
       if (Phaser.Math.Distance.Between(x, y, this.nextPoint[0], this.nextPoint[1]) <= 15){
