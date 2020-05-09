@@ -5,10 +5,17 @@ class dextgameScoreScreen extends Phaser.Scene{
   }
 
   preload(){
+    //sets the loose condition to false
     this.loseCondition = false;
   }
 
   create(){
+    //checks to see if the user beat the level
+    //if so, the game shows a congradulations text on the screen, sets the set
+    //then displays the scores, Current, Average, and tells the instructions of
+    //continueing. Else, the game presents the failed message with, the try
+    //again button
+
     if (sceneChangeCondition == 0){
       var congratsText = this.add.text(323, 200, 'Nice going!');
       congratsText.setColor('aqua');
@@ -23,7 +30,7 @@ class dextgameScoreScreen extends Phaser.Scene{
 
 
       rulesButton = this.add.text(300,450, "Rules", {fill: '#0f0'}).setInteractive()
-      .on('pointerdown', ()=>this.actionOnClickRules())
+      .on('pointerdown', ()=>this.actionOnClick())
       .on('pointerup', ()=>this.actionOnReleaseRules()).setFontSize(25);
     }
     else if (sceneChangeCondition==1) {
@@ -41,10 +48,13 @@ class dextgameScoreScreen extends Phaser.Scene{
 
   }
 
+  //fucnttion that changes the color of the button when clciked
   actionOnClick(){
     continueButton.setStyle({ color: '#ff0'});
   }
 
+  //function that triggers either restart or game screen depending on if the
+  //user failed or succeded on the previous level.
   actionOnRelease(){
     if (this.loseCondition)
       this.scene.start("restart");
@@ -52,10 +62,12 @@ class dextgameScoreScreen extends Phaser.Scene{
       this.scene.start("gameScreen");
   }
 
-  actionOnClickRules(){
-    rulesButton.setStyle({ color: '#ff0'});
-  }
+  // //fucnttion that changes the color of the button when clciked
+  // actionOnClickRules(){
+  //   rulesButton.setStyle({ color: '#ff0'});
+  // }
 
+  //when the putton is realased, the game will start the rules screen
   actionOnReleaseRules(){
     this.scene.start("rulesScreen");
   }
@@ -63,6 +75,7 @@ class dextgameScoreScreen extends Phaser.Scene{
   update(){
     //checks to make sure the user is in Landscape View
     checkOriention(window.innerWidth, window.innerHeight);
+    //resents window condition
     winCondition = false;
   }
 
