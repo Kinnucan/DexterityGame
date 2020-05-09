@@ -9,7 +9,7 @@ var config = {
     height: 600
   },
   backgroundColor: 0x000000,
-  scene: [dextgameWelcomeScreen, dextgameRulesScreen, dextgamePauseScreen, dextgameGameScreen, dextgameScoreScreen, dextgameLoseScreen, dextgameWinScreen, dextgameRestart]
+  scene: [dextgameWelcomeScreen, dextgameRulesScreen, dextgameGameScreen, dextgameScoreScreen, dextgameLoseScreen, dextgameWinScreen, dextgameRestart]
 };
 
 var text;
