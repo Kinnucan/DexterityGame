@@ -174,6 +174,7 @@ class dextgameGameScreen extends Phaser.Scene{
         }
 
         //Checks if the user has finished both shapes
+        //if so, sets the window conditin to true which will start the next screen
         if (tracer1.pathFinished && tracer2.pathFinished){
           if (score >= 80){
             sceneChangeCondition=0;
@@ -187,6 +188,7 @@ class dextgameGameScreen extends Phaser.Scene{
     }, this);
   }
 
+  //fucntion that draws the shapes on screen
   strokeShape(shapePoints, color){
     var graphics = this.add.graphics();
     graphics.lineStyle(5, color, 1.0);
@@ -201,6 +203,7 @@ class dextgameGameScreen extends Phaser.Scene{
   }
 
   update(time){
+    //checks to make sure the user is in Landscape View
     checkOriention(window.innerWidth, window.innerHeight);
     this.back.tilePositionX +=0.5;
     //Sets timer var equal to time
@@ -209,10 +212,15 @@ class dextgameGameScreen extends Phaser.Scene{
     total = (130000-(-accumulatedLeftTime)) + (130000-(this.timerRight-accumulatedRightTime));
     diff = Phaser.Math.Difference((this.timerLeft-accumulatedLeftTime), (this.timerRight-accumulatedRightTime));
 
+    //if the user removes one or two fingers, they get sent to the loose screen
     if (touchCounter < 2){
       this.scene.start("loseScreen");
     }
-
+    //otherwise, the game checks to see if the wincodition is true, if so
+    //then the user score, compeltedshapes, and accumulat left and right times
+    //get incremented, and depending on iff the user completed all the sapes with
+    //a necessary passing score, the user will either move onto the win screen
+    //or score screen 
     if (winCondition){
       cumulativeScore += score;
       completedShapes += 2;
