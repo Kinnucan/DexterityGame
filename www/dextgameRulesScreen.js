@@ -4,16 +4,25 @@ class dextgameRulesScreen extends Phaser.Scene{
   }
 
   preload(){
+    //loads the touchCounter, counts how many fingers on the screen, to 0,
+    //loads the background image
     touchCounter = 0;
     this.load.image('ruleback', 'assets/particles/gameback.jpg');
   }
 
   create(){
+    //creates and adds title text to the screen
+    //then sets the texts different attributes.
     var welcomeMessage = this.add.text(350,100, 'RULES');
     welcomeMessage.setColor('aqua');
     welcomeMessage.setFontFamily('Cursive');
     welcomeMessage.setFontSize('30px');
-    
+
+    //then creates and adds the text for the rules of the game to the screen.
+    //then sets the texts style.
+    //then the add images to the screen and sets its depth so that it is behind
+    //the text.
+
     var rule1 = this.add.text(135,160);
     rule1.setText(['Rule #1: As soon as both fingers touch the screen,', 'both must stay down until the shapes are completed!']);
     var rule2 = this.add.text(135,210);
@@ -30,12 +39,16 @@ class dextgameRulesScreen extends Phaser.Scene{
     endMessage.setAlign('center')
     this.add.image(400, 400, 'ruleback').setScale(0.5).setDepth(-20);
 
+    //creates a fucntion for when a pointer is down
+    //each time the user places a finger on the screen, the touhCounter increases
     this.input.on('pointerdown', function (pointer) {touchCounter++;}, this);
   }
 
   update(){
+    //checks to make sure the user is in Landscape View
     checkOriention(window.innerWidth, window.innerHeight);
-    
+
+    //when the user places two fingers on the screen, the game starts the game.
     if (touchCounter == 2){
       this.scene.start("gameScreen");
     }

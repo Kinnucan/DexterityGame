@@ -47,16 +47,14 @@ var spacefield;
 
 var game = new Phaser.Game(config);
 
+//function that checks and make sure the user is in Landscape View
+//if the user goes into portrait mode, they change the games design on which
+//whites out the screen, and places the image that instructs the user to go into
+//landscape mode
 function checkOriention (width, height){
   if (window.innerWidth < window.innerHeight){
-    // ship.setVisible(true);
-    // orientationText.setVisible(true);
-    // text.setVisible(false);
     document.getElementById("turn").style.display="block";
   }else if (window.innerWidth > window.innerHeight){
-    // ship.setVisible(false);
-    // orientationText.setVisible(false);
-    // text.setVisible(true);
     document.getElementById("turn").style.display="none";
   }
 }

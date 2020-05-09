@@ -61,6 +61,7 @@ class dextgameScoreScreen extends Phaser.Scene{
   }
 
   update(){
+    //checks to make sure the user is in Landscape View
     checkOriention(window.innerWidth, window.innerHeight);
     winCondition = false;
   }
