@@ -30,7 +30,7 @@ class dextgameScoreScreen extends Phaser.Scene{
 
 
       rulesButton = this.add.text(300,450, "Rules", {fill: '#0f0'}).setInteractive()
-      .on('pointerdown', ()=>this.actionOnClick())
+      .on('pointerdown', ()=>this.actionOnClickRules())
       .on('pointerup', ()=>this.actionOnReleaseRules()).setFontSize(25);
     }
     else if (sceneChangeCondition==1) {
@@ -48,13 +48,10 @@ class dextgameScoreScreen extends Phaser.Scene{
 
   }
 
-  //fucnttion that changes the color of the button when clciked
   actionOnClick(){
     continueButton.setStyle({ color: '#ff0'});
   }
 
-  //function that triggers either restart or game screen depending on if the
-  //user failed or succeded on the previous level.
   actionOnRelease(){
     if (this.loseCondition)
       this.scene.start("restart");
@@ -62,12 +59,10 @@ class dextgameScoreScreen extends Phaser.Scene{
       this.scene.start("gameScreen");
   }
 
-  // //fucnttion that changes the color of the button when clciked
-  // actionOnClickRules(){
-  //   rulesButton.setStyle({ color: '#ff0'});
-  // }
+  actionOnClickRules(){
+    rulesButton.setStyle({ color: '#ff0'});
+  }
 
-  //when the putton is realased, the game will start the rules screen
   actionOnReleaseRules(){
     this.scene.start("rulesScreen");
   }
@@ -75,7 +70,6 @@ class dextgameScoreScreen extends Phaser.Scene{
   update(){
     //checks to make sure the user is in Landscape View
     checkOriention(window.innerWidth, window.innerHeight);
-    //resents window condition
     winCondition = false;
   }
 
