@@ -1,3 +1,10 @@
+//Database of all the shapes used in the game
+//each shape object has a name, shapePoint, and hasUsed attribute.
+//the name attribute is the name of the shape as a string.
+//the shapePoints is an array of cordinates. this used to draw the shape on the
+// screen
+// the hasedUSed attribute is a boolean statement. This attribute is used by the
+// the game when deciding which shapes have and have not been used.
 var arrow = {
   name: "arrow",
   shapePoints: [[-75,46.25],[-75,16.25],[0,16.25],[0,-6.25],[75,46.25],[0,98.75],[0,76.25],[-75,76.25]],
