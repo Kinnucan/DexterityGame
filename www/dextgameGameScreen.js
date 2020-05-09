@@ -76,6 +76,7 @@ class dextgameGameScreen extends Phaser.Scene{
         emitter.explode(60, x, y)
       };
     }
+    
     //Finds the point that the player is starting nearest on the shape
     this.input.on('pointerdown', (pointer) => {
       var x = pointer.x;
