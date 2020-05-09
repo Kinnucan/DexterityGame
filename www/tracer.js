@@ -69,7 +69,7 @@ class Tracer{
     if (!this.checkedDirection){
       this._findDirectionAndNextPoint(x, y, this.path);
       this.checkedDirectionCounter ++;
-      if (this.checkedDirectionCounter == 15)
+      if (this.checkedDirectionCounter == 20)
         this.checkedDirection = true;
     }
     this._traceUserTouch(x, y, this.path);
@@ -95,7 +95,7 @@ class Tracer{
 
   _traceUserTouch(x, y, path){
     if (this.direction && this.checkedDirection){
-      if (Phaser.Math.Distance.Between(x, y, this.nextPoint[0], this.nextPoint[1]) <= 20){
+      if (Phaser.Math.Distance.Between(x, y, this.nextPoint[0], this.nextPoint[1]) <= 15){
         this.currentPoint = this.nextPoint;
         this.indexOfNextPoint = this._findIndexOfPoint(this.indexOfNextPoint + this.direction, path.length);
         this.nextPoint = path[this.indexOfNextPoint];

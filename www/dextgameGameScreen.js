@@ -1,8 +1,8 @@
 class dextgameGameScreen extends Phaser.Scene{
   constructor(){
     super({key:"gameScreen"});
-    this.timer1;
-    this.timer2;
+    this.timerLeft;
+    this.timerRight;
   }
 
   preload(){
@@ -21,8 +21,8 @@ class dextgameGameScreen extends Phaser.Scene{
     var pointer = this.input.addPointer(1);
     text = this.add.text(20,20, 'Welcome to Level ' + userLevel + '!');
     text.setColor('aqua');
-    timeText1 = this.add.text(40, 40, 'Left Timer: ');
-    timeText2 = this.add.text(500, 40, 'Right Timer: ');
+    timeTextLeft = this.add.text(40, 40, 'Left Timer: ');
+    timeTextRight = this.add.text(500, 40, 'Right Timer: ');
     var graphicsDrawing = this.add.graphics({ fillStyle: { color: 0x9400D3 } });
 
     //picks a shape from the shape database and checks to make sure we have not used this shape yet.
@@ -34,7 +34,6 @@ class dextgameGameScreen extends Phaser.Scene{
       indexLeft = Math.floor(Math.random() * shapeList.length);
       leftShape = shapeList[indexLeft];
     }
-  
 
     //picks a shape from the shape database and checks
     //to make sure the two randomly picked shapes are not the same shape
@@ -116,7 +115,7 @@ class dextgameGameScreen extends Phaser.Scene{
 
         if (pointer.pointerId == tracer1.pointerID){
           tracer1.trace(x, y);
-          timeText1.setText('Left: ' + Math.floor([this.timer1-timer1]));
+          timeTextLeft.setText('Left: ' + Math.floor([this.timerLeft-accumulatedLeftTime]));
           var userTrail = this.add.image(x, y, 'brush').setScale(0.5).setAlpha(0.3).setTint(0xFF000);
           this.tweens.add({
             targets: userTrail,
@@ -127,7 +126,7 @@ class dextgameGameScreen extends Phaser.Scene{
         }
         else if (pointer.pointerId == tracer2.pointerID){
           tracer2.trace(x, y);
-          timeText2.setText('Right: ' + Math.floor([this.timer2-timer2]));
+          timeTextRight.setText('Right: ' + Math.floor([this.timerRight-accumulatedRightTime]));
           var userTrail = this.add.image(x, y, 'brush').setScale(0.5).setAlpha(0.3).setTint(0x9400D3);
           this.tweens.add({
             targets: userTrail,
@@ -167,12 +166,11 @@ class dextgameGameScreen extends Phaser.Scene{
     checkOriention(window.innerWidth, window.innerHeight);
     this.back.tilePositionX +=0.5;
     //Sets timer var equal to time
-    this.timer1 = time;
-    this.timer2 = time;
-    total = (130000-(this.timer1-timer1)) + (130000-(this.timer2-timer2));
-    diff = Phaser.Math.Difference((this.timer1-timer1), (this.timer2-timer2));
+    this.timerLeft = time;
+    this.timerRight = time;
+    total = (130000-(-accumulatedLeftTime)) + (130000-(this.timerRight-accumulatedRightTime));
+    diff = Phaser.Math.Difference((this.timerLeft-accumulatedLeftTime), (this.timerRight-accumulatedRightTime));
 
-    //TODO: Add this back in when the game is complete
     if (touchCounter < 2){
       this.scene.start("loseScreen");
     }
@@ -180,8 +178,8 @@ class dextgameGameScreen extends Phaser.Scene{
     if (winCondition){
       cumulativeScore += score;
       completedShapes += 2;
-      timer1 = time;
-      timer2 = time;
+      accumulatedLeftTime = time;
+      accumulatedRightTime = time;
       if (completedShapes == shapeList.length && score >= 80){
         this.scene.start("winScreen");
       }

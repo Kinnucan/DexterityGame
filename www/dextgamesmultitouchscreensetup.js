@@ -13,10 +13,10 @@ var config = {
 };
 
 var text;
-var timeText1;
-var timeText2;
-var timer1 = 0;
-var timer2 = 0;
+var timeTextLeft;
+var timeTextRight;
+var accumulatedLeftTime = 0;
+var accumulatedRightTime = 0;
 
 var score;
 var cumulativeScore=0;
