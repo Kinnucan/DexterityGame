@@ -53,15 +53,12 @@ class Tracer{
     x -= this.offsetX;
     y -= this.offsetY;
 
-    // interpolate from previous x,y to the new one
     var interpolatedTrace = interpolate(this.previousTrace, [x,y], this.pathSpacing)
-
-    // do _traceSinglePoint for each of the interpolated points on the way to x,y
     for(var point of interpolatedTrace){
       this._traceSinglePoint(point[0], point[1]);
     }
 
-    // do _traceSinglePoint for x,y itself
+
     this._traceSinglePoint(x,y);
 
     // remember x,y as the previous position

@@ -1,9 +1,9 @@
-//interpolation function that finds the distance between two points, and creates
-// a new path between these two points.
-//Fucntion takes in two points from a path, and an interger value representing
-// the maximum space between them.
-//Returns: an array of the new coordinate pairs 
-//Points up to ... not including
+//This function finds the distance between two points, and creates
+//new points within the given distance up to, and not including the
+//end point.
+//Function takes in two points from a path, and an interger value representing
+//the expected maximum space between any two points.
+//Returns: an array of the new coordinate pairs up to the end point.
 function interpolate(p0, p1, maxSpacing){
   var newPoints = [];
   var diff = [p1[0] - p0[0], p1[1] - p0[1]];
@@ -18,10 +18,11 @@ function interpolate(p0, p1, maxSpacing){
   return newPoints;
 }
 
-//ressambles points from path
-//takes in an array of coordinates and an interger value representing the max
-//space.
-//returns a new array of coordinates
+//Resamples points from path.
+//Takes in an array of coordinates and an integer value representing the
+//maximum expected distance between any two points.
+//Returns a new path as an array with the distance between points being
+//less than or equal to the maximum distance given.
 function resamplePath(path, maxSpacing){
   var resampledPath = [];
 
