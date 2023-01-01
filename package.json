@@ -19,7 +19,7 @@
     "cordova-osx": "5.0.0",
     "cordova-plugin-browsersync": "^1.1.0",
     "cordova-plugin-screen-orientation": "git+https://github.com/apache/cordova-plugin-screen-orientation.git",
-    "phaser": "^3.22.0",
+    "phaser": "^3.55.2",
     "window": "^4.2.7"
   },
   "devDependencies": {
